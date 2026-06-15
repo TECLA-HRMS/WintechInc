@@ -1,0 +1,361 @@
+.main-banner-section {
+    background: linear-gradient(135deg, #23204d 0%, #3a3570 100%);
+    padding: 120px 0 100px;
+    position: relative;
+    overflow: hidden;
+}
+
+.banner-pattern-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('content/event8/imagescontact.jpg');
+    opacity: 0.5;
+}
+
+.banner-text-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.banner-main-heading {
+    color: #ffffff;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.banner-main-heading span {
+    color: #C19000;
+}
+
+.banner-sub-text {
+    color: rgba(255,255,255,0.8);
+    font-size: 18px;
+    max-width: 700px;
+    margin: 0 auto 30px;
+}
+
+.contact-info-section {
+    padding: 100px 0;
+}
+
+.content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contact-layout-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 40px;
+    margin-top: 50px;
+}
+
+.info-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 50px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid #353169;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+.contact-details-card {
+    background: linear-gradient(135deg, #23204d 0%, #3a3570 100%);
+    color: #ffffff;
+}
+
+.contact-details-card::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: rgba(193, 144, 0, 0.05);
+}
+
+.contact-details-card::after {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: rgba(193, 144, 0, 0.05);
+}
+
+.section-main-title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    position: relative;
+    color: #23204d;
+}
+
+.section-main-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: #C19000;
+    margin-top: 15px;
+    border-radius: 2px;
+}
+
+.contact-details-card .section-main-title {
+    color: #ffffff;
+}
+
+.contact-details-card .section-main-title::after {
+    background: #C19000;
+}
+
+.contact-detail-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 25px;
+}
+
+.detail-icon-box {
+    background: rgba(193, 144, 0, 0.15);
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    flex-shrink: 0;
+    transition: all 0.3s;
+}
+
+.contact-detail-item:hover .detail-icon-box {
+    background: rgba(193, 144, 0, 0.25);
+    transform: scale(1.05);
+}
+
+.detail-icon-box i {
+    color: #C19000;
+    font-size: 18px;
+}
+
+.detail-label-text {
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.detail-value-text {
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.detail-value-text:hover {
+    color: #C19000;
+}
+
+.contact-details-card a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.contact-details-card a:hover {
+    color: #C19000;
+}
+
+.input-field-group {
+    margin-bottom: 20px;
+}
+
+.form-input-field {
+    width: 100%;
+    padding: 15px 20px;
+    border-radius: 10px;
+    border: 1px solid #e0e0e0;
+    font-size: 16px;
+    transition: all 0.3s;
+}
+
+.form-input-field:focus {
+    border-color: #C19000;
+    box-shadow: 0 0 0 3px rgba(193, 144, 0, 0.1);
+    outline: none;
+}
+
+textarea.form-input-field {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.submit-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to right, #23204d 0%, #3a3570 100%);
+    color: white;
+    border: none;
+    padding: 16px 30px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.submit-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(35, 32, 77, 0.2);
+}
+
+.submit-button i {
+    margin-left: 10px;
+}
+
+.location-map-section {
+    padding: 0 0 100px;
+}
+
+.map-embed-container {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    height: 500px;
+}
+
+.map-embed-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.notification {
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+    display: none;
+}
+
+.success-notification {
+    background: rgba(76, 175, 80, 0.1);
+    color: #4CAF50;
+    border-left: 4px solid #4CAF50;
+}
+
+.error-notification {
+    background: rgba(244, 67, 54, 0.1);
+    color: #F44336;
+    border-left: 4px solid #F44336;
+}
+
+.notification i {
+    margin-right: 10px;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .banner-main-heading {
+        font-size: 42px;
+    }
+    
+    .contact-layout-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .info-card {
+        padding: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-banner-section {
+        padding: 100px 0 80px;
+    }
+    
+    .banner-main-heading {
+        font-size: 36px;
+    }
+    
+    .banner-sub-text {
+        font-size: 16px;
+    }
+    
+    .section-main-title {
+        font-size: 28px;
+    }
+    
+    .info-card {
+        padding: 30px;
+    }
+    
+    .contact-detail-item {
+        flex-direction: column;
+    }
+    
+    .detail-icon-box {
+        margin-bottom: 15px;
+        margin-right: 0;
+    }
+    
+    .map-embed-container {
+        height: 400px;
+    }
+}
+
+@media (max-width: 576px) {
+    .banner-main-heading {
+        font-size: 32px;
+    }
+    
+    .info-card {
+        padding: 25px;
+        border-radius: 12px;
+        margin: 0 15px;
+    }
+    .section-main-title {
+        font-size: 24px;
+    }
+    .detail-value-text {
+        font-size: 16px;
+    }
+    
+    .submit-button {
+        width: 100%;
+    }
+    
+    .map-embed-container {
+        height: 300px;
+        border-radius: 12px;
+    }
+}
+
+.form-input-field{
+    border:1px solid #23204d;
+}
+
+.tj-nice-select-box,
+.tj-select,
+.tj-select select {
+    width: 100%;
+    display: block;
+}

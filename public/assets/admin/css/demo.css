@@ -1,0 +1,288 @@
+/*
+* demo.css
+* File include item demo only specific css only
+******************************************************************************/
+
+.light-style .menu .app-brand.demo {
+  height: 100px;
+}
+
+.dark-style .menu .app-brand.demo {
+  height: 64px;
+}
+
+.app-brand-logo.demo {
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  display: -ms-flexbox;
+  display: flex;
+  width: 34px;
+  height: 24px;
+}
+
+.app-brand-logo.demo svg {
+  width: 35px;
+  height: 24px;
+}
+
+.app-brand-text.demo {
+  font-size: 1.375rem;
+}
+
+/* ! For .layout-navbar-fixed added fix padding top tpo .layout-page */
+.layout-navbar-fixed .layout-wrapper:not(.layout-without-menu) .layout-page {
+  padding-top: 64px !important;
+}
+.layout-navbar-fixed .layout-wrapper:not(.layout-horizontal):not(.layout-without-menu) .layout-page {
+  padding-top: 22px !important;
+   background-color: #ffffff;
+}
+/* Navbar page z-index issue solution */
+.content-wrapper .navbar {
+  z-index: auto;
+}
+
+/*
+* Content
+******************************************************************************/
+
+.demo-blocks > * {
+  display: block !important;
+}
+
+.demo-inline-spacing > * {
+  margin: 1rem 0.375rem 0 0 !important;
+}
+
+/* ? .demo-vertical-spacing class is used to have vertical margins between elements. To remove margin-top from the first-child, use .demo-only-element class with .demo-vertical-spacing class. For example, we have used this class in forms-input-groups.html file. */
+.demo-vertical-spacing > * {
+  margin-top: 1rem !important;
+  margin-bottom: 0 !important;
+}
+.demo-vertical-spacing.demo-only-element > :first-child {
+  margin-top: 0 !important;
+}
+
+.demo-vertical-spacing-lg > * {
+  margin-top: 1.875rem !important;
+  margin-bottom: 0 !important;
+}
+.demo-vertical-spacing-lg.demo-only-element > :first-child {
+  margin-top: 0 !important;
+}
+
+.demo-vertical-spacing-xl > * {
+  margin-top: 5rem !important;
+  margin-bottom: 0 !important;
+}
+.demo-vertical-spacing-xl.demo-only-element > :first-child {
+  margin-top: 0 !important;
+}
+
+.rtl-only {
+  display: none !important;
+  text-align: left !important;
+  direction: ltr !important;
+}
+
+[dir='rtl'] .rtl-only {
+  display: block !important;
+}
+
+/* Dropdown buttons going out of small screens */
+@media (max-width: 576px) {
+  #dropdown-variation-demo .btn-group .text-truncate {
+    width: 254px;
+    position: relative;
+  }
+  #dropdown-variation-demo .btn-group .text-truncate::after {
+    position: absolute;
+    top: 45%;
+    right: 0.65rem;
+  }
+}
+
+/*
+* Layout demo
+******************************************************************************/
+
+/* DataTable Css */
+.dt-container .dt-search input:focus {
+  outline: none !important;
+  border-color: #7367f0;
+}
+
+.custom-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.btn-pagination {
+  border: 1px solid #ccc;
+  background: white !important;
+  padding: 5px 15px;
+  border-radius: 6px;
+  color: black !important;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-pagination:hover {
+  background: #5A74F9 !important;
+  color: white !important;
+}
+
+div.dt-container .dt-paging .dt-paging-button.current,
+div.dt-container .dt-paging .dt-paging-button.current:hover {
+  color: black !important;
+  background-color: #5A74F9 !important;
+}
+
+.dt-paging-button {
+  color: black !important;
+  border-color: transparent !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+
+.dt-paging-button:hover {
+  color: black !important;
+  background: none !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.dt-paging-button:active {
+  background: none !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.btn-pagination.current-page {
+  background-color: #7367f0;
+  color: black !important;
+}
+
+.btn-pagination:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Toggle Switch Design */
+
+/* Genel stil */
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 24px;
+  margin: 10px;
+}
+
+/* Giriş stil */
+.toggle-switch .toggle-input {
+  display: none;
+}
+
+/*  stil */
+.toggle-switch .toggle-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 24px;
+  background-color: #ccc;
+  border-radius: 34px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* stil */
+.toggle-switch .toggle-label::before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  background-color: #fff;
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s;
+}
+
+/*  */
+.toggle-switch .toggle-input:checked + .toggle-label {
+  background-color: #7367f0;
+}
+
+.toggle-switch .toggle-input:checked + .toggle-label::before {
+  transform: translateX(16px);
+}
+
+/* Light tema */
+.toggle-switch.light .toggle-label {
+  background-color: #BEBEBE;
+}
+
+.toggle-switch.light .toggle-input:checked + .toggle-label {
+  background-color: #9B9B9B;
+}
+
+.toggle-switch.light .toggle-input:checked + .toggle-label::before {
+  transform: translateX(6px);
+}
+
+/* Dark tema */
+.toggle-switch.dark .toggle-label {
+  background-color: #4B4B4B;
+}
+
+.toggle-switch.dark .toggle-input:checked + .toggle-label {
+  background-color: #717171;
+}
+
+.toggle-switch.dark .toggle-input:checked + .toggle-label::before {
+  transform: translateX(16px);
+}
+
+/* Trnanslate Styles -> Translate To All Language */
+.VIpgJd-ZVi9od-ORHb-OEVmcd { display: none !important; } .goog-te-gadget{ font-size: 0 !important; color: transparent !important; } .VIpgJd-ZVi9od-l4eHX-hSRGPd{ display: none !important; }
+/* Style the select box */
+.goog-te-combo {
+  width: 180px; /* Set the width of the dropdown */
+  height: 35px; /* Set the height of the select input */
+  font-size: 14px; /* Text size */
+  border: 2px solid aliceblue; /* Border color */
+  margin-right: 10px;
+  border-radius: 5px; /* Rounded corners */
+  background-color: #e9e7fd; /* Background color */
+  padding: 5px; /* Padding for better spacing */
+  outline: none; /* Remove default outline */
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+/* Style the dropdown options */
+.goog-te-combo option {
+  font-size: 14px; /* Size of the text in options */
+  padding: 5px; /* Space around the text */
+  background-color: #ffffff; /* Background color for options */
+  color: #333; /* Text color */
+}
+
+/* Add hover effect for options */
+.goog-te-combo option:hover {
+  background-color: #f0f2f5; /* Highlighted background color */
+  color: #E1326F; /* Highlighted text color */
+}
+
+/* Trnanslate Styles -> Translate To All Language */
+
+
+
+
