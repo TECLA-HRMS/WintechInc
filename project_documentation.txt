@@ -1,0 +1,173 @@
+================================================================================
+WINTECH INC (TECLA-HRMS) - A TO Z FULL PROJECT DOCUMENTATION
+================================================================================
+
+1. INTRODUCTION & PURPOSE
+--------------------------------------------------------------------------------
+WintechInc is a fully-featured Human Resource Management System (HRMS) and Job 
+Portal. Its primary goal is to bridge the gap between job seekers (candidates) 
+and employers (companies). It also provides system administrators with total 
+control over the platform.
+
+The system allows candidates to search for jobs, apply, and track their 
+applications. Employers can register, post job openings, and review applicants. 
+The admin has full oversight of users, job postings, newsletters, and general 
+content management.
+
+2. SYSTEM REQUIREMENTS
+--------------------------------------------------------------------------------
+To run the WintechInc application, the following system requirements must be met:
+- Operating System: Windows, Linux, or macOS
+- Web Server: Apache or Nginx
+- PHP Version: 8.0.2 or higher
+- Database: MySQL (Version 5.7+ or MariaDB equivalent)
+- Dependency Manager: Composer (latest version)
+- Node.js & NPM (for frontend compilation if applicable)
+- PHP Extensions: OpenSSL, PDO, Mbstring, Tokenizer, XML, Ctype, JSON, BCMath, 
+  GD or Imagick (for image processing)
+
+3. INSTALLATION INSTRUCTIONS (A to Z)
+--------------------------------------------------------------------------------
+Step A: Clone or copy the project source code to your local web server root 
+        (e.g., c:\xampp\htdocs\wintech-new).
+Step B: Open a terminal/command prompt and navigate to the project folder:
+        cd c:\xampp\htdocs\wintech-new
+Step C: Install all PHP dependencies using Composer:
+        composer install
+Step D: Copy the sample environment file to create your own configuration:
+        copy .env.example .env (Windows)
+        cp .env.example .env (Linux/Mac)
+Step E: Generate the application key for encryption:
+        php artisan key:generate
+Step F: Open the .env file and configure your database settings:
+        DB_CONNECTION=mysql
+        DB_HOST=127.0.0.1
+        DB_PORT=3306
+        DB_DATABASE=your_database_name
+        DB_USERNAME=your_database_user
+        DB_PASSWORD=your_database_password
+Step G: Run database migrations to create tables, along with seeders:
+        php artisan migrate --seed
+Step H: Create a symbolic link to make storage files (like uploaded resumes 
+        and logos) publicly accessible:
+        php artisan storage:link
+Step I: Start the local development server:
+        php artisan serve
+Step J: Access the application in your browser at http://localhost:8000
+
+4. TECHNOLOGY STACK
+--------------------------------------------------------------------------------
+- Backend Framework: Laravel 9.x (PHP)
+- Frontend: HTML5, CSS3, Vanilla JavaScript, and Laravel Blade Templating
+- Database: MySQL
+- Image Processing: Intervention Image package
+- PDF Generation: DomPDF / mPDF
+- Excel Export/Import: Maatwebsite Excel
+- Authentication: Laravel's built-in Auth and Laravel Socialite for OAuth
+
+5. DIRECTORY STRUCTURE BREAKDOWN
+--------------------------------------------------------------------------------
+- app/: Contains the core code (Controllers, Models, Middleware, Mail classes).
+  -> app/Http/Controllers/: Logic for Admin, Frontend, and Auth routes.
+  -> app/Models/: Eloquent models interacting with database tables.
+- bootstrap/: Files that bootstrap the framework.
+- config/: Configuration files for services, mail, database, and packages.
+- database/: Migrations (table schemas) and Seeders (dummy data).
+- public/: Publicly accessible files (CSS, JS, images, uploaded files).
+- resources/views/: Blade templates where the HTML lives. Separated into:
+  -> admin/: Dashboard views.
+  -> site/: Public facing frontend views.
+  -> emails/: Email templates for newsletters, application status, etc.
+- routes/web.php: The main file where all web URLs are defined and mapped to 
+  controllers.
+- storage/: App storage (logs, compiled views, uploaded public files).
+
+6. DATABASE SCHEMA OVERVIEW (Key Tables)
+--------------------------------------------------------------------------------
+- users: Stores account data. It has columns for role differentiation (e.g., 
+  admin, company, candidate), email, password, and timestamps.
+- companies: Stores employer data, including logos, industry, and descriptions.
+- jobs: Stores job postings, including title, description, requirements, 
+  location, and the associated company ID.
+- job_applications: A pivot table that records which candidate applied to which 
+  job, along with the application status (e.g., pending, accepted, rejected).
+- newsletter_subscribers: Stores email addresses of users who opted in to 
+  receive job alerts and company news.
+
+7. CORE MODULES & FEATURES
+--------------------------------------------------------------------------------
+MODULE 1: Public Frontend
+- Home Page: Displays featured jobs, company overviews, and search bars.
+- Job Listings: Users can search and filter jobs by category, type, and location.
+- Static Pages: About Us, Contact Us, Privacy Policy, Terms and Conditions.
+
+MODULE 2: Candidate Portal
+- Registration/Login: Standard and Social Auth (Google/Facebook).
+- Profile Management: Update personal info, upload/manage resumes (PDF).
+- Job Applications: Candidates can click "Apply" on jobs, which creates a 
+  record in job_applications.
+- Application Tracking: A dashboard to see the status of applied jobs.
+- Wishlist: Save jobs for viewing later.
+
+MODULE 3: Employer (Company) Portal
+- Registration: Employers register their company details.
+- Job Management: Employers can post new jobs, edit existing ones, and close 
+  positions.
+- Applicant Review: Employers can see who applied to their jobs and update 
+  the candidate's status (e.g., shortlisting).
+
+MODULE 4: Admin Dashboard
+- User Management: View, ban, or edit user/company profiles.
+- Content Management: Approve/reject job postings, manage site content.
+- Settings: General site settings like logos, contact info, and SEO tags.
+- Newsletter System: Compose rich HTML emails and send them in bulk to all 
+  subscribed users.
+
+8. ROUTING & URL STRUCTURE (Examples)
+--------------------------------------------------------------------------------
+Public Routes:
+- GET /               => Home Page
+- GET /job            => All Jobs list
+- GET /job/{id}       => Single Job details page
+- GET /contact        => Contact form
+
+Candidate Routes (Requires Login):
+- GET /profile        => User profile page
+- POST /job/{id}/apply=> Submit job application
+- GET /my-applications=> View application history
+
+Auth Routes:
+- GET /login          => Login screen
+- GET /register       => Registration screen
+
+9. AUTHENTICATION & SECURITY
+--------------------------------------------------------------------------------
+- CSRF Protection: Laravel automatically generates CSRF tokens for all forms 
+  to protect against Cross-Site Request Forgery.
+- Password Hashing: All passwords are encrypted using Bcrypt before saving 
+  to the database.
+- Input Validation: All forms (registration, job posting, applying) are 
+  validated on the server-side to prevent SQL injection and malicious data.
+- XSS Prevention: Blade templates automatically escape output, mitigating 
+  Cross-Site Scripting attacks.
+- File Upload Security: Uploaded files (like resumes) are checked for strict 
+  MIME types (e.g., only PDF for resumes, only JPG/PNG for logos).
+
+10. DEPLOYMENT GUIDELINES
+--------------------------------------------------------------------------------
+When moving this project to a live server (cPanel, VPS, AWS, etc.):
+1. Ensure the server has the required PHP version and extensions.
+2. Upload the project files (excluding the local vendor directory and .env).
+3. Run `composer install --optimize-autoloader --no-dev`.
+4. Create a new MySQL database on the live server and import the schema, or 
+   run `php artisan migrate`.
+5. Update the live server's .env file with the live database credentials and 
+   set APP_ENV=production and APP_DEBUG=false.
+6. Point the server's Document Root to the project's /public directory.
+7. Run `php artisan config:cache`, `php artisan route:cache`, and 
+   `php artisan view:cache` to optimize performance.
+8. Set up an SSL certificate (HTTPS) to ensure data is transmitted securely.
+
+================================================================================
+END OF DOCUMENTATION
+================================================================================
