@@ -134,6 +134,10 @@ class JobApplicationController extends Controller
 
                 $file->move(public_path('applications'), $filename);
                 $resumeFile = 'applications/' . $filename;
+            } elseif ($user && $user->resume) {
+                $resumeFile = 'resume/' . $user->resume;
+            } else {
+                return redirect()->back()->with('error', 'Please upload a resume or add one to your profile to apply.');
             }
 
             // Insert application into database (preferred_work_mode_ref is NOT included)

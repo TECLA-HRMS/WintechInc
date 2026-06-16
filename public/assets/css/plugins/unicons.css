@@ -1,11 +1,11 @@
-@font-face {
+﻿@font-face {
     font-family: 'unicons';
-    src: url('https://s.cdpn.io/1462889/unicons.eot');
-    src: url('https://s.cdpn.io/1462889/unicons.eot') format('embedded-opentype'),
-         url('https://s.cdpn.io/1462889/unicons.woff2') format('woff2'),
-         url('https://s.cdpn.io/1462889/unicons.woff') format('woff'),
-         url('https://s.cdpn.io/1462889/unicons.ttf') format('truetype'),
-         url('https://s.cdpn.io/1462889/unicons.svg') format('svg');
+    src: url('../../../s.cdpn.io/1462889/unicons.eot');
+    src: url('../../../s.cdpn.io/1462889/unicons.eot') format('embedded-opentype'),
+         url('../../../s.cdpn.io/1462889/unicons.woff2') format('woff2'),
+         url('../../../s.cdpn.io/1462889/unicons.woff') format('woff'),
+         url('../../../s.cdpn.io/1462889/unicons.ttf') format('truetype'),
+         url('../../../s.cdpn.io/1462889/unicons.svg') format('svg');
     font-weight: normal;
     font-style: normal;
   }

@@ -23,12 +23,9 @@
     /* Pagination */
     .nl-pagination { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 1.5rem; border-top: 1px solid #e5e7eb; }
     .nl-pagination .info { font-size: .8rem; color: #6b7280; }
-    .pagination-nav { display: flex; align-items: center; gap: 0.5rem; }
-    .pagination-nav .page-link { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border: 1px solid #e5e7eb; border-radius: 6px; color: #111827; text-decoration: none; font-size: 0.875rem; transition: all 0.15s; }
-    .pagination-nav .page-link:hover { background: #eef2ff; border-color: #4f46e5; color: #4f46e5; }
-    .pagination-nav .page-link.active { background: #4f46e5; border-color: #4f46e5; color: white; }
-    .pagination-nav .page-link.disabled { opacity: 0.5; cursor: not-allowed; }
-    .pagination-nav .page-link.disabled:hover { background: transparent; border-color: #e5e7eb; color: #111827; }
+    .nl-pagination .pagination { margin: 0; }
+    .nl-pagination .page-link { border-radius: 7px !important; margin: 0 2px; border: 1px solid #e5e7eb; color: #111827; font-size: 0.8rem; padding: 0.35rem 0.65rem; }
+    .nl-pagination .page-item.active .page-link { background: #4f46e5; border-color: #4f46e5; color: #fff; }
     
     /* Status Tabs */
     .status-tabs { display: flex; gap: 0; margin-bottom: 1.5rem; border-bottom: 1px solid #e5e7eb; }
@@ -103,34 +100,14 @@
             </tbody>
         </table>
         
-        @if($jobFunctions->hasPages())
         <div class="nl-pagination">
             <div class="info">
-                Showing {{ $jobFunctions->firstItem() ?? 0 }} to {{ $jobFunctions->lastItem() ?? 0 }} of {{ $jobFunctions->total() }} job functions
+                Showing <strong>{{ $jobFunctions->firstItem() ?? 0 }}</strong> to <strong>{{ $jobFunctions->lastItem() ?? 0 }}</strong> of <strong>{{ $jobFunctions->total() }}</strong> job functions
             </div>
-            <div class="pagination-nav">
-                @if($jobFunctions->onFirstPage())
-                    <span class="page-link disabled"><i class="ti ti-chevron-left"></i></span>
-                @else
-                    <a href="{{ $jobFunctions->previousPageUrl() }}" class="page-link"><i class="ti ti-chevron-left"></i></a>
-                @endif
-                
-                @foreach($jobFunctions->getUrlRange(1, $jobFunctions->lastPage()) as $page => $url)
-                    @if($page == $jobFunctions->currentPage())
-                        <span class="page-link active">{{ $page }}</span>
-                    @else
-                        <a href="{{ $url }}" class="page-link">{{ $page }}</a>
-                    @endif
-                @endforeach
-                
-                @if($jobFunctions->hasMorePages())
-                    <a href="{{ $jobFunctions->nextPageUrl() }}" class="page-link"><i class="ti ti-chevron-right"></i></a>
-                @else
-                    <span class="page-link disabled"><i class="ti ti-chevron-right"></i></span>
-                @endif
+            <div>
+                {{ $jobFunctions->appends(request()->query())->links() }}
             </div>
         </div>
-        @endif
     </div>
 
 </div>

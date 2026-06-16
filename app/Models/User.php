@@ -11,6 +11,7 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     protected $fillable = [
+        'job_function_id',
         'first_name',
         'last_name',
         'email',
@@ -60,6 +61,12 @@ public function userSkills()
 {
     return $this->hasMany(UserSkill::class);
 }
+
+public function jobFunction()
+{
+    return $this->belongsTo(JobFunction::class, 'job_function_id');
+}
+
  public function getNameAttribute()
     {
         return $this->first_name . ' ' . $this->last_name;

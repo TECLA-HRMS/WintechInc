@@ -16,36 +16,17 @@
     .nl-textarea:focus { border-color:#4f46e5; box-shadow:0 0 0 3px rgba(79,70,229,.1); }
     .nl-field { margin-bottom:1.4rem; }
 
-    /* Audience cards */
-    .audience-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1.5rem; }
-    .audience-card { border:2px solid #e5e7eb; border-radius:12px; padding:1.1rem 1.25rem; cursor:pointer; transition:all .2s; position:relative; user-select:none; }
-    .audience-card:hover { border-color:#a5b4fc; background:#fafbff; }
-    .audience-card.selected { border-color:#4f46e5; background:#eef2ff; }
-    .audience-card input[type=checkbox] { position:absolute; opacity:0; width:0; height:0; }
-    .audience-card .ac-check { width:20px; height:20px; border:2px solid #d1d5db; border-radius:5px; display:inline-flex; align-items:center; justify-content:center; margin-right:.6rem; flex-shrink:0; transition:all .2s; }
-    .audience-card.selected .ac-check { background:#4f46e5; border-color:#4f46e5; color:#fff; }
-    .audience-card .ac-top { display:flex; align-items:center; margin-bottom:.4rem; }
-    .audience-card .ac-icon { width:36px; height:36px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:1rem; margin-right:.75rem; flex-shrink:0; }
-    .audience-card .ac-title { font-weight:700; font-size:.95rem; color:#111827; }
-    .audience-card .ac-count { font-size:.8rem; color:#6b7280; margin-top:.15rem; }
-    .ac-icon-sub  { background:#eef2ff; color:#4f46e5; }
-    .ac-icon-user { background:#ecfdf5; color:#059669; }
-
     /* Summary bar */
     .nl-summary { background:#f0fdf4; border:1px solid #86efac; border-radius:8px; padding:.75rem 1rem; font-size:.875rem; color:#166534; margin-bottom:1.5rem; display:flex; align-items:center; gap:.5rem; }
-    .nl-summary.warn { background:#fffbeb; border-color:#fcd34d; color:#92400e; }
 
     .preview-box { background:#f9fafb; border:1px solid #e5e7eb; border-radius:8px; padding:1rem; font-size:.85rem; color:#374151; min-height:60px; white-space:pre-wrap; }
     .char-count  { font-size:.75rem; color:#9ca3af; text-align:right; margin-top:.25rem; }
 
     .btn-send { background:#4f46e5; color:#fff; border:none; border-radius:8px; padding:.7rem 2rem; font-size:.9rem; font-weight:600; cursor:pointer; display:inline-flex; align-items:center; gap:.5rem; transition:background .2s; }
     .btn-send:hover { background:#4338ca; }
-    .btn-send:disabled { background:#a5b4fc; cursor:not-allowed; }
     .btn-back { background:#fff; color:#6b7280; border:1px solid #d1d5db; border-radius:8px; padding:.7rem 1.5rem; font-size:.9rem; font-weight:500; text-decoration:none; display:inline-flex; align-items:center; gap:.5rem; }
     .btn-back:hover { background:#f9fafb; color:#374151; }
     .nl-alert { border-radius:10px; border:none; font-size:.875rem; padding:.875rem 1.25rem; margin-bottom:1.25rem; }
-
-    @media(max-width:600px){ .audience-grid{ grid-template-columns:1fr; } }
 </style>
 
 <div class="nl-page">
@@ -72,56 +53,28 @@
 
     <div class="nl-card">
 
-        <form action="{{ route('admin.newsletter.send') }}" method="POST" id="composeForm">
+        <form action="{{ route('admin.newsletter.send') }}" method="POST" id="composeForm" enctype="multipart/form-data">
             @csrf
 
             {{-- STEP 1: Audience --}}
             <div class="nl-field">
                 <label class="nl-label" style="font-size:.9rem;color:#111827;margin-bottom:.75rem">
                     <i class="ti ti-users me-1" style="color:#4f46e5"></i>
-                    Step 1 — Choose Recipients
+                    Step 1 — Audience (Optional Target)
                 </label>
 
-                <div class="audience-grid">
-
-                    {{-- Newsletter Subscribers --}}
-                    <label class="audience-card {{ in_array('subscribers', old('send_to', [])) ? 'selected' : '' }}"
-                           id="card-subscribers" onclick="toggleCard(this)">
-                        <input type="checkbox" name="send_to[]" value="subscribers"
-                               id="chk-subscribers"
-                               {{ in_array('subscribers', old('send_to', [])) ? 'checked' : '' }}>
-                        <div class="ac-top">
-                            <div class="ac-check"><i class="ti ti-check" style="font-size:.75rem"></i></div>
-                            <div class="ac-icon ac-icon-sub"><i class="ti ti-mail-forward"></i></div>
-                            <div>
-                                <div class="ac-title">Newsletter Subscribers</div>
-                                <div class="ac-count">{{ $totalSubscribers }} active subscriber(s)</div>
-                            </div>
-                        </div>
-                    </label>
-
-                    {{-- Registered Users --}}
-                    <label class="audience-card {{ in_array('users', old('send_to', [])) ? 'selected' : '' }}"
-                           id="card-users" onclick="toggleCard(this)">
-                        <input type="checkbox" name="send_to[]" value="users"
-                               id="chk-users"
-                               {{ in_array('users', old('send_to', [])) ? 'checked' : '' }}>
-                        <div class="ac-top">
-                            <div class="ac-check"><i class="ti ti-check" style="font-size:.75rem"></i></div>
-                            <div class="ac-icon ac-icon-user"><i class="ti ti-users"></i></div>
-                            <div>
-                                <div class="ac-title">Registered Users</div>
-                                <div class="ac-count">{{ $totalUsers }} registered user(s)</div>
-                            </div>
-                        </div>
-                    </label>
-
+                <div style="margin-bottom: 1rem;">
+                    <select name="job_function_id" class="nl-input" id="targetJobFunction">
+                        <option value="">All Registered Users ({{ $totalUsers }} users)</option>
+                        @foreach($jobFunctions as $jf)
+                            <option value="{{ $jf->id }}" {{ old('job_function_id') == $jf->id ? 'selected' : '' }}>{{ $jf->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
 
-                {{-- Dynamic summary --}}
-                <div class="nl-summary warn" id="summaryBar">
-                    <i class="ti ti-info-circle"></i>
-                    <span id="summaryText">Please select at least one recipient group.</span>
+                <div class="nl-summary" id="audienceSummary">
+                    <i class="ti ti-check"></i>
+                    <span>This newsletter will be sent to all <strong>{{ $totalUsers }}</strong> registered users.</span>
                 </div>
             </div>
 
@@ -136,11 +89,21 @@
                        value="{{ old('subject') }}" required maxlength="255">
             </div>
 
-            {{-- STEP 3: Body --}}
+            {{-- STEP 3: Image Upload (Optional) --}}
+            <div class="nl-field">
+                <label class="nl-label">
+                    <i class="ti ti-image me-1" style="color:#4f46e5"></i>
+                    Step 3 — Featured Image (Optional)
+                </label>
+                <input type="file" name="image" class="nl-input" accept="image/png, image/jpeg, image/jpg, image/gif" style="padding:.5rem 1rem">
+                <div style="font-size:.75rem; color:#6b7280; margin-top:.4rem;">Supported formats: JPEG, PNG, GIF (Max 2MB).</div>
+            </div>
+
+            {{-- STEP 4: Body --}}
             <div class="nl-field">
                 <label class="nl-label">
                     <i class="ti ti-align-left me-1" style="color:#4f46e5"></i>
-                    Step 3 — Message Body <span style="color:#dc2626">*</span>
+                    Step 4 — Message Body <span style="color:#dc2626">*</span>
                 </label>
                 <textarea name="body" id="bodyField" class="nl-textarea"
                           placeholder="Write your newsletter content here..."
@@ -157,7 +120,7 @@
             </div>
 
             <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-top:.5rem">
-                <button type="submit" class="btn-send" id="sendBtn" disabled>
+                <button type="submit" class="btn-send" id="sendBtn">
                     <i class="ti ti-send"></i> Send Newsletter
                 </button>
                 <a href="{{ route('admin.newsletter.index') }}" class="btn-back">Cancel</a>
@@ -167,42 +130,6 @@
 </div>
 
 <script>
-const SUB_COUNT  = {{ $totalSubscribers }};
-const USER_COUNT = {{ $totalUsers }};
-
-function toggleCard(label) {
-    const chk = label.querySelector('input[type=checkbox]');
-    // Let the browser toggle the checkbox naturally, then sync UI
-    setTimeout(() => {
-        label.classList.toggle('selected', chk.checked);
-        updateSummary();
-    }, 0);
-}
-
-function updateSummary() {
-    const subChecked  = document.getElementById('chk-subscribers').checked;
-    const userChecked = document.getElementById('chk-users').checked;
-    const bar         = document.getElementById('summaryBar');
-    const txt         = document.getElementById('summaryText');
-    const btn         = document.getElementById('sendBtn');
-
-    if (!subChecked && !userChecked) {
-        bar.className = 'nl-summary warn';
-        txt.textContent = 'Please select at least one recipient group.';
-        btn.disabled = true;
-        return;
-    }
-
-    // Estimate (may overlap, dedup happens server-side)
-    let parts = [];
-    if (subChecked)  parts.push(SUB_COUNT  + ' subscriber(s)');
-    if (userChecked) parts.push(USER_COUNT + ' registered user(s)');
-
-    bar.className = 'nl-summary';
-    txt.innerHTML = '<strong>Ready to send</strong> — recipients: ' + parts.join(' + ') + ' (duplicates removed automatically).';
-    btn.disabled = false;
-}
-
 function updatePreview(el) {
     document.getElementById('charCount').textContent = el.value.length;
     document.getElementById('previewBox').textContent = el.value || 'Your message will appear here...';
@@ -210,12 +137,12 @@ function updatePreview(el) {
 
 // Confirm before submit
 document.getElementById('composeForm').addEventListener('submit', function(e) {
-    const txt = document.getElementById('summaryText').textContent;
-    if (!confirm('Send newsletter?\n\n' + txt)) e.preventDefault();
+    const jf = document.getElementById('targetJobFunction');
+    const targetText = jf.options[jf.selectedIndex].text;
+    if (!confirm('Are you sure you want to send this newsletter to ' + targetText + '?')) e.preventDefault();
 });
 
 // Init
-updateSummary();
 updatePreview(document.getElementById('bodyField'));
 </script>
 @endsection

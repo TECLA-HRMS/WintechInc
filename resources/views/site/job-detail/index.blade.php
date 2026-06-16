@@ -225,13 +225,26 @@
 
               {{-- Resume --}}
               <div class="jd-form__section-label">Resume / CV</div>
-              <div class="jd-upload" id="uploadZone" onclick="document.getElementById('resume_upload').click()">
+              <div class="jd-upload {{ $user && $user->resume ? 'has-file' : '' }}" id="uploadZone" onclick="document.getElementById('resume_upload').click()">
                 <div class="jd-upload__icon" id="uploadIconWrap">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
                 </div>
                 <div class="jd-upload__text">
-                  <span id="resume-label">{{ $user && $user->resume ? 'Click to upload a new Resume' : 'Upload your Resume' }}</span>
-                  <small>PDF, DOC, DOCX · Max 5 MB</small>
+                  <span id="resume-label">
+                    @if($user && $user->resume)
+                      Profile Resume Auto-Selected 
+                      <a href="{{ url('resume/' . $user->resume) }}" target="_blank" onclick="event.stopPropagation()" style="color: #059669; text-decoration: underline; margin-left: 8px; font-size: 12px;">(View Resume)</a>
+                    @else
+                      Upload your Resume
+                    @endif
+                  </span>
+                  <small>
+                    @if($user && $user->resume)
+                      Click here to upload a different file
+                    @else
+                      PDF, DOC, DOCX · Max 5 MB
+                    @endif
+                  </small>
                 </div>
                 <input type="file" id="resume_upload" name="resume" accept=".pdf,.doc,.docx"
                   {{ $user && $user->resume ? '' : 'required' }} style="display:none"

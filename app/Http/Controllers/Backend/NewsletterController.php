@@ -7,6 +7,7 @@ use App\Mail\CustomNewsletterMail;
 use App\Mail\JobNewsletterMail;
 use App\Models\NewsletterSubscriber;
 use App\Models\User;
+use App\Models\JobFunction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -14,12 +15,9 @@ class NewsletterController extends Controller
 {
     public function index()
     {
-        $subscribers  = NewsletterSubscriber::latest()->paginate(20, ['*'], 'sub_page');
-        $users        = User::whereNotNull('email')->latest()->paginate(20, ['*'], 'user_page');
-        $totalActive  = NewsletterSubscriber::where('is_active', true)->count();
-        $totalAll     = NewsletterSubscriber::count();
-        $totalUsers   = User::whereNotNull('email')->count();
-        return view('admin.newsletter.index', compact('subscribers', 'users', 'totalActive', 'totalAll', 'totalUsers'));
+        $users = User::whereNotNull('email')->latest()->paginate(10, ['*'], 'page');
+        $totalUsers = User::whereNotNull('email')->count();
+        return view('admin.newsletter.index', compact('users', 'totalUsers'));
     }
 
     public function destroy($id)
@@ -38,37 +36,37 @@ class NewsletterController extends Controller
     /** Show compose form */
     public function compose()
     {
-        $totalSubscribers = NewsletterSubscriber::where('is_active', true)->count();
-        $totalUsers       = User::whereNotNull('email')->count();
-        return view('admin.newsletter.compose', compact('totalSubscribers', 'totalUsers'));
+        $totalUsers = User::whereNotNull('email')->count();
+        $jobFunctions = JobFunction::where('status', 'active')->get();
+        return view('admin.newsletter.compose', compact('totalUsers', 'jobFunctions'));
     }
 
     /** Send custom newsletter to selected audience */
     public function sendCustom(Request $request)
     {
         $request->validate([
-            'subject'    => 'required|string|max:255',
-            'body'       => 'required|string',
-            'send_to'    => 'required|array|min:1',
-            'send_to.*'  => 'in:subscribers,users',
+            'subject'         => 'required|string|max:255',
+            'body'            => 'required|string',
+            'image'           => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'job_function_id' => 'nullable|exists:job_functions,id',
         ]);
 
-        $emails = collect();
-
-        if (in_array('subscribers', $request->send_to)) {
-            NewsletterSubscriber::where('is_active', true)
-                ->pluck('email')
-                ->each(fn($e) => $emails->push($e));
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('newsletters'), $filename);
+            $imagePath = 'newsletters/' . $filename;
         }
 
-        if (in_array('users', $request->send_to)) {
-            User::whereNotNull('email')
-                ->pluck('email')
-                ->each(fn($e) => $emails->push($e));
+        $query = User::whereNotNull('email');
+        if ($request->job_function_id) {
+            $query->where('job_function_id', $request->job_function_id);
         }
 
-        // Deduplicate
-        $emails = $emails->unique()->values();
+        $emails = $query->pluck('email')
+            ->unique()
+            ->values();
 
         if ($emails->isEmpty()) {
             return back()->with('error', 'No recipients found for the selected audience.');
@@ -80,7 +78,7 @@ class NewsletterController extends Controller
         foreach ($emails as $email) {
             try {
                 Mail::to($email)
-                    ->send(new CustomNewsletterMail($request->subject, $request->body, $email));
+                    ->send(new CustomNewsletterMail($request->subject, $request->body, $email, $imagePath));
                 $sent++;
             } catch (\Exception $e) {
                 \Log::error('Newsletter send failed to ' . $email . ': ' . $e->getMessage());

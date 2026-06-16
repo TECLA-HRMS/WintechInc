@@ -189,4 +189,5 @@
 
     <!-- start header area -->
 
+    @include('includes.site.contact_section')
 @endsection

@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Education;
 use App\Models\Experience;
 use App\Models\UserSkill;
+use App\Models\JobFunction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -21,13 +22,14 @@ class ProfileController extends Controller
     {
         $user->update([
             'first_name' => $request->first_name,
-            'last_name'  => $request->last_name,
-            'email'      => $request->email,
-            'phone'      => $request->phone,
-            'gender'     => $request->gender,
-            'address'    => $request->address,
-            'location'   => $request->location,
-            'pincode'    => $request->pincode,
+            'last_name'       => $request->last_name,
+            'email'           => $request->email,
+            'phone'           => $request->phone,
+            'gender'          => $request->gender,
+            'address'         => $request->address,
+            'location'        => $request->location,
+            'pincode'         => $request->pincode,
+            'job_function_id' => $request->job_function_id,
         ]);
         
         Log::info('Personal info updated for user: ' . $user->id);
@@ -207,7 +209,7 @@ $file->move($destinationPath, $filename);
 
         try {
             // Personal Information (40%)
-            $personalFields = ['first_name', 'last_name', 'email', 'phone', 'gender', 'address', 'location', 'pincode', 'resume'];
+            $personalFields = ['first_name', 'last_name', 'email', 'phone', 'gender', 'address', 'location', 'pincode', 'resume', 'job_function_id'];
             foreach ($personalFields as $field) {
                 $totalFields++;
                 if (!empty($user->$field)) $completedFields++;
@@ -294,7 +296,9 @@ $file->move($destinationPath, $filename);
             // Calculate progress percentages for each section
             $progress = $this->calculateSectionProgress($user);
 
-            return view('site.profile.index', compact('user', 'progress'));
+            $jobFunctions = JobFunction::where('status', 'active')->get();
+
+            return view('site.profile.index', compact('user', 'progress', 'jobFunctions'));
             
         } catch (\Exception $e) {
             // If tables don't exist yet, use empty data
@@ -306,7 +310,8 @@ $file->move($destinationPath, $filename);
                 'skills' => 0
             ];
             
-            return view('site.profile.index', compact('user', 'progress'));
+            $jobFunctions = JobFunction::where('status', 'active')->get();
+            return view('site.profile.index', compact('user', 'progress', 'jobFunctions'));
         }
     }
 

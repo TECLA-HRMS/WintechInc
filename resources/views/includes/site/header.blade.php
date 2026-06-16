@@ -5,10 +5,14 @@
                     <div class="col-md-6 d-xl-block d-none ">
                         <div class="left">
                             <div class="mail">
-                                <a href="mailto:lochana@wintechinc.in"><i class="fal fa-envelope"></i> lochana@wintechinc.in</a>
+                                @if($site_email = \App\Models\AdminSetting::get('site_email'))
+                                    <a href="mailto:{{ $site_email }}"><i class="fal fa-envelope"></i> {{ $site_email }}</a>
+                                @endif
                             </div>
                             <div class="working-time">
-                                <p><i class="fal fa-phone"></i>99404 36371</p>
+                                @if($site_phone = \App\Models\AdminSetting::get('site_phone'))
+                                    <p><i class="fal fa-phone"></i>{{ $site_phone }}</p>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -16,9 +20,18 @@
                         <div class="right">
                             
                             <ul class="social-wrapper-one">
-                                <li><a href="https://www.facebook.com/wintechincofficial/"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="https://www.instagram.com/wintechincofficial"><i class="fab fa-instagram"></i></a></li>
-                               
+                                @if($fb_link = \App\Models\AdminSetting::get('fb_link'))
+                                    <li><a href="{{ $fb_link }}"><i class="fab fa-facebook-f"></i></a></li>
+                                @endif
+                                @if($instagram_link = \App\Models\AdminSetting::get('instagram_link'))
+                                    <li><a href="{{ $instagram_link }}"><i class="fab fa-instagram"></i></a></li>
+                                @endif
+                                @if($twitter_link = \App\Models\AdminSetting::get('twitter_link'))
+                                    <li><a href="{{ $twitter_link }}"><i class="fab fa-twitter"></i></a></li>
+                                @endif
+                                @if($linkedin_link = \App\Models\AdminSetting::get('linkedin_link'))
+                                    <li><a href="{{ $linkedin_link }}"><i class="fab fa-linkedin"></i></a></li>
+                                @endif
                             </ul>
                         </div>
                     </div>
@@ -26,17 +39,17 @@
             </div>
         </div>
         <div class="header-main-one bg-white" style="height: 78px;">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-xl-3  col-md-3 col-sm-3 col-3 pt-4 pt-lg-0  d-flex flex-column justify-content-center">
+            <div class="container-fluid h-100">
+                <div class="row h-100 align-items-center">
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5 col-5 d-flex flex-column justify-content-center h-100">
                         <div class="thumbnail">
                             <a href="{{ url('/') }}">
                                 <img src="{{ asset('logo.png') }}" alt="Wintech Inc" class="img-fluid" title="Wintech Inc" style=" width: 106px; ">
                             </a>
                         </div>
                     </div>
-                    <div class=" col-xl-9  col-md-9 col-sm-9 col-9 pt-4 pt-lg-0  d-flex flex-column justify-content-center">
-                        <div class="main-header">
+                    <div class="col-xl-9 col-lg-9 col-md-8 col-sm-7 col-7 d-flex flex-column justify-content-center h-100">
+                        <div class="main-header d-flex justify-content-end justify-content-xl-between align-items-center w-100">
                             <nav class="nav-main mainmenu-nav d-none d-xl-block">
                                 <ul class="mainmenu">
                                     <li><a class="nav-item" href="{{ url('/') }}">HOME</a></li>
@@ -125,13 +138,12 @@
                                 <!-- User Auth Logic -->
                                 @auth
                                     <div class="dropdown" style="margin-left: 12px; position: relative;">
-                                        <button class="rts-btn btn-primary-alta profile-dropdown-btn d-flex align-items-center gap-2" type="button" id="userMenu" data-toggle="dropdown" data-bs-toggle="dropdown" data-display="static" data-bs-display="static" aria-haspopup="true" aria-expanded="false" style="padding: 6px 16px 6px 6px; border-radius: 50px; border: 1px solid #e2e8f0; background: #ffffff; box-shadow: 0 4px 10px rgba(0,0,0,0.05); color: #b11e24; transition: all 0.3s ease;">
+                                        <button class="d-flex align-items-center justify-content-center profile-dropdown-btn" type="button" id="userMenu" data-toggle="dropdown" data-bs-toggle="dropdown" data-display="static" data-bs-display="static" aria-haspopup="true" aria-expanded="false" style="width: 42px; height: 42px; border-radius: 50%; border: 2px solid #b11e24; background: #ffffff; padding: 0; transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
                                             @if(Auth::user()->profile_picture)
-                                                <img src="{{ asset('profile_pictures/' . Auth::user()->profile_picture) }}" alt="Profile" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover;">
+                                                <img src="{{ asset('profile_pictures/' . Auth::user()->profile_picture) }}" alt="Profile" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
                                             @else
-                                                <div style="width: 32px; height: 32px; border-radius: 50%; background: #fff1f2; display: flex; align-items: center; justify-content: center; font-size: 14px; color: #b11e24;"><i class="fas fa-user"></i></div>
+                                                <div style="width: 100%; height: 100%; border-radius: 50%; background: #fff1f2; display: flex; align-items: center; justify-content: center; font-size: 16px; color: #b11e24;"><i class="fas fa-user"></i></div>
                                             @endif
-                                            <span style="font-weight: 600; font-size: 14px; color: #1e293b; margin-left: 4px;">{{ explode(' ', Auth::user()->first_name ?? Auth::user()->name ?? 'User')[0] }}</span>
                                         </button>
                                         <ul class="dropdown-menu shadow custom-glass-dropdown" aria-labelledby="userMenu">
                                             <li class="dropdown-header-custom">
@@ -195,7 +207,7 @@
                                             content: "";
                                             position: absolute;
                                             top: -8px;
-                                            right: 22px;
+                                            right: 15px;
                                             border-width: 0 8px 8px 8px;
                                             border-style: solid;
                                             border-color: transparent transparent rgba(255, 255, 255, 0.98) transparent;
@@ -205,7 +217,7 @@
                                             content: "";
                                             position: absolute;
                                             top: -9px;
-                                            right: 22px;
+                                            right: 15px;
                                             border-width: 0 8px 8px 8px;
                                             border-style: solid;
                                             border-color: transparent transparent rgba(0,0,0,0.06) transparent;
@@ -221,10 +233,9 @@
                                         .user-name { display: block; font-size: 16px; color: #0f172a; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
                                         
                                         .profile-dropdown-btn {
-                                            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
                                             transition: all 0.25s ease;
                                         }
-                                        .profile-dropdown-btn:hover { box-shadow: 0 6px 20px rgba(177,30,36,0.18) !important; transform: translateY(-1px); }
+                                        .profile-dropdown-btn:hover { box-shadow: 0 6px 15px rgba(177,30,36,0.18) !important; transform: translateY(-2px); border-color: #b11e24 !important; }
                                         
                                         .profile-dropdown-item { 
                                             display: flex !important; align-items: center; border-radius: 12px; 
@@ -271,8 +282,19 @@
                                         .logout-btn:hover .icon-wrap { color: #ef4444; }
                                     </style>
                                 @else
-                                    <a href="{{ route('login') }}" class="rts-btn btn-primary ml--10 ml_sm--5 header-one-btn quote-btn" style="margin-left: 10px;">Login / Sign Up</a>
+                                    <a href="{{ route('login') }}" class="d-flex align-items-center justify-content-center auth-icon-btn" title="Login / Sign Up" style="margin-left: 12px; width: 42px; height: 42px; border-radius: 50%; border: 2px solid #b11e24; background: rgba(248, 250, 252, 0.8); color: #64748b; font-size: 16px; transition: all 0.3s ease;">
+                                        <i class="far fa-user"></i>
+                                    </a>
                                 @endauth
+                                <style>
+                                    .auth-icon-btn:hover {
+                                        background: #b11e24 !important;
+                                        color: #ffffff !important;
+                                        border-color: #b11e24 !important;
+                                        transform: translateY(-2px);
+                                        box-shadow: 0 4px 12px rgba(177, 30, 36, 0.2);
+                                    }
+                                </style>
 
                                 <!-- Mobile Menu Button -->
                                 <button id="menu-btn" class="menu rts-btn btn-primary-alta ml--10 ml_sm--5 d-block d-xl-none">
@@ -289,6 +311,10 @@
 
     <style>
          @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+
+         body, html {
+             overflow-x: hidden;
+         }
 
          .header-top-one.bg-1 {
              background: #071056 !important;
@@ -418,27 +444,36 @@
                         <!-- single -->
                         <div class="single">
                             <i class="fas fa-phone-alt"></i>
-                            <a href="#">+91 9940436371</a>
+                            <a href="#">{{ \App\Models\AdminSetting::get('site_phone') ?: '+91 9940436371' }}</a>
                         </div>
                         <!-- single ENd -->
                         <!-- single -->
                         <div class="single">
                             <i class="fas fa-envelope"></i>
-                            <a href="mailto:lochana@wintechinc.in">lochana@wintechinc.in</a>
+                            <a href="mailto:{{ \App\Models\AdminSetting::get('site_email') ?: 'lochana@wintechinc.in' }}">{{ \App\Models\AdminSetting::get('site_email') ?: 'lochana@wintechinc.in' }}</a>
                         </div>
                         <!-- single ENd -->
                         <!-- single -->
                         <div class="single">
                             <i class="fas fa-globe"></i>
-                            <a href="#">No 8/235, Pillaiyar Kovil St, Vasanth Vihar, Pozhichalur, Chennai 600074.</a>
+                            <a href="#">{{ \App\Models\AdminSetting::get('site_address') ?: 'No 8/235, Pillaiyar Kovil St, Vasanth Vihar, Pozhichalur, Chennai 600074.' }}</a>
                         </div>
                         <!-- single ENd -->
                        
                     </div>
                     <div class="social-wrapper-two menu">
-                         <a href="https://www.facebook.com/wintechincofficial/"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/wintechincofficial"><i class="fab fa-instagram"></i></a>
-                        <!-- <a href="#"><i class="fab fa-linkedin"></i></a> -->
+                        @if($fb_link = \App\Models\AdminSetting::get('fb_link'))
+                            <a href="{{ $fb_link }}"><i class="fab fa-facebook-f"></i></a>
+                        @endif
+                        @if($instagram_link = \App\Models\AdminSetting::get('instagram_link'))
+                            <a href="{{ $instagram_link }}"><i class="fab fa-instagram"></i></a>
+                        @endif
+                        @if($twitter_link = \App\Models\AdminSetting::get('twitter_link'))
+                            <a href="{{ $twitter_link }}"><i class="fab fa-twitter"></i></a>
+                        @endif
+                        @if($linkedin_link = \App\Models\AdminSetting::get('linkedin_link'))
+                            <a href="{{ $linkedin_link }}"><i class="fab fa-linkedin"></i></a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -491,9 +526,18 @@
                     </ul>
                 </nav>
                 <div class="social-wrapper-two menu mobile-menu">
-                     <a href="https://www.facebook.com/wintechincofficial/"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/wintechincofficial"><i class="fab fa-instagram"></i></a>
-                    <!-- <a href="#"><i class="fab fa-linkedin"></i></a> -->
+                    @if($fb_link = \App\Models\AdminSetting::get('fb_link'))
+                        <a href="{{ $fb_link }}"><i class="fab fa-facebook-f"></i></a>
+                    @endif
+                    @if($instagram_link = \App\Models\AdminSetting::get('instagram_link'))
+                        <a href="{{ $instagram_link }}"><i class="fab fa-instagram"></i></a>
+                    @endif
+                    @if($twitter_link = \App\Models\AdminSetting::get('twitter_link'))
+                        <a href="{{ $twitter_link }}"><i class="fab fa-twitter"></i></a>
+                    @endif
+                    @if($linkedin_link = \App\Models\AdminSetting::get('linkedin_link'))
+                        <a href="{{ $linkedin_link }}"><i class="fab fa-linkedin"></i></a>
+                    @endif
                 </div>
                 <a href="#" class="rts-btn btn-primary ml--20 ml_sm--5 header-one-btn quote-btnmenu">Get Quote</a>
             </div>

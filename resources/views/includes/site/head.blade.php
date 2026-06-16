@@ -102,9 +102,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/animate.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/unicons.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/vendor/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assetss/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-      <link href="assetss/css/Loading.min.css" rel="stylesheet">
     
     <!-- Google tag (gtag.js) -->
 <script async="" src="gtag/js?id=G-Q8E7BJD7EB"></script>

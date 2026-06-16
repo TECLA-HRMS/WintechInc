@@ -185,6 +185,5 @@
     </div>
     <!-- End service details area -->
 
-    <!-- start header area -->
-
+        @include('includes.site.contact_section')
 @endsection

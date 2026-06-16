@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>New Job Opportunity – Wintech Inc</title>
+  <title>New Job Opportunity â€“ Wintech Inc</title>
 </head>
 <body style="margin:0;padding:0;background:#f0f2f5;font-family:'Segoe UI',Arial,sans-serif;">
 
@@ -15,10 +15,17 @@
           <!-- Header -->
           <tr>
             <td style="background:linear-gradient(135deg,#071056 0%,#ba1c26 100%);border-radius:16px 16px 0 0;padding:36px 40px;text-align:center;">
+
+              <!-- Logo -->
+              <div style="margin-bottom:18px;">
+                <img src="{{ url('frontend/images/logos/logo.png') }}"
+                     alt="Wintech Inc"
+                     style="height:60px;max-width:200px;object-fit:contain;filter:brightness(0) invert(1);">
+              </div>
               <div style="display:inline-block;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.22);border-radius:50px;padding:5px 18px;margin-bottom:16px;">
                 <span style="color:rgba(255,255,255,0.9);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;">Wintech Inc</span>
               </div>
-              <div style="font-size:44px;line-height:1;margin-bottom:12px;">🚀</div>
+              <div style="font-size:44px;line-height:1;margin-bottom:12px;">ðŸš€</div>
               <h1 style="margin:0 0 6px;color:#fff;font-size:24px;font-weight:700;">New Job Opportunity</h1>
               <p style="margin:0;color:rgba(255,255,255,0.75);font-size:14px;">A new job matching your interests has been posted!</p>
             </td>
@@ -34,7 +41,7 @@
                   <td style="background:linear-gradient(135deg,#fff5f5,#fff0f0);border:2px solid #ba1c26;border-radius:12px;padding:22px;text-align:center;">
                     <p style="margin:0 0 4px;font-size:11px;font-weight:700;color:#ba1c26;letter-spacing:1.5px;text-transform:uppercase;">Position</p>
                     <p style="margin:0 0 4px;font-size:22px;font-weight:700;color:#071056;">{{ $job['job_title'] }}</p>
-                    <p style="margin:0;font-size:13px;color:#6b7280;">{{ $job['company_name'] }} &nbsp;·&nbsp; {{ $job['job_location'] }}</p>
+                    <p style="margin:0;font-size:13px;color:#6b7280;">{{ $job['company_name'] }} &nbsp;Â·&nbsp; {{ $job['job_location'] }}</p>
                   </td>
                 </tr>
               </table>
@@ -72,7 +79,7 @@
                 <tr>
                   <td style="background:#fffbeb;border:1px solid #fcd34d;border-radius:10px;padding:14px 18px;text-align:center;">
                     <span style="font-size:16px;font-weight:700;color:#92400e;">
-                      💰 ₹{{ number_format($job['salary_from']) }} – ₹{{ number_format($job['salary_to']) }} / month
+                      ðŸ’° â‚¹{{ number_format($job['salary_from']) }} â€“ â‚¹{{ number_format($job['salary_to']) }} / month
                     </span>
                   </td>
                 </tr>
@@ -84,7 +91,7 @@
                   <td align="center">
                     <a href="{{ url('/jobs') }}"
                        style="display:inline-block;background:linear-gradient(135deg,#ba1c26,#e33842);color:#fff;font-size:15px;font-weight:700;text-decoration:none;padding:14px 44px;border-radius:50px;letter-spacing:0.3px;box-shadow:0 6px 20px rgba(186,28,38,0.35);">
-                      View All Jobs →
+                      View All Jobs â†’
                     </a>
                   </td>
                 </tr>
@@ -96,12 +103,16 @@
           <!-- Footer -->
           <tr>
             <td style="background:#071056;border-radius:0 0 16px 16px;padding:26px 40px;text-align:center;">
+
+              <img src="{{ url('frontend/images/logos/logo.png') }}"
+                   alt="Wintech Inc"
+                   style="height:36px;max-width:140px;object-fit:contain;filter:brightness(0) invert(1);margin-bottom:12px;display:block;margin-left:auto;margin-right:auto;">
               <p style="margin:0 0 4px;color:#fff;font-size:13px;font-weight:700;">Wintech Inc</p>
-              <p style="margin:0 0 12px;color:rgba(255,255,255,0.45);font-size:11px;letter-spacing:0.5px;">Staffing &nbsp;·&nbsp; Recruitment &nbsp;·&nbsp; IT Solutions</p>
+              <p style="margin:0 0 12px;color:rgba(255,255,255,0.45);font-size:11px;letter-spacing:0.5px;">Staffing &nbsp;Â·&nbsp; Recruitment &nbsp;Â·&nbsp; IT Solutions</p>
               <p style="margin:0;color:rgba(255,255,255,0.28);font-size:11px;">
                 You are receiving this because you subscribed to job alerts.<br>
                 <a href="{{ url('/newsletter/unsubscribe?email='.urlencode($subscriberEmail ?? '')) }}" style="color:rgba(186,28,38,0.7);text-decoration:underline;">Unsubscribe</a>
-                &nbsp;·&nbsp; © {{ date('Y') }} Wintech Inc.
+                &nbsp;Â·&nbsp; Â© {{ date('Y') }} Wintech Inc.
               </p>
             </td>
           </tr>
@@ -113,3 +124,4 @@
 
 </body>
 </html>
+

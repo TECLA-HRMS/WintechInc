@@ -67,8 +67,7 @@ class CompanyRegistrationController extends Controller
             $jobBriefPath = null;
             $companyLogoPath = null;
 
-            // OUTSIDE PROJECT PATH
-            $baseUploadPath = dirname(base_path()) . '/uploads/company';
+            $baseUploadPath = public_path('uploads/company');
 
             // Create folders if not exists
             if (!file_exists($baseUploadPath . '/job_briefs')) {

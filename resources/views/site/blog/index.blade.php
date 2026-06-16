@@ -14,7 +14,7 @@
       <span class="sep">/</span>
       <span class="active">Blogs</span>
     </nav>
-    <h1 class="blog-hero__title">Insights & Articles</h1>
+    <h1 class="blog-hero__title">Insights &amp; Articles</h1>
     <p class="blog-hero__sub">Explore the latest trends, expert insights, and recruitment strategies from the Wintech Inc team.</p>
   </div>
 </section>
@@ -24,53 +24,64 @@
 ════════════════════════════════════════════════════ --}}
 <section class="blog-main">
   <div class="container">
-    <div class="row g-4">
-        @forelse($posts as $post)
+    <div class="bx-grid">
+        @forelse($posts as $index => $post)
         @php
             $wordCount = str_word_count(strip_tags($post->content));
             $readingTime = max(1, ceil($wordCount / 200));
+            $cardNum = str_pad($index + 1, 2, '0', STR_PAD_LEFT);
         @endphp
-        <div class="col-lg-4 col-md-6 col-sm-12">
-            <article class="blog-card">
-                <div class="blog-card__image-wrap">
-                    <a href="{{ route('blog.show', $post->slug) }}">
-                        <img src="{{ $post->featured_image ? asset($post->featured_image) : asset('assets/images/blog/01.jpg') }}" alt="Blog Image" class="blog-card__img">
-                    </a>
-                    @if($post->category)
-                    <span class="blog-card__tag">{{ $post->category }}</span>
-                    @endif
-                </div>
-                
-                <div class="blog-card__content">
-                    <div class="blog-card__meta">
-                        <span class="meta-item"><i class="far fa-calendar-alt"></i> {{ \Carbon\Carbon::parse($post->published_at)->format('d M, Y') }}</span>
-                        <span class="meta-item"><i class="far fa-clock"></i> {{ $readingTime }} min read</span>
-                    </div>
-                    
-                    <a href="{{ route('blog.show', $post->slug) }}" class="blog-card__title-link">
-                        <h3 class="blog-card__title">{{ Str::limit($post->title, 55) }}</h3>
-                    </a>
-                    
-                    <p class="blog-card__excerpt">
-                        {{ Str::limit($post->excerpt, 95) }}
-                    </p>
-                    
-                    <div class="blog-card__footer">
-                        <a href="{{ route('blog.show', $post->slug) }}" class="blog-card__more-btn">
-                            Read More <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-            </article>
-        </div>
-        @empty
-        <div class="col-12 text-center py-5">
-            <div class="no-blogs-card">
-                <div class="no-blogs-icon"><i class="far fa-newspaper"></i></div>
-                <h3>No articles published yet</h3>
-                <p>We are currently writing fresh updates. Please check back soon!</p>
-                <a href="{{ url('/') }}" class="rts-btn btn-primary">Return Home</a>
+
+        <article class="bx-card" data-index="{{ $index }}">
+            {{-- Glowing orb accent --}}
+            <div class="bx-orb"></div>
+
+            {{-- Number badge --}}
+            <span class="bx-num">{{ $cardNum }}</span>
+
+            {{-- Image panel --}}
+            <div class="bx-img-panel">
+                <a href="{{ route('blog.show', $post->slug) }}" tabindex="-1">
+                    <img src="{{ $post->featured_image ? asset($post->featured_image) : asset('assets/images/blog/01.jpg') }}"
+                         alt="{{ $post->title }}"
+                         class="bx-img">
+                </a>
+                <div class="bx-img-overlay"></div>
+                @if($post->category)
+                <span class="bx-cat">{{ $post->category }}</span>
+                @endif
             </div>
+
+            {{-- Body --}}
+            <div class="bx-body">
+                <div class="bx-meta-row">
+                    <span class="bx-meta"><i class="far fa-calendar-alt"></i> {{ \Carbon\Carbon::parse($post->published_at)->format('d M Y') }}</span>
+                    <span class="bx-meta bx-meta-read"><i class="far fa-clock"></i> {{ $readingTime }} min</span>
+                </div>
+
+                <a href="{{ route('blog.show', $post->slug) }}" class="bx-title-link">
+                    <h3 class="bx-title">{{ Str::limit($post->title, 58) }}</h3>
+                </a>
+
+                <p class="bx-excerpt">{{ Str::limit($post->excerpt, 100) }}</p>
+
+                <div class="bx-cta">
+                    <a href="{{ route('blog.show', $post->slug) }}" class="bx-btn">
+                        <span>Read Article</span>
+                        <svg class="bx-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </article>
+
+        @empty
+        <div class="bx-empty">
+            <div class="bx-empty-icon"><i class="far fa-newspaper"></i></div>
+            <h3>No articles published yet</h3>
+            <p>We are currently writing fresh updates. Please check back soon!</p>
+            <a href="{{ url('/') }}" class="bx-empty-btn">Return Home</a>
         </div>
         @endforelse
     </div>
@@ -81,6 +92,7 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
+/* ─── Hero (kept intact) ─── */
 .blog-hero {
   position: relative;
   padding: 110px 24px 70px;
@@ -93,7 +105,7 @@
 .blog-hero__bg {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(7, 16, 86, 0.9) 0%, rgba(9, 14, 36, 0.7) 100%);
+  background: linear-gradient(135deg, rgba(7,16,86,0.9) 0%, rgba(9,14,36,0.7) 100%);
   z-index: -1;
 }
 .blog-breadcrumb {
@@ -104,20 +116,10 @@
   align-items: center;
   gap: 8px;
 }
-.blog-breadcrumb a {
-  color: rgba(255, 255, 255, 0.5);
-  text-decoration: none;
-  transition: color 0.3s;
-}
-.blog-breadcrumb a:hover {
-  color: #fff;
-}
-.blog-breadcrumb .sep {
-  color: rgba(255, 255, 255, 0.2);
-}
-.blog-breadcrumb .active {
-  color: rgba(255, 255, 255, 0.85);
-}
+.blog-breadcrumb a { color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.3s; }
+.blog-breadcrumb a:hover { color: #fff; }
+.blog-breadcrumb .sep { color: rgba(255,255,255,0.2); }
+.blog-breadcrumb .active { color: rgba(255,255,255,0.85); }
 .blog-hero__title {
   font-size: clamp(32px, 5vw, 46px);
   font-weight: 800;
@@ -133,171 +135,284 @@
   line-height: 1.6;
 }
 
-/* Listing section */
+/* ─── Main Section ─── */
 .blog-main {
   background: #f8fafc;
-  padding: 80px 0;
+  padding: 90px 0 100px;
   font-family: 'Plus Jakarta Sans', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+.blog-main::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 10% 10%, rgba(177,30,36,0.05) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 90% 90%, rgba(7,16,86,0.05) 0%, transparent 55%);
+  pointer-events: none;
 }
 
-/* Card Design */
-.blog-card {
+/* ─── Grid ─── */
+.bx-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+@media (max-width: 992px) { .bx-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px)  { .bx-grid { grid-template-columns: 1fr; } }
+
+/* ─── Card Shell ─── */
+.bx-card {
+  position: relative;
+  border-radius: 28px;
   background: #ffffff;
-  border-radius: 24px;
-  border: 1px solid rgba(241, 245, 249, 0.9);
-  padding: 16px;
+  border: 1px solid rgba(226,232,240,0.9);
   overflow: hidden;
-  box-shadow: 0 15px 35px rgba(15, 23, 42, 0.03);
-  height: 100%;
   display: flex;
   flex-direction: column;
-  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-  position: relative;
+  box-shadow: 0 4px 24px rgba(15,23,42,0.05);
+  transition: transform 0.45s cubic-bezier(0.23,1,0.32,1),
+              box-shadow 0.45s cubic-bezier(0.23,1,0.32,1),
+              border-color 0.45s ease;
 }
-.blog-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 25px 50px rgba(177, 30, 36, 0.06);
-  border-color: rgba(177, 30, 36, 0.15);
+.bx-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 30px 60px rgba(177,30,36,0.12), 0 0 0 1px rgba(177,30,36,0.18);
+  border-color: rgba(177,30,36,0.2);
 }
-.blog-card__image-wrap {
+
+/* ─── Glow Orb ─── */
+.bx-orb {
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(177,30,36,0.18) 0%, transparent 70%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.bx-card:hover .bx-orb { opacity: 1; }
+
+/* ─── Number Badge ─── */
+.bx-num {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 5;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: rgba(7,16,86,0.45);
+  background: rgba(255,255,255,0.9);
+  border: 1px solid rgba(226,232,240,0.8);
+  padding: 4px 10px;
+  border-radius: 20px;
+  backdrop-filter: blur(8px);
+}
+
+/* ─── Image Panel ─── */
+.bx-img-panel {
   position: relative;
   overflow: hidden;
-  aspect-ratio: 16/10;
-  background: #f1f5f9;
-  border-radius: 18px;
+  aspect-ratio: 16 / 10;
+  flex-shrink: 0;
 }
-.blog-card__img {
+.bx-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+  display: block;
+  transition: transform 0.8s cubic-bezier(0.23,1,0.32,1);
 }
-.blog-card:hover .blog-card__img {
-  transform: scale(1.05);
-}
-.blog-card__tag {
+.bx-card:hover .bx-img { transform: scale(1.07); }
+
+.bx-img-overlay {
   position: absolute;
-  top: 14px;
-  left: 14px;
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  color: #b11e24;
-  font-size: 10.5px;
-  font-weight: 800;
-  padding: 4px 12px;
-  border-radius: 30px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  border: 1px solid rgba(177, 30, 36, 0.15);
-  z-index: 2;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 30%, rgba(7,18,43,0.85) 100%);
+  pointer-events: none;
 }
 
-.blog-card__content {
-  padding: 24px 10px 10px;
+/* ─── Category Tag ─── */
+.bx-cat {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  background: #b11e24;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 5px 14px;
+  border-radius: 30px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  z-index: 3;
+  box-shadow: 0 4px 16px rgba(177,30,36,0.45);
+}
+
+/* ─── Card Body ─── */
+.bx-body {
+  padding: 24px 26px 26px;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-}
-.blog-card__meta {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 14px;
-}
-.meta-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 11.5px;
-  font-weight: 700;
-  color: #64748b;
-  background: #f8fafc;
-  padding: 4px 12px;
-  border-radius: 30px;
-  border: 1px solid #f1f5f9;
-}
-.meta-item i {
-  color: #b11e24;
-}
-.blog-card__title-link {
-  text-decoration: none !important;
-}
-.blog-card__title {
-  font-size: 20px;
-  font-weight: 800;
-  color: #071056;
-  line-height: 1.4;
-  margin: 0 0 12px;
-  transition: color 0.25s ease;
-  letter-spacing: -0.3px;
-}
-.blog-card__title-link:hover .blog-card__title {
-  color: #b11e24;
-}
-.blog-card__excerpt {
-  font-size: 14px;
-  color: #64748b;
-  line-height: 1.6;
-  margin: 0 0 24px;
-}
-.blog-card__footer {
-  margin-top: auto;
-  padding-top: 15px;
-  border-top: 1px solid #f1f5f9;
-}
-.blog-card__more-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 13.5px;
-  font-weight: 800;
-  color: #b11e24;
-  text-decoration: none !important;
-  transition: all 0.25s ease;
-}
-.blog-card__more-btn i {
-  transition: transform 0.3s ease;
-}
-.blog-card__more-btn:hover {
-  color: #8c1418;
-}
-.blog-card__more-btn:hover i {
-  transform: translateX(5px);
+  background: #ffffff;
 }
 
-/* Empty State Card */
-.no-blogs-card {
-  background: #fff;
-  border-radius: 20px;
-  border: 1px solid rgba(226, 232, 240, 0.8);
-  padding: 60px 40px;
-  box-shadow: 0 15px 35px rgba(15, 23, 42, 0.04);
-  max-width: 500px;
-  margin: 0 auto;
+/* ─── Meta Row ─── */
+.bx-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
 }
-.no-blogs-icon {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  background: #fff1f2;
+.bx-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #64748b;
+  letter-spacing: 0.3px;
+}
+.bx-meta i { color: #b11e24; }
+.bx-meta-read {
+  margin-left: auto;
+  background: rgba(177,30,36,0.08);
   color: #b11e24;
+  padding: 3px 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(177,30,36,0.18);
+}
+.bx-meta-read i { color: #b11e24; }
+
+/* ─── Title ─── */
+.bx-title-link { text-decoration: none !important; }
+.bx-title {
+  font-size: 18.5px;
+  font-weight: 800;
+  color: #071056;
+  line-height: 1.45;
+  margin: 0 0 14px;
+  letter-spacing: -0.3px;
+  transition: color 0.25s ease;
+}
+.bx-title-link:hover .bx-title { color: #b11e24; }
+
+/* ─── Excerpt ─── */
+.bx-excerpt {
+  font-size: 13.5px;
+  color: #64748b;
+  line-height: 1.65;
+  margin: 0 0 28px;
+  flex-grow: 1;
+}
+
+/* ─── CTA Button ─── */
+.bx-cta { margin-top: auto; }
+.bx-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(177,30,36,0.06);
+  border: 1px solid rgba(177,30,36,0.2);
+  color: #b11e24;
+  font-size: 12.5px;
+  font-weight: 800;
+  padding: 10px 20px;
+  border-radius: 50px;
+  text-decoration: none !important;
+  letter-spacing: 0.3px;
+  transition: all 0.3s cubic-bezier(0.23,1,0.32,1);
+  width: fit-content;
+}
+.bx-btn:hover {
+  background: #b11e24;
+  border-color: #b11e24;
+  color: #fff;
+  box-shadow: 0 8px 28px rgba(177,30,36,0.35);
+  gap: 14px;
+}
+.bx-arrow {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+.bx-btn:hover .bx-arrow { transform: translateX(3px); }
+
+/* ─── Stagger Fade-Up ─── */
+@keyframes bxFadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.bx-card { animation: bxFadeUp 0.55s cubic-bezier(0.23,1,0.32,1) both; }
+.bx-card[data-index="0"] { animation-delay: 0.05s; }
+.bx-card[data-index="1"] { animation-delay: 0.12s; }
+.bx-card[data-index="2"] { animation-delay: 0.19s; }
+.bx-card[data-index="3"] { animation-delay: 0.26s; }
+.bx-card[data-index="4"] { animation-delay: 0.33s; }
+.bx-card[data-index="5"] { animation-delay: 0.40s; }
+.bx-card[data-index="6"] { animation-delay: 0.47s; }
+.bx-card[data-index="7"] { animation-delay: 0.54s; }
+.bx-card[data-index="8"] { animation-delay: 0.61s; }
+
+/* ─── Empty State ─── */
+.bx-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  background: #ffffff;
+  border: 1px solid rgba(226,232,240,0.9);
+  border-radius: 28px;
+  padding: 72px 40px;
+  box-shadow: 0 10px 30px rgba(15,23,42,0.05);
+}
+.bx-empty-icon {
+  width: 72px;
+  height: 72px;
+  background: rgba(177,30,36,0.08);
+  border: 1px solid rgba(177,30,36,0.18);
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 28px;
-  margin: 0 auto 24px;
+  font-size: 30px;
+  color: #b11e24;
+  margin: 0 auto 26px;
 }
-.no-blogs-card h3 {
-  font-size: 20px;
+.bx-empty h3 {
+  font-size: 22px;
   font-weight: 800;
   color: #071056;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
-.no-blogs-card p {
+.bx-empty p {
   color: #64748b;
   font-size: 14.5px;
-  margin-bottom: 28px;
+  margin-bottom: 30px;
+}
+.bx-empty-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #b11e24;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+  padding: 12px 28px;
+  border-radius: 50px;
+  text-decoration: none !important;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 24px rgba(177,30,36,0.3);
+}
+.bx-empty-btn:hover {
+  background: #8c1418;
+  color: #fff;
+  box-shadow: 0 12px 32px rgba(177,30,36,0.45);
 }
 </style>
 

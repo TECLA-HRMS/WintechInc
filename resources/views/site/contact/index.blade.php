@@ -1,211 +1,6 @@
 @extends('layouts.site')
 @section('content')
 
-<div class="space-for-header"></div>
-
-{{-- ═══════════════════════════════════════════════════
-     HERO
-════════════════════════════════════════════════════ --}}
-<section class="ct-hero">
-  <div class="ct-hero__bg"></div>
-  <div class="ct-hero__inner">
-    <nav class="ct-breadcrumb">
-      <a href="{{ url('/') }}">Home</a>
-      <span class="ct-breadcrumb__sep">/</span>
-      <span>Contact Us</span>
-    </nav>
-    <h1 class="ct-hero__title">Let's Connect</h1>
-    <p class="ct-hero__subtitle">Have questions or need assistance? We're just a message away.</p>
-  </div>
-</section>
-
-{{-- ═══════════════════════════════════════════════════
-     CONTACT INFO STRIP
-════════════════════════════════════════════════════ --}}
-<section class="ct-strip">
-  <div class="ct-wrap">
-    <div class="ct-strip__grid">
-      <a href="tel:{{ $settings['site_phone'] ?? '+919940436371' }}" class="ct-strip__item">
-        <div class="ct-strip__icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 13a19.79 19.79 0 01-3.07-8.67A2 2 0 013.62 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-        </div>
-        <div class="ct-strip__text">
-          <span class="ct-strip__label">Call Us</span>
-          <span class="ct-strip__value">{{ $settings['site_phone'] ?? '+91 9940436371' }}</span>
-        </div>
-      </a>
-
-      <a href="mailto:{{ $settings['site_email'] ?? 'lochana@wintechinc.in' }}" class="ct-strip__item">
-        <div class="ct-strip__icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        </div>
-        <div class="ct-strip__text">
-          <span class="ct-strip__label">Email Us</span>
-          <span class="ct-strip__value">{{ $settings['site_email'] ?? 'lochana@wintechinc.in' }}</span>
-        </div>
-      </a>
-
-      <div class="ct-strip__item">
-        <div class="ct-strip__icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        </div>
-        <div class="ct-strip__text">
-          <span class="ct-strip__label">Visit Us</span>
-          <span class="ct-strip__value">{{ $settings['site_address'] ?? 'No 8/235, Pillaiyar Kovil St, Polichalur, Chennai 600074' }}</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-{{-- ═══════════════════════════════════════════════════
-     FORM + MAP LAYOUT
-════════════════════════════════════════════════════ --}}
-<section class="ct-main">
-  <div class="ct-wrap">
-    <div class="ct-layout">
-
-      {{-- LEFT: Contact Form --}}
-      <div class="ct-form-card">
-        <div class="ct-form-card__head">
-          <h2>Send Us a Message</h2>
-          <p>Fill out the form and our team will get back to you within 24 hours.</p>
-        </div>
-
-        @if(session('success'))
-        <div class="ct-alert">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-          {{ session('success') }}
-        </div>
-        @endif
-
-        <form action="{{ route('contact.store') }}" method="POST">
-          @csrf
-          <div class="ct-form-grid">
-            <div class="ct-field">
-              <label>Full Name <span>*</span></label>
-              <input type="text" name="name" placeholder="Your full name" value="{{ old('name') }}" required>
-              @error('name')<small class="ct-error">{{ $message }}</small>@enderror
-            </div>
-            <div class="ct-field">
-              <label>Email Address <span>*</span></label>
-              <input type="email" name="email" placeholder="your@email.com" value="{{ old('email') }}" required>
-              @error('email')<small class="ct-error">{{ $message }}</small>@enderror
-            </div>
-            <div class="ct-field">
-              <label>Phone Number <span>*</span></label>
-              <input type="text" name="phonenumber" placeholder="+91 98765 43210" value="{{ old('phonenumber') }}" required>
-              @error('phonenumber')<small class="ct-error">{{ $message }}</small>@enderror
-            </div>
-            <div class="ct-field">
-              <label>Service Interested In <span>*</span></label>
-              <select name="service" required>
-                <option value="">Select a Service</option>
-                <optgroup label="IT Sectors">
-                  <option value="Placement Service(Candidate)" {{ old('service') == 'Placement Service(Candidate)' ? 'selected' : '' }}>Placement Service(Candidate)</option>
-                  <option value="Placement Service (For Employers)" {{ old('service') == 'Placement Service (For Employers)' ? 'selected' : '' }}>Placement Service (For Employers)</option>
-                  <option value="Placement Service for IT Industry" {{ old('service') == 'Placement Service for IT Industry' ? 'selected' : '' }}>Placement Service for IT Industry</option>
-                  <option value="Placement  Service for Manpower  (Employers)" {{ old('service') == 'Placement  Service for Manpower  (Employers)' ? 'selected' : '' }}>Placement  Service for Manpower  (Employers)</option>
-                  <option value="Placement  Service for Manpower  (Candidate)" {{ old('service') == 'Placement  Service for Manpower  (Candidate)' ? 'selected' : '' }}>Placement  Service for Manpower  (Candidate)</option>
-                </optgroup>
-                <optgroup label="Non-IT Sectors">
-                  <option value="Manpower Suppliers" {{ old('service') == 'Manpower Suppliers' ? 'selected' : '' }}>Manpower Suppliers</option>
-                  <option value="Manpower Consultants" {{ old('service') == 'Manpower Consultants' ? 'selected' : '' }}>Manpower Consultants</option>
-                  <option value="Placement Service for Accounts" {{ old('service') == 'Placement Service for Accounts' ? 'selected' : '' }}>Placement Service for Accounts</option>
-                  <option value="Placement Service for Accounts (Employers)" {{ old('service') == 'Placement Service for Accounts (Employers)' ? 'selected' : '' }}>Placement Service for Accounts (Employers)</option>
-                  <option value="Placement  Service for Hospital" {{ old('service') == 'Placement  Service for Hospital' ? 'selected' : '' }}>Placement  Service for Hospital</option>
-                  <option value="Manpower Outsourcing Services" {{ old('service') == 'Manpower Outsourcing Services' ? 'selected' : '' }}>Manpower Outsourcing Services</option>
-                  <option value="Placement Service for Banking Sector" {{ old('service') == 'Placement Service for Banking Sector' ? 'selected' : '' }}>Placement Service for Banking Sector</option>
-                </optgroup>
-                <optgroup label="Services">
-                  <option value="Digital Marketing" {{ old('service') == 'Digital Marketing' ? 'selected' : '' }}>Digital Marketing</option>
-                  <option value="Web Development" {{ old('service') == 'Web Development' ? 'selected' : '' }}>Web Development</option>
-                  <option value="E commerce Development" {{ old('service') == 'E commerce Development' ? 'selected' : '' }}>E commerce Development</option>
-                  <option value="Mobile App Development" {{ old('service') == 'Mobile App Development' ? 'selected' : '' }}>Mobile App Development</option>
-                </optgroup>
-                <option value="Other" {{ old('service') == 'Other' ? 'selected' : '' }}>Other</option>
-              </select>
-              @error('service')<small class="ct-error">{{ $message }}</small>@enderror
-            </div>
-            <div class="ct-field ct-field--full">
-              <label>Subject <span>*</span></label>
-              <input type="text" name="subject" placeholder="How can we help you?" value="{{ old('subject') }}" required>
-              @error('subject')<small class="ct-error">{{ $message }}</small>@enderror
-            </div>
-            <div class="ct-field ct-field--full">
-              <label>Message <span>*</span></label>
-              <textarea name="message" rows="5" placeholder="Tell us more about your requirement..." required>{{ old('message') }}</textarea>
-              @error('message')<small class="ct-error">{{ $message }}</small>@enderror
-            </div>
-            <div class="ct-field ct-field--full">
-              <button type="submit" class="ct-btn">
-                Send Message
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-              </button>
-            </div>
-          </div>
-        </form>
-      </div>
-
-      {{-- RIGHT: Sidebar --}}
-      <div class="ct-sidebar">
-
-        {{-- Map Card --}}
-        <div class="ct-map-card">
-          @if(!empty($settings['google_map_url']))
-          <iframe src="{{ $settings['google_map_url'] }}" width="100%" height="220" style="border:0;border-radius:10px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-          @else
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.7414934391663!2d80.13794481482218!3d12.988378990844867!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5261a620ca75df%3A0xfa41e30f85eeec47!2sWintech%20HR%20Consultancy!5e0!3m2!1sen!2sin!4v1688157321832!5m2!1sen!2sin" width="100%" height="220" style="border:0;border-radius:10px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-          @endif
-        </div>
-
-        {{-- Business Hours --}}
-        <div class="ct-hours-card">
-          <h4>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            Business Hours
-          </h4>
-          <ul>
-            <li><span>Monday – Friday</span><strong>9:00 AM – 6:00 PM</strong></li>
-            <li><span>Saturday</span><strong>10:00 AM – 4:00 PM</strong></li>
-            <li><span>Sunday</span><strong>Closed</strong></li>
-          </ul>
-        </div>
-
-        {{-- Social Links --}}
-        @php
-          $socials = [
-            'fb_link' => ['label' => 'Facebook', 'icon' => '<path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>'],
-            'instagram_link' => ['label' => 'Instagram', 'icon' => '<rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>'],
-            'twitter_link' => ['label' => 'Twitter / X', 'icon' => '<path d="M23 3a10.9 10.9 0 01-3.14 1.53A4.48 4.48 0 0012 7.5v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>'],
-            'linkedin_link' => ['label' => 'LinkedIn', 'icon' => '<path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>'],
-            'youtube_link' => ['label' => 'YouTube', 'icon' => '<path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/>'],
-          ];
-          $hasSocials = false;
-          foreach($socials as $key => $data) {
-            if(!empty($settings[$key])) { $hasSocials = true; break; }
-          }
-        @endphp
-        @if($hasSocials)
-        <div class="ct-social-card">
-          <h4>Follow Us</h4>
-          <div class="ct-social-links">
-            @foreach($socials as $key => $data)
-              @if(!empty($settings[$key]))
-              <a href="{{ $settings[$key] }}" target="_blank" rel="noopener" title="{{ $data['label'] }}">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">{!! $data['icon'] !!}</svg>
-              </a>
-              @endif
-            @endforeach
-          </div>
-        </div>
-        @endif
-
-      </div>
-    </div>
-  </div>
-</section>
-
 {{-- ═══════════════════════════════════════════════════ STYLES --}}
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
@@ -573,5 +368,210 @@
   *, *::before, *::after { transition: none !important; }
 }
 </style>
+
+<div class="space-for-header"></div>
+
+{{-- ═══════════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════════════ --}}
+<section class="ct-hero">
+  <div class="ct-hero__bg"></div>
+  <div class="ct-hero__inner">
+    <nav class="ct-breadcrumb">
+      <a href="{{ url('/') }}">Home</a>
+      <span class="ct-breadcrumb__sep">/</span>
+      <span>Contact Us</span>
+    </nav>
+    <h1 class="ct-hero__title">Let's Connect</h1>
+    <p class="ct-hero__subtitle">Have questions or need assistance? We're just a message away.</p>
+  </div>
+</section>
+
+{{-- ═══════════════════════════════════════════════════
+     CONTACT INFO STRIP
+════════════════════════════════════════════════════ --}}
+<section class="ct-strip">
+  <div class="ct-wrap">
+    <div class="ct-strip__grid">
+      <a href="tel:{{ $settings['site_phone'] ?? '+919940436371' }}" class="ct-strip__item">
+        <div class="ct-strip__icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 13a19.79 19.79 0 01-3.07-8.67A2 2 0 013.62 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        </div>
+        <div class="ct-strip__text">
+          <span class="ct-strip__label">Call Us</span>
+          <span class="ct-strip__value">{{ $settings['site_phone'] ?? '+91 9940436371' }}</span>
+        </div>
+      </a>
+
+      <a href="mailto:{{ $settings['site_email'] ?? 'lochana@wintechinc.in' }}" class="ct-strip__item">
+        <div class="ct-strip__icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div class="ct-strip__text">
+          <span class="ct-strip__label">Email Us</span>
+          <span class="ct-strip__value">{{ $settings['site_email'] ?? 'lochana@wintechinc.in' }}</span>
+        </div>
+      </a>
+
+      <div class="ct-strip__item">
+        <div class="ct-strip__icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div class="ct-strip__text">
+          <span class="ct-strip__label">Visit Us</span>
+          <span class="ct-strip__value">{{ $settings['site_address'] ?? 'No 8/235, Pillaiyar Kovil St, Polichalur, Chennai 600074' }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{-- ═══════════════════════════════════════════════════
+     FORM + MAP LAYOUT
+════════════════════════════════════════════════════ --}}
+<section class="ct-main">
+  <div class="ct-wrap">
+    <div class="ct-layout">
+
+      {{-- LEFT: Contact Form --}}
+      <div class="ct-form-card">
+        <div class="ct-form-card__head">
+          <h2>Send Us a Message</h2>
+          <p>Fill out the form and our team will get back to you within 24 hours.</p>
+        </div>
+
+        @if(session('success'))
+        <div class="ct-alert">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          {{ session('success') }}
+        </div>
+        @endif
+
+        <form action="{{ route('contact.store') }}" method="POST">
+          @csrf
+          <div class="ct-form-grid">
+            <div class="ct-field">
+              <label>Full Name <span>*</span></label>
+              <input type="text" name="name" placeholder="Your full name" value="{{ old('name') }}" required>
+              @error('name')<small class="ct-error">{{ $message }}</small>@enderror
+            </div>
+            <div class="ct-field">
+              <label>Email Address <span>*</span></label>
+              <input type="email" name="email" placeholder="your@email.com" value="{{ old('email') }}" required>
+              @error('email')<small class="ct-error">{{ $message }}</small>@enderror
+            </div>
+            <div class="ct-field">
+              <label>Phone Number <span>*</span></label>
+              <input type="text" name="phonenumber" placeholder="+91 98765 43210" value="{{ old('phonenumber') }}" required>
+              @error('phonenumber')<small class="ct-error">{{ $message }}</small>@enderror
+            </div>
+            <div class="ct-field">
+              <label>Service Interested In <span>*</span></label>
+              <select name="service" required>
+                <option value="">Select a Service</option>
+                <optgroup label="IT Sectors">
+                  <option value="Placement Service(Candidate)" {{ old('service') == 'Placement Service(Candidate)' ? 'selected' : '' }}>Placement Service(Candidate)</option>
+                  <option value="Placement Service (For Employers)" {{ old('service') == 'Placement Service (For Employers)' ? 'selected' : '' }}>Placement Service (For Employers)</option>
+                  <option value="Placement Service for IT Industry" {{ old('service') == 'Placement Service for IT Industry' ? 'selected' : '' }}>Placement Service for IT Industry</option>
+                  <option value="Placement  Service for Manpower  (Employers)" {{ old('service') == 'Placement  Service for Manpower  (Employers)' ? 'selected' : '' }}>Placement  Service for Manpower  (Employers)</option>
+                  <option value="Placement  Service for Manpower  (Candidate)" {{ old('service') == 'Placement  Service for Manpower  (Candidate)' ? 'selected' : '' }}>Placement  Service for Manpower  (Candidate)</option>
+                </optgroup>
+                <optgroup label="Non-IT Sectors">
+                  <option value="Manpower Suppliers" {{ old('service') == 'Manpower Suppliers' ? 'selected' : '' }}>Manpower Suppliers</option>
+                  <option value="Manpower Consultants" {{ old('service') == 'Manpower Consultants' ? 'selected' : '' }}>Manpower Consultants</option>
+                  <option value="Placement Service for Accounts" {{ old('service') == 'Placement Service for Accounts' ? 'selected' : '' }}>Placement Service for Accounts</option>
+                  <option value="Placement Service for Accounts (Employers)" {{ old('service') == 'Placement Service for Accounts (Employers)' ? 'selected' : '' }}>Placement Service for Accounts (Employers)</option>
+                  <option value="Placement  Service for Hospital" {{ old('service') == 'Placement  Service for Hospital' ? 'selected' : '' }}>Placement  Service for Hospital</option>
+                  <option value="Manpower Outsourcing Services" {{ old('service') == 'Manpower Outsourcing Services' ? 'selected' : '' }}>Manpower Outsourcing Services</option>
+                  <option value="Placement Service for Banking Sector" {{ old('service') == 'Placement Service for Banking Sector' ? 'selected' : '' }}>Placement Service for Banking Sector</option>
+                </optgroup>
+                <optgroup label="Services">
+                  <option value="Digital Marketing" {{ old('service') == 'Digital Marketing' ? 'selected' : '' }}>Digital Marketing</option>
+                  <option value="Web Development" {{ old('service') == 'Web Development' ? 'selected' : '' }}>Web Development</option>
+                  <option value="E commerce Development" {{ old('service') == 'E commerce Development' ? 'selected' : '' }}>E commerce Development</option>
+                  <option value="Mobile App Development" {{ old('service') == 'Mobile App Development' ? 'selected' : '' }}>Mobile App Development</option>
+                </optgroup>
+                <option value="Other" {{ old('service') == 'Other' ? 'selected' : '' }}>Other</option>
+              </select>
+              @error('service')<small class="ct-error">{{ $message }}</small>@enderror
+            </div>
+            <div class="ct-field ct-field--full">
+              <label>Subject <span>*</span></label>
+              <input type="text" name="subject" placeholder="How can we help you?" value="{{ old('subject') }}" required>
+              @error('subject')<small class="ct-error">{{ $message }}</small>@enderror
+            </div>
+            <div class="ct-field ct-field--full">
+              <label>Message <span>*</span></label>
+              <textarea name="message" rows="5" placeholder="Tell us more about your requirement..." required>{{ old('message') }}</textarea>
+              @error('message')<small class="ct-error">{{ $message }}</small>@enderror
+            </div>
+            <div class="ct-field ct-field--full">
+              <button type="submit" class="ct-btn">
+                Send Message
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      {{-- RIGHT: Sidebar --}}
+      <div class="ct-sidebar">
+
+        {{-- Map Card --}}
+        <div class="ct-map-card">
+          @if(!empty($settings['google_map_url']))
+          <iframe src="{{ $settings['google_map_url'] }}" width="100%" height="220" style="border:0;border-radius:10px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          @else
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.7414934391663!2d80.13794481482218!3d12.988378990844867!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5261a620ca75df%3A0xfa41e30f85eeec47!2sWintech%20HR%20Consultancy!5e0!3m2!1sen!2sin!4v1688157321832!5m2!1sen!2sin" width="100%" height="220" style="border:0;border-radius:10px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          @endif
+        </div>
+
+        {{-- Business Hours --}}
+        <div class="ct-hours-card">
+          <h4>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            Business Hours
+          </h4>
+          <ul>
+            <li><span>Monday – Friday</span><strong>9:00 AM – 6:00 PM</strong></li>
+            <li><span>Saturday</span><strong>10:00 AM – 4:00 PM</strong></li>
+            <li><span>Sunday</span><strong>Closed</strong></li>
+          </ul>
+        </div>
+
+        {{-- Social Links --}}
+        @php
+          $socials = [
+            'fb_link' => ['label' => 'Facebook', 'icon' => '<path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>'],
+            'instagram_link' => ['label' => 'Instagram', 'icon' => '<rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>'],
+            'twitter_link' => ['label' => 'Twitter / X', 'icon' => '<path d="M23 3a10.9 10.9 0 01-3.14 1.53A4.48 4.48 0 0012 7.5v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>'],
+            'linkedin_link' => ['label' => 'LinkedIn', 'icon' => '<path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>'],
+            'youtube_link' => ['label' => 'YouTube', 'icon' => '<path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/>'],
+          ];
+          $hasSocials = false;
+          foreach($socials as $key => $data) {
+            if(!empty($settings[$key])) { $hasSocials = true; break; }
+          }
+        @endphp
+        @if($hasSocials)
+        <div class="ct-social-card">
+          <h4>Follow Us</h4>
+          <div class="ct-social-links">
+            @foreach($socials as $key => $data)
+              @if(!empty($settings[$key]))
+              <a href="{{ $settings[$key] }}" target="_blank" rel="noopener" title="{{ $data['label'] }}">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">{!! $data['icon'] !!}</svg>
+              </a>
+              @endif
+            @endforeach
+          </div>
+        </div>
+        @endif
+
+      </div>
+    </div>
+  </div>
+</section>
 
 @endsection

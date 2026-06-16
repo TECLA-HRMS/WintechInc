@@ -29846,11 +29846,12 @@ p.disc {
 
 .progress-wrap::after {
   position: absolute;
-  font-family: "unicons";
-  content: "\e84b";
+  font-family: "Font Awesome 5 Pro", "Font Awesome 5 Free", "FontAwesome", sans-serif;
+  font-weight: 900;
+  content: "\f062";
   text-align: center;
   line-height: 46px;
-  font-size: 24px;
+  font-size: 20px;
   color: var(--color-primary);
   left: 0;
   top: 0;
@@ -29869,17 +29870,18 @@ p.disc {
 
 .progress-wrap:hover::after {
   opacity: 1;
-  content: "\e84b";
+  content: "\f062";
   border: 2px solid var(--color-primary);
 }
 
 .progress-wrap::before {
   position: absolute;
-  font-family: "unicons";
-  content: "\e84b";
+  font-family: "Font Awesome 5 Pro", "Font Awesome 5 Free", "FontAwesome", sans-serif;
+  font-weight: 900;
+  content: "\f062";
   text-align: center;
   line-height: 46px;
-  font-size: 24px;
+  font-size: 20px;
   opacity: 0;
   background: var(--color-primary);
   -webkit-background-clip: text;

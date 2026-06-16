@@ -289,85 +289,67 @@
             </div>
 
             <!-- Table -->
-            <div class="table-responsive">
-                <table class="cr-table">
-                    <thead>
+            <div class="table-responsive" style="border-radius: 12px; overflow: hidden; border: 1px solid var(--border);">
+                <table class="cr-table" style="margin-bottom: 0;">
+                    <thead style="background: var(--bg-light);">
                         <tr>
-                            <th>#</th>
-                            <th>Candidate</th>
-                            <th>Contact</th>
-                            <th>Job Title</th>
-                            <th>Company</th>
-                            <th>Location</th>
-                            <th>Resume</th>
+                            <th style="width: 50px;">#</th>
+                            <th>Applicant Info</th>
+                            <th>Job & Location</th>
+                            <th>Date Applied</th>
                             <th>Status</th>
-                            <th>Applied</th>
-                            <th style="text-align:center">Actions</th>
+                            <th>Resume</th>
+                            <th style="text-align:right">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse($applications as $index => $application)
                         {{-- index offset for paginated rows --}}
                         <tr id="application-row-{{ $application->id }}">
-                            <td class="sno">{{ ($applications->currentPage() - 1) * $applications->perPage() + $loop->iteration }}</td>
+                            <td class="sno" style="vertical-align: top; padding-top: 1.15rem;">{{ ($applications->currentPage() - 1) * $applications->perPage() + $loop->iteration }}</td>
 
-                            <!-- Candidate -->
-                            <td>
-                                <div class="avatar-cell">
+                            <!-- Applicant Info -->
+                            <td style="vertical-align: top; padding-top: 1rem;">
+                                <div class="avatar-cell" style="align-items: flex-start; margin-bottom: 0.4rem;">
                                     <div class="avatar">{{ strtoupper(substr($application->full_name, 0, 1)) }}</div>
                                     <div>
-                                        <div class="avatar-name">{{ $application->full_name }}</div>
-                                        <div class="avatar-sub">{{ $application->job_type ?? '' }}</div>
+                                        <div class="avatar-name" style="font-size: 0.95rem; line-height: 1.2; margin-bottom: 0.2rem;">{{ $application->full_name }}</div>
+                                        <div class="avatar-sub" style="margin-bottom: 0.4rem;">{{ $application->job_type ?? 'Applicant' }}</div>
+                                        <div style="font-size:0.75rem; display: flex; flex-direction: column; gap: 0.25rem;">
+                                            <a href="mailto:{{ $application->email }}" style="color:var(--text-muted);text-decoration:none; display:flex; align-items:center; gap:0.3rem;">
+                                                <i class="fa-solid fa-envelope"></i>{{ $application->email }}
+                                            </a>
+                                            <a href="tel:{{ $application->phone }}" style="color:var(--text-muted);text-decoration:none; display:flex; align-items:center; gap:0.3rem;">
+                                                <i class="fa-solid fa-phone"></i>{{ $application->phone }}
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </td>
 
-                            <!-- Contact -->
-                            <td>
-                                <div style="font-size:0.8rem">
-                                    <a href="mailto:{{ $application->email }}" style="color:var(--text-dark);text-decoration:none">
-                                        <i class="fa-solid fa-envelope me-1" style="color:var(--text-muted)"></i>{{ $application->email }}
-                                    </a>
+                            <!-- Job & Location -->
+                            <td style="vertical-align: top; padding-top: 1.15rem;">
+                                <div style="font-weight:600;color:var(--text-dark); margin-bottom: 0.35rem; font-size: 0.9rem;">{{ $application->job_title ?? '—' }}</div>
+                                <div style="font-size:0.8rem;color:var(--text-muted); display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.25rem;">
+                                    <i class="fa-solid fa-building" style="width:14px; text-align:center;"></i> {{ $application->company_name ?? '—' }}
                                 </div>
-                                <div style="font-size:0.75rem;color:var(--text-muted);margin-top:2px">
-                                    <a href="tel:{{ $application->phone }}" style="color:var(--text-muted);text-decoration:none">
-                                        <i class="fa-solid fa-phone me-1"></i>{{ $application->phone }}
-                                    </a>
+                                <div style="font-size:0.8rem;color:var(--text-muted); display: flex; align-items: center; gap: 0.4rem;">
+                                    <i class="fa-solid fa-location-dot" style="width:14px; text-align:center;"></i> {{ $application->location ?? '—' }}
                                 </div>
                             </td>
 
-                            <!-- Job Title -->
-                            <td>
-                                <div style="font-weight:600;color:var(--text-dark)">{{ $application->job_title ?? '—' }}</div>
-                            </td>
-
-                            <!-- Company -->
-                            <td>{{ $application->company_name ?? '—' }}</td>
-
-                            <!-- Location -->
-                            <td>
-                                <i class="fa-solid fa-location-dot me-1" style="color:var(--text-muted)"></i>
-                                {{ $application->location ?? '—' }}
-                            </td>
-
-                            <!-- Resume -->
-                            <td>
-                                @if (!empty($application->resume))
-                                    <div style="display:flex;gap:0.3rem;flex-wrap:wrap">
-                                        <a href="{{ route('admin.resume.view-resume', $application->id) }}" target="_blank" class="resume-btn">
-                                            <i class="fa-solid fa-eye"></i> View
-                                        </a>
-                                        <a href="{{ route('admin.resume.view-resume', $application->id) }}?download=1" class="resume-btn" style="background:var(--info-light);color:var(--info);border-color:#7dd3fc">
-                                            <i class="fa-solid fa-download"></i> Download
-                                        </a>
-                                    </div>
-                                @else
-                                    <span style="font-size:0.75rem;color:var(--text-muted)">No File</span>
-                                @endif
+                            <!-- Applied Date -->
+                            <td style="vertical-align: top; padding-top: 1.15rem;">
+                                <div style="font-size:0.85rem;color:var(--text-dark);font-weight:600; margin-bottom: 0.15rem;">
+                                    {{ \Carbon\Carbon::parse($application->created_at)->format('M j, Y') }}
+                                </div>
+                                <div style="font-size:0.75rem;color:var(--text-muted)">
+                                    {{ \Carbon\Carbon::parse($application->created_at)->format('g:i A') }}
+                                </div>
                             </td>
 
                             <!-- Status -->
-                            <td>
+                            <td style="vertical-align: top; padding-top: 1.15rem;">
                                 <form action="{{ route('admin.resume.updateStatus', $application->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('PATCH')
@@ -383,19 +365,25 @@
                                 </form>
                             </td>
 
-                            <!-- Applied Date -->
-                            <td>
-                                <div style="font-size:0.8rem;color:var(--text-dark);font-weight:500">
-                                    {{ \Carbon\Carbon::parse($application->created_at)->format('M j, Y') }}
-                                </div>
-                                <div style="font-size:0.72rem;color:var(--text-muted)">
-                                    {{ \Carbon\Carbon::parse($application->created_at)->format('g:i A') }}
-                                </div>
+                            <!-- Resume -->
+                            <td style="vertical-align: top; padding-top: 1.15rem;">
+                                @if (!empty($application->resume))
+                                    <div style="display:flex; flex-direction: column; gap:0.4rem; align-items: flex-start;">
+                                        <a href="{{ route('admin.resume.view-resume', $application->id) }}" target="_blank" class="resume-btn" style="width: 95px; justify-content: center; margin-bottom: 0;">
+                                            <i class="fa-solid fa-eye"></i> View
+                                        </a>
+                                        <a href="{{ route('admin.resume.view-resume', $application->id) }}?download=1" class="resume-btn" style="width: 95px; justify-content: center; background:var(--info-light);color:var(--info);border-color:#7dd3fc; margin-bottom: 0;">
+                                            <i class="fa-solid fa-download"></i> Download
+                                        </a>
+                                    </div>
+                                @else
+                                    <span style="font-size:0.75rem;color:var(--text-muted); background: #f3f4f6; padding: 4px 8px; border-radius: 4px; font-weight: 500;">No File</span>
+                                @endif
                             </td>
 
                             <!-- Actions -->
-                            <td>
-                                <div style="display:flex;gap:0.4rem;justify-content:center">
+                            <td style="vertical-align: top; padding-top: 1.15rem; text-align: right;">
+                                <div style="display:flex;gap:0.4rem;justify-content:flex-end">
                                     <a href="{{ route('admin.resume.show', $application->id) }}" class="action-btn view" title="View Details">
                                         <i class="fa-solid fa-eye"></i>
                                     </a>
@@ -408,7 +396,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="10">
+                            <td colspan="7">
                                 <div class="empty-state">
                                     <div class="empty-state-icon"><i class="fa-solid fa-folder-open"></i></div>
                                     <h5>No applications found</h5>

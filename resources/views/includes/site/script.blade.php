@@ -5,7 +5,6 @@
    </svg>
 </div>
 
-<div id="preloader"></div>
 <script src="{{ asset('Content/asset/staticweb/vendor/aos/aos.js') }}"></script>
 <script src="{{ asset('Content/asset/staticweb/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('Content/asset/staticweb/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
@@ -16,7 +15,7 @@
 <script src="{{ asset('Content/asset/staticweb/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('Content/asset/staticweb/js/script.js') }}"></script>
 <script src="{{ asset('Content/asset/staticweb/js/jquery.validate.min.js') }}"></script>
-<script src="{{ asset('Scripts/loading.min.js') }}"></script>
+
 <script src="{{ asset('assets/js/vendor/jquery.min.js') }}"></script>
 <script src="{{ asset('assets/js/vendor/jqueryui.js') }}"></script>
 <script src="{{ asset('assets/js/vendor/waypoint.js') }}"></script>

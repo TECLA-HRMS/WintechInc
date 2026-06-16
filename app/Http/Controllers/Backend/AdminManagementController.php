@@ -191,6 +191,7 @@ private function getAvailableModules()
         'activity_logs' => 'Activity Logs',
         'report_management' => 'Reports',
         'newsletter_management' => 'Newsletter',
+        'blog' => 'Blog Management',
     ];
 }
 

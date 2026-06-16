@@ -1,5 +1,6 @@
 @extends('layouts.site')
 @section('content')
+    <link rel="stylesheet" href="{{ asset('assetss/css/style.css') }}">
 
 <main id="main">
     <link href="{{ asset('Content/custom.min.css') }}" rel="stylesheet">

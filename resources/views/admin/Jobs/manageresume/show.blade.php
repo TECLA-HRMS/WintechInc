@@ -135,7 +135,12 @@
                         <div class="candidate-avatar">{{ strtoupper(substr($application->full_name, 0, 1)) }}</div>
                     @endif
                     <div>
-                        <div class="candidate-hero-name">{{ $application->full_name }}</div>
+                        <div class="candidate-hero-name d-flex align-items-center gap-2">
+                            {{ $application->full_name }}
+                            @if(!empty($application->user_id))
+                                <a href="{{ route('admin.profile.show', $application->user_id) }}" class="btn btn-sm btn-outline-primary py-0 px-2" style="font-size: 0.75rem; border-radius: 4px;">Show Profile</a>
+                            @endif
+                        </div>
                         <div class="candidate-hero-sub">
                             <i class="fa-solid fa-envelope me-1"></i>{{ $application->email }}
                             &nbsp;&nbsp;
@@ -324,6 +329,12 @@
                     <h6 class="cr-card-title">Quick Actions</h6>
                 </div>
                 <div class="cr-card-body" style="display:flex;flex-direction:column;gap:0.6rem">
+                    @if(!empty($application->user_id))
+                    <a href="{{ route('admin.profile.show', $application->user_id) }}" class="sidebar-action">
+                        <span class="sa-icon purple"><i class="fa-solid fa-user"></i></span>
+                        View User Profile
+                    </a>
+                    @endif
                     <a href="mailto:{{ $application->email }}" class="sidebar-action">
                         <span class="sa-icon blue"><i class="fa-solid fa-envelope"></i></span>
                         Send Email

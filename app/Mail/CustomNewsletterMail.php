@@ -13,12 +13,14 @@ class CustomNewsletterMail extends Mailable
     public $mailSubject;
     public $mailBody;
     public $subscriberEmail;
+    public $imagePath;
 
-    public function __construct($subject, $body, $subscriberEmail)
+    public function __construct($subject, $body, $subscriberEmail, $imagePath = null)
     {
         $this->mailSubject     = $subject;
         $this->mailBody        = $body;
         $this->subscriberEmail = $subscriberEmail;
+        $this->imagePath       = $imagePath;
     }
 
     public function build()

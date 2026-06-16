@@ -28,12 +28,31 @@
                         Wintech Inc is a leading provider of comprehensive IT recruitment services, non-IT staffing solutions, digital marketing strategies, and robust software & mobile application development.
                     </p>
                     <div class="social-links-grid">
-                        <a href="https://www.facebook.com/wintechincofficial/" target="_blank" class="social-btn facebook" aria-label="Facebook">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="https://www.instagram.com/wintechincofficial" target="_blank" class="social-btn instagram" aria-label="Instagram">
-                            <i class="fab fa-instagram"></i>
-                        </a>
+                        @if($fb = \App\Models\AdminSetting::get('fb_link'))
+                            <a href="{{ $fb }}" target="_blank" class="social-btn facebook" aria-label="Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        @endif
+                        @if($instagram = \App\Models\AdminSetting::get('instagram_link'))
+                            <a href="{{ $instagram }}" target="_blank" class="social-btn instagram" aria-label="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        @endif
+                        @if($twitter = \App\Models\AdminSetting::get('twitter_link'))
+                            <a href="{{ $twitter }}" target="_blank" class="social-btn twitter" aria-label="Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        @endif
+                        @if($linkedin = \App\Models\AdminSetting::get('linkedin_link'))
+                            <a href="{{ $linkedin }}" target="_blank" class="social-btn linkedin" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        @endif
+                        @if($youtube = \App\Models\AdminSetting::get('youtube_link'))
+                            <a href="{{ $youtube }}" target="_blank" class="social-btn youtube" aria-label="YouTube">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -72,15 +91,15 @@
                     <div class="contact-info-list">
                         <div class="contact-item">
                             <div class="icon-box"><i class="fas fa-map-marker-alt"></i></div>
-                            <p>No 8/235, Pillaiyar Kovil St, Vasanth Vihar, Polichalur, Chennai 600074.</p>
+                            <p>{{ \App\Models\AdminSetting::get('site_address') ?: 'No 8/235, Pillaiyar Kovil St, Vasanth Vihar, Polichalur, Chennai 600074.' }}</p>
                         </div>
                         <div class="contact-item">
                             <div class="icon-box"><i class="fas fa-phone-alt"></i></div>
-                            <p><a href="tel:+919940436371">+91 9940436371</a></p>
+                            <p><a href="tel:{{ \App\Models\AdminSetting::get('site_phone') ?: '+919940436371' }}">{{ \App\Models\AdminSetting::get('site_phone') ?: '+91 9940436371' }}</a></p>
                         </div>
                         <div class="contact-item">
                             <div class="icon-box"><i class="fas fa-envelope"></i></div>
-                            <p><a href="mailto:lochana@wintechinc.in">lochana@wintechinc.in</a></p>
+                            <p><a href="mailto:{{ \App\Models\AdminSetting::get('site_email') ?: 'lochana@wintechinc.in' }}">{{ \App\Models\AdminSetting::get('site_email') ?: 'lochana@wintechinc.in' }}</a></p>
                         </div>
                     </div>
                 </div>
@@ -105,12 +124,16 @@
 
 {{-- Floating Action Utilities --}}
 <div class="floating-utilities">
+    @php
+        $phoneRaw = \App\Models\AdminSetting::get('site_phone') ?: '+919940436371';
+        $phoneNum = preg_replace('/[^0-9+]/', '', $phoneRaw);
+    @endphp
     <!-- WhatsApp -->
-    <a href="https://api.whatsapp.com/send?phone=+919940436371&text=Hello!%20I%20would%20like%20to%20know%20more%20about%20your%20services." target="_blank" class="float-btn whatsapp-btn" title="Chat on WhatsApp">
+    <a href="https://api.whatsapp.com/send?phone={{ $phoneNum }}&text=Hello!%20I%20would%20like%20to%20know%20more%20about%20your%20services." target="_blank" class="float-btn whatsapp-btn" title="Chat on WhatsApp">
         <img src="{{ asset('whatsapp.png') }}" alt="WhatsApp">
     </a>
     <!-- Phone Call -->
-    <a href="tel:+919940436371" class="float-btn call-btn" title="Call Us Now">
+    <a href="tel:{{ $phoneNum }}" class="float-btn call-btn" title="Call Us Now">
         <img src="{{ asset('call.gif') }}" alt="Call">
     </a>
 </div>
