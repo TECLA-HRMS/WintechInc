@@ -30,7 +30,7 @@
 
                 <td>
                     @if($event->image)
-                        <img src="{{ asset($event->image) }}" width="80">
+                        <img loading="lazy" src="{{ asset($event->image) }}" width="80">
                     @endif
                 </td>
                 <td>
@@ -43,4 +43,8 @@
         </tbody>
     </table>
 </div>
+<div class="mt-4 d-flex justify-content-end">
+    {{ $events->links('pagination::bootstrap-5') }}
+</div>
 @endsection
+

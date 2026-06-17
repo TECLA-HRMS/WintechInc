@@ -8,7 +8,7 @@
         </button>
         {{-- Mobile brand --}}
         <a href="{{ route('admin.dashboard') }}" class="pt-mobile-brand d-flex d-xl-none align-items-center gap-2 text-decoration-none">
-            <img src="{{ asset('frontend/images/logos/logo.png') }}" alt="Logo" class="pt-mobile-logo">
+            <img loading="lazy" src="{{ asset('frontend/images/logos/logo.png') }}" alt="Logo" class="pt-mobile-logo">
             <div>
                 <div class="pt-brand-name">Wintech Inc</div>
                 <div class="pt-brand-sub">Placement Services</div>
@@ -145,12 +145,23 @@
 .pt-vdivider { width: 1px; height: 26px; background: #e5e7eb; margin: 0 4px; }
 
 /* Toggle */
+/* Toggle Button - Modern Premium Design */
 .pt-toggle {
-    width: 38px; height: 38px; border-radius: 10px; border: none; background: none;
+    width: 42px; height: 42px; border-radius: 12px; border: 1px solid #e2e8f0; 
+    background: #fff; color: #475569; font-size: 20px; cursor: pointer; flex-shrink: 0;
     display: flex; align-items: center; justify-content: center;
-    color: #4f46e5; font-size: 20px; cursor: pointer; transition: background .2s; flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    transition: all .25s cubic-bezier(.4,0,.2,1);
 }
-.pt-toggle:hover { background: #eef2ff; }
+.pt-toggle:hover { 
+    background: #f8fafc; color: #2563eb; border-color: #cbd5e1;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.06); transform: translateY(-2px);
+}
+.pt-toggle:active {
+    transform: translateY(0) scale(0.96); box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+}
+.pt-toggle i { transition: transform 0.3s ease; }
+.pt-toggle:hover i { transform: scale(1.1); }
 
 /* Mobile brand */
 .pt-mobile-logo {
@@ -450,5 +461,15 @@ document.addEventListener('click', function(e) {
         document.getElementById('userDropdownWrap')?.classList.remove('open');
     }
 });
+
+const desktopToggle = document.getElementById('desktopMenuToggle');
+if (desktopToggle) {
+    desktopToggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        // Toggle the class that handles the collapse/expand styling
+        document.documentElement.classList.toggle('layout-menu-collapsed');
+    });
+}
 </script>
 <!-- / Topbar -->
+

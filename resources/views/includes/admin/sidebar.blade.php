@@ -29,7 +29,7 @@ if (!function_exists('isSuperAdmin')) {
     {{-- Brand --}}
     <div class="sb-brand-area">
         <a href="{{ route('admin.dashboard') }}" class="sb-brand-link">
-            <img src="{{ asset('logo.png') }}" alt="Wintech Inc Logo" class="sb-logo">
+            <img loading="lazy" src="{{ asset('logo.png') }}" alt="Wintech Inc Logo" class="sb-logo">
             <div class="sb-texts">
                 <span class="sb-title">Wintech Inc</span>
                 <span class="sb-subtitle">HR & IT Solutions</span>
@@ -344,3 +344,4 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 </script>
+

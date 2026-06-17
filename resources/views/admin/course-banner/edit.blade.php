@@ -23,14 +23,14 @@
                 <div class="mb-3">
                     <label class="form-label">Current Banner</label>
                     <br>
-                    <img src="{{ asset('storage/' . $banner->banner) }}" width="200">
+                    <img loading="lazy" src="{{ asset('storage/' . $banner->banner) }}" width="200">
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Change Banner</label>
                     <input type="file" name="banner" class="form-control @error('banner') is-invalid @enderror" onchange="previewImage(event)">
                     @error('banner') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                    <img id="preview" class="mt-2" style="max-width: 200px; display: none;">
+                    <img loading="lazy" id="preview" class="mt-2" style="max-width: 200px; display: none;">
                 </div>
                 
               

@@ -29,9 +29,9 @@
 .ct-hero__bg {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(ellipse at 25% 50%, rgba(232,73,36,.22) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 40%, rgba(232,73,36,.1) 0%, transparent 50%);
+  background-image: linear-gradient(rgba(26,26,46,0.85), rgba(26,26,46,0.85)), url('{{ asset('company.webp') }}');
+  background-size: cover;
+  background-position: center;
 }
 .ct-hero__inner {
   position: relative;

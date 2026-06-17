@@ -161,23 +161,32 @@
 
 .input-field {
     width: 100%;
-    padding: 14px 16px;
-    border: 1.5px solid #e2e8f0;
-    border-radius: 10px;
+    padding: 14px 18px;
+    background-color: #ffffff;
+    border: 1.5px solid #cbd5e1 !important; /* Elegant but visible border */
+    border-radius: 12px;
     font-size: 15px;
     color: #0f172a;
-    transition: all 0.2s ease;
-    background: #ffffff;
+    font-weight: 500;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03); /* Soft premium shadow */
 }
 
 .input-field::placeholder {
     color: #94a3b8;
+    font-weight: 400;
+}
+
+.input-field:hover {
+    border-color: #94a3b8 !important; /* Smooth darkening on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.04);
 }
 
 .input-field:focus {
     outline: none;
-    border-color: #b11e24;
-    box-shadow: 0 0 0 4px rgba(177, 30, 36, 0.1);
+    background-color: #ffffff;
+    border-color: #b11e24 !important;
+    box-shadow: 0 0 0 4px rgba(177, 30, 36, 0.15), 0 4px 12px rgba(0, 0, 0, 0.08) !important;
 }
 
 .input-error {
@@ -312,28 +321,68 @@
 
 /* Responsive */
 @media (max-width: 992px) {
+    .auth-section {
+        padding: 40px 20px;
+    }
     .auth-card {
         flex-direction: column;
-        max-width: 500px;
+        max-width: 600px;
+        margin: 0 auto;
     }
     .auth-visual {
-        padding: 40px 30px;
+        padding: 30px 20px;
         text-align: center;
+        min-height: 200px;
     }
     .auth-visual-content h2 {
-        font-size: 28px;
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+    .auth-visual-content p {
+        font-size: 14px;
+    }
+    .auth-visual-logo div {
+        padding: 15px 25px !important;
+    }
+    .auth-visual-logo img {
+        width: 140px !important;
     }
     .auth-visual-footer {
         display: none;
     }
 }
+@media (max-width: 768px) {
+    .auth-section {
+        padding: 20px 15px;
+    }
+    .auth-visual {
+        display: none; /* Hide visual area on mobile to prioritize the form */
+    }
+    .auth-form-container {
+        padding: 30px 20px;
+    }
+    .panel-header h3 {
+        font-size: 22px;
+    }
+    .panel-header p {
+        font-size: 14px;
+    }
+}
 @media (max-width: 576px) {
     .auth-form-container {
-        padding: 40px 24px;
+        padding: 25px 15px;
     }
     .flex-row {
         flex-direction: column;
         gap: 0;
+    }
+    .auth-tabs-wrapper {
+        margin-bottom: 25px;
+    }
+    .auth-options {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
     }
 }
 </style>
@@ -347,6 +396,13 @@
                 <h2>Welcome to Wintech Inc.</h2>
                 <p>Unlock endless possibilities. Join our community of professionals and take the next step in your career journey.</p>
             </div>
+
+            <div class="auth-visual-logo" style="flex: 1; display: flex; align-items: center; justify-content: center; position: relative; z-index: 1;">
+                <div style="background: rgba(255, 255, 255, 0.95); padding: 25px 35px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.2), 0 0 0 1px rgba(255,255,255,0.1); backdrop-filter: blur(10px); transform: translateY(-10px);">
+                    <img loading="lazy" src="{{ asset('logo.png') }}" alt="Wintech Inc Logo" style="width: 180px; height: auto; display: block;">
+                </div>
+            </div>
+
             <div class="auth-visual-footer">
                 <p>&copy; {{ date('Y') }} Wintech Inc. All rights reserved.</p>
             </div>
@@ -385,7 +441,7 @@
                     @csrf
                     <div class="input-group">
                         <label>Email Address</label>
-                        <input type="email" name="email" class="input-field" placeholder="you@example.com" value="{{ old('email', session('signup_email')) }}" required>
+                        <input type="email" name="email" class="input-field" placeholder="you@example.com" value="{{ old('email', session('signup_email', $prefilledEmail ?? '')) }}" required>
                     </div>
                     
                     <div class="input-group">
@@ -398,8 +454,8 @@
 
                     <div class="auth-options">
                         <label class="checkbox-wrapper">
-                            <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
-                            <span>Remember me</span>
+                            <input type="checkbox" name="remember" id="remember_me_checkbox" {{ old('remember') ? 'checked' : '' }}>
+                            <span>Remember me for later</span>
                         </label>
                         <a onclick="showForgotPassword()" class="link">Forgot Password?</a>
                     </div>
@@ -542,3 +598,4 @@
     };
 </script>
 @endsection
+

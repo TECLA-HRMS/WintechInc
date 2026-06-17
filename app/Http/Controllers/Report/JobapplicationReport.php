@@ -39,7 +39,7 @@ class JobapplicationReport extends Controller
             });
         }
 
-        $applications = $query->orderBy('ja.created_at', 'desc')->paginate(10);
+        $applications = $query->orderBy('ja.created_at', 'desc')->paginate(10)->withQueryString();
 
         return view('admin.report.job-application.index', compact('applications'));
     }

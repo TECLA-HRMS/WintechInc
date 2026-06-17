@@ -73,9 +73,7 @@ function showLoginPopup(e) {
     box.style.cssText = 'background:#ffffff;padding:32px 28px;border-radius:24px;width:90%;max-width:400px;box-shadow:0 25px 50px -12px rgba(0,0,0,0.25);text-align:center;transform:scale(0.95) translateY(10px);transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);position:relative;border:1px solid rgba(0,0,0,0.05);';
     
     box.innerHTML = `
-        <button onclick="closeLoginPopup()" style="position:absolute;top:16px;right:16px;background:none;border:none;color:#9ca3af;cursor:pointer;padding:4px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:all 0.2s;">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-        </button>
+
         <div style="width:64px;height:64px;background:#FDEEEF;color:#B82025;border-radius:20px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;transform:rotate(-3deg);box-shadow:0 10px 15px -3px rgba(184,32,37,0.2);">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="transform:rotate(3deg);"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
         </div>

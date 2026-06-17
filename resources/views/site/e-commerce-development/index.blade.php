@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-12 col-xs-12 OurWorkingRht mobile-r-03 mobile-r-04">
-                    <img src="{{ asset('assetss/images/e-commerce-development/f1-sec.png') }}">
+                    <img loading="lazy" src="{{ asset('assetss/images/e-commerce-development/f1-sec.png') }}">
                 </div>
                 <div class="col-md-6 col-sm-12 col-xs-12 OurWorkingLft">
                     <div class="mobile-view-06">
@@ -62,7 +62,7 @@
 </div>
                 </div>
                 <div class="col-md-6 col-sm-12 col-xs-12 OurWorkingRht mobile-r-01">
-                    <img src="{{ asset('assetss/images/e-commerce-development/f1-sec.png') }}">
+                    <img loading="lazy" src="{{ asset('assetss/images/e-commerce-development/f1-sec.png') }}">
                 </div>
             </div>
         </div>
@@ -72,7 +72,7 @@
             <div class="row">
                 <div class="col-xl-5 col-md-6 col-12">
                     <h4 class="text-danger d-block d-xl-none"> Why choose wintech for E-commerce Website Development</h4>
-                    <img src="assetss/imgs/e-commerce/01.webp" alt="android" class="mobile-view-07 ec-imgs">
+                    <img loading="lazy" src="assetss/imgs/e-commerce/01.webp" alt="android" class="mobile-view-07 ec-imgs">
                 </div>
                 <div class="col-xl-1"></div>
                 <div class="col-xl-6 col-md-6 col-12">
@@ -100,7 +100,7 @@
                 </div>
                 <div class="col-xl-3 col-md-4 col-12">
                     <figure class="marketing-box Voicebot-style" data-aos="zoom-in">
-                        <img src="{{ asset('assetss/imgs/e-commerce/services/1.png') }}" alt="" class="img-fluid process-icons1">
+                        <img loading="lazy" src="{{ asset('assetss/imgs/e-commerce/services/1.png') }}" alt="" class="img-fluid process-icons1">
                         <figcaption class="marketing-style">
                             <h3 class="text-center text-blue">Android & IOS App</h3>
                         </figcaption>
@@ -108,7 +108,7 @@
                 </div>
                 <div class="col-xl-3 col-md-4 col-12">
                     <figure class="marketing-box Voicebot-style" data-aos="zoom-in">
-                        <img src="{{ asset('assetss/imgs/e-commerce/services/2.png') }}" alt="" class="img-fluid process-icons1">
+                        <img loading="lazy" src="{{ asset('assetss/imgs/e-commerce/services/2.png') }}" alt="" class="img-fluid process-icons1">
                         <figcaption class="marketing-style">
                             <h3 class="text-center text-blue">Premium Hosting</h3>
                         </figcaption>
@@ -116,7 +116,7 @@
                 </div>
                 <div class="col-xl-3 col-md-4 col-12">
                     <figure class="marketing-box Voicebot-style" data-aos="zoom-in">
-                        <img src="{{ asset('assetss/imgs/e-commerce/services/3.png') }}" alt="" class="img-fluid process-icons1">
+                        <img loading="lazy" src="{{ asset('assetss/imgs/e-commerce/services/3.png') }}" alt="" class="img-fluid process-icons1">
                         <figcaption class="marketing-style">
                             <h3 class="text-center text-blue">Marketing & Promotion</h3>
                         </figcaption>
@@ -124,7 +124,7 @@
                 </div>
                 <div class="col-xl-3 col-md-4 col-12">
                     <figure class="marketing-box Voicebot-style" data-aos="zoom-in">
-                        <img src="{{ asset('assetss/imgs/e-commerce/services/4.png') }}" alt="" class="img-fluid process-icons1">
+                        <img loading="lazy" src="{{ asset('assetss/imgs/e-commerce/services/4.png') }}" alt="" class="img-fluid process-icons1">
                         <figcaption class="marketing-style">
                             <h3 class="text-center text-blue">Maintenance & Support</h3>
                         </figcaption>
@@ -149,7 +149,7 @@
                 <div class="service-block col-lg-4 col-md-6 col-sm-12">
                     <div class="inner-box">
                         <div class="icon-box">
-                            <img src="{{ asset('assetss/imgs/e-commerce/platforms/1.png') }}" alt="Voicebot" class="text-center e-commerce-imgs img-fluid">
+                            <img loading="lazy" src="{{ asset('assetss/imgs/e-commerce/platforms/1.png') }}" alt="Voicebot" class="text-center e-commerce-imgs img-fluid">
                         </div>
                         <div class="wd-platforms">
                             <h5><a href="">Promotional & Discount tools</a></h5>
@@ -160,7 +160,7 @@
                 <div class="service-block col-lg-4 col-md-6 col-sm-12">
                     <div class="inner-box inner-box-bg">
                         <div class="icon-box">
-                            <img src="{{ asset('assetss/imgs/e-commerce/platforms/2.png') }}" alt="Voicebot" class="text-center e-commerce-imgs img-fluid">
+                            <img loading="lazy" src="{{ asset('assetss/imgs/e-commerce/platforms/2.png') }}" alt="Voicebot" class="text-center e-commerce-imgs img-fluid">
                         </div>
                         <div class="wd-platforms">
                             <h5><a href="">Shopping Cart </a></h5>
@@ -171,7 +171,7 @@
                 <div class="service-block col-lg-4 col-md-6 col-sm-12">
                     <div class="inner-box">
                         <div class="icon-box">
-                            <img src="{{ asset('assetss/imgs/e-commerce/platforms/3.png') }}" alt="Voicebot" class="text-center e-commerce-imgs img-fluid">
+                            <img loading="lazy" src="{{ asset('assetss/imgs/e-commerce/platforms/3.png') }}" alt="Voicebot" class="text-center e-commerce-imgs img-fluid">
                         </div>
                         <div class="wd-platforms">
                             <h5><a href="">Multiple Payment Methods</a></h5>
@@ -182,7 +182,7 @@
                 <div class="service-block col-lg-4 col-md-6 col-sm-12">
                     <div class="inner-box">
                         <div class="icon-box">
-                            <img src="{{ asset('assetss/imgs/e-commerce/platforms/4.png') }}" alt="Voicebot" class="text-center e-commerce-imgs img-fluid">
+                            <img loading="lazy" src="{{ asset('assetss/imgs/e-commerce/platforms/4.png') }}" alt="Voicebot" class="text-center e-commerce-imgs img-fluid">
                         </div>
                         <div class="wd-platforms">
                             <h5><a href="">Easy to manage admin portal</a></h5>
@@ -193,7 +193,7 @@
                 <div class="service-block col-lg-4 col-md-6 col-sm-12">
                     <div class="inner-box">
                         <div class="icon-box">
-                            <img src="{{ asset('assetss/imgs/e-commerce/platforms/5.png') }}" alt="Voicebot" class="text-center e-commerce-imgs img-fluid">
+                            <img loading="lazy" src="{{ asset('assetss/imgs/e-commerce/platforms/5.png') }}" alt="Voicebot" class="text-center e-commerce-imgs img-fluid">
                         </div>
                         <div class="wd-platforms">
                             <h5><a href="">Delivery & Tracking App</a></h5>
@@ -204,7 +204,7 @@
                 <div class="service-block col-lg-4 col-md-6 col-sm-12">
                     <div class="inner-box">
                         <div class="icon-box">
-                            <img src="{{ asset('assetss/imgs/e-commerce/platforms/6.png') }}" alt="Voicebot" class="text-center e-commerce-imgs img-fluid">
+                            <img loading="lazy" src="{{ asset('assetss/imgs/e-commerce/platforms/6.png') }}" alt="Voicebot" class="text-center e-commerce-imgs img-fluid">
                         </div>
                         <div class="wd-platforms">
                             <h5><a href="">Customer Accounts</a></h5>
@@ -228,7 +228,7 @@
                 <div class="col-xl-4 col-md-6 col-12 mb-4 d-flex align-content-stretch aos-init aos-animate">
                     <div class="count-box">
                         <div class=" OmniChannel">
-                            <img class="content-img" src="{{ asset('assetss/images/e-commerce-development/icons/platform-icons/01.png') }}" />
+                            <img loading="lazy" class="content-img" src="{{ asset('assetss/images/e-commerce-development/icons/platform-icons/01.png') }}" />
                             <h2>B2C</h2>
                             <span>With our excellent business-to-consumer ideal E-Commerce solution, you can sell your products online to customers directly to meet the demands of your clients.</span>
                         </div>
@@ -237,7 +237,7 @@
                 <div class="col-xl-4 col-md-6 col-12 mb-4 d-flex align-content-stretch aos-init aos-animate">
                     <div class="count-box">
                         <div class=" OmniChannel">
-                            <img class="content-img" src="{{ asset('assetss/images/e-commerce-development/icons/platform-icons/02.png') }}" />
+                            <img loading="lazy" class="content-img" src="{{ asset('assetss/images/e-commerce-development/icons/platform-icons/02.png') }}" />
                             <h2>B2B</h2>
                             <span>Our E-Commerce professionals assist you in building a strong E-Commerce portal that enables wholesale supplies to sell goods in bulk to other businesses.</span>
                         </div>
@@ -246,7 +246,7 @@
                 <div class="col-xl-4 col-md-6 col-12 mb-4 d-flex align-content-stretch aos-init aos-animate">
                     <div class="count-box">
                         <div class=" OmniChannel">
-                            <img class="content-img" src="{{ asset('assetss/images/e-commerce-development/icons/platform-icons/03.png') }}" />
+                            <img loading="lazy" class="content-img" src="{{ asset('assetss/images/e-commerce-development/icons/platform-icons/03.png') }}" />
                             <h2>Booking Engine</h2>
                             <span>We develop intuitive travel, appointment, or other online booking systems based on the criteria set by your industry and the purchasing habits of your customers.</span>
                         </div>
@@ -255,7 +255,7 @@
                 <div class="col-xl-4 col-md-6 col-12 mb-4 d-flex align-content-stretch aos-init aos-animate">
                     <div class="count-box">
                         <div class=" OmniChannel">
-                            <img class="content-img" src="{{ asset('assetss/images/e-commerce-development/icons/platform-icons/04.png') }}" />
+                            <img loading="lazy" class="content-img" src="{{ asset('assetss/images/e-commerce-development/icons/platform-icons/04.png') }}" />
                             <h2>Subscription Platform</h2>
                             <span>We develop reliable membership or subscription management platforms with recurring payments to reduce churn rates and deploy a variety of price schemes and payment options.</span>
                         </div>
@@ -264,7 +264,7 @@
                 <div class="col-xl-4 col-md-6 col-12 mb-4 d-flex align-content-stretch aos-init aos-animate">
                     <div class="count-box">
                         <div class=" OmniChannel">
-                            <img class="content-img" src="{{ asset('assetss/images/e-commerce-development/icons/platform-icons/05.png') }}" />
+                            <img loading="lazy" class="content-img" src="{{ asset('assetss/images/e-commerce-development/icons/platform-icons/05.png') }}" />
                             <h2>Marketplace</h2>
                             <span>A multi-vendor E-commerce platform so that any merchants can list their products for sale in your B2C or B2B marketplace.</span>
                         </div>
@@ -273,7 +273,7 @@
                 <div class="col-xl-4 col-md-6 col-12 mb-4 d-flex align-content-stretch aos-init aos-animate">
                     <div class="count-box">
                         <div class=" OmniChannel">
-                            <img class="content-img" src="{{ asset('assetss/images/e-commerce-development/icons/platform-icons/06.png') }}" />
+                            <img loading="lazy" class="content-img" src="{{ asset('assetss/images/e-commerce-development/icons/platform-icons/06.png') }}" />
                             <h2>Dropshipping</h2>
                             <span>You have premium white-label products to sell, and we have cutting-edge technology to create an engaging online store to connect with your target audiences and start selling.</span>
                         </div>
@@ -287,7 +287,7 @@
             <div class="row">
                 <div class="col-xl-5 col-md-12 col-12" data-aos="fade-up">
                     <div class="frequently-img">
-                        <img src="assetss/images/e-commerce-development/faq.webp" alt="Smart Salez">
+                        <img loading="lazy" src="assetss/images/e-commerce-development/faq.webp" alt="Smart Salez">
                     </div>
                 </div>
                 <div class="col-xl-7 col-md-12 col-12" data-aos="fade-up">
@@ -370,3 +370,4 @@
 </main>
 
 @endsection
+

@@ -24,7 +24,7 @@
                             @error('banner')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
-                            <img id="preview" class="mt-2" style="max-width: 200px; display: none;">
+                            <img loading="lazy" id="preview" class="mt-2" style="max-width: 200px; display: none;">
                         </div>
 
                       
@@ -87,4 +87,5 @@ $(document).ready(function() {
 </script>
 
 @endsection
+
 

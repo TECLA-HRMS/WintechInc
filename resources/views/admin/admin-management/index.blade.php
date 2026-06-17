@@ -124,6 +124,10 @@
                 <a href="{{ route('admin.management.create') }}" class="am-btn-add">Add your first admin</a>
             </div>
             @endif
+
+            <div class="mt-4 d-flex justify-content-end">
+                {{ $admins->links('pagination::bootstrap-5') }}
+            </div>
         </div>
     </div>
 

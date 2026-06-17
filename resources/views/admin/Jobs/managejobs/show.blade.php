@@ -21,7 +21,7 @@
         <div class="card-header bg-gradient-primary text-white d-flex justify-content-between align-items-center py-3">
             <div class="d-flex align-items-center">
                 @if($job->company_logo)
-                    <img src="{{ asset($job->company_logo) }}" alt="Company Logo" class="rounded me-3" style="width: 40px; height: 40px; object-fit: contain; background: white; padding: 4px;">
+                    <img loading="lazy" src="{{ asset($job->company_logo) }}" alt="Company Logo" class="rounded me-3" style="width: 40px; height: 40px; object-fit: contain; background: white; padding: 4px;">
                 @endif
                 <div>
                     <h5 class="mb-0">{{ $job->company_name }}</h5>

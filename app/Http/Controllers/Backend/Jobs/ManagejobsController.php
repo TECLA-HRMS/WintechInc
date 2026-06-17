@@ -65,7 +65,7 @@ class ManagejobsController extends Controller
      */
     public function index()
     {
-        $manageJobs = DB::table('managejobs')->get();
+        $manageJobs = DB::table('managejobs')->paginate(10);
         return view('admin.Jobs.managejobs.index', compact('manageJobs'));
     }
 

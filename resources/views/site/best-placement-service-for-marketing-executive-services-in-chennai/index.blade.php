@@ -21,7 +21,7 @@
                     <!-- service details left area start -->
                     <div class="service-detials-step-1">
                         <div class="thumbnail">
-                            <img src="{{ asset('image/consultancy8.jpg') }}" alt="business-area">
+                            <img loading="lazy" src="{{ asset('image/consultancy8.jpg') }}" alt="business-area">
                         </div>
                         <h4 class="title">Placement  Service for Marketing Executive (Employers)</h4>
                         <p class="disc">
@@ -33,7 +33,7 @@
                                 <!-- single service details card -->
                                 <div class="service-details-card">
                                     <div class="thumbnail">
-                                        <img src="{{ asset('assets/images/service/icon/09.svg') }}" alt="" class="icon">
+                                        <img loading="lazy" src="{{ asset('assets/images/service/icon/09.svg') }}" alt="" class="icon">
                                     </div>
                                     <div class="details">
                                         <h6 class="title">Specialized Marketing Recruitment</h6>
@@ -47,7 +47,7 @@
                                 <!-- single service details card -->
                                 <div class="service-details-card">
                                     <div class="thumbnail">
-                                        <img src="{{ asset('assets/images/service/icon/11.svg') }}" alt="" class="icon">
+                                        <img loading="lazy" src="{{ asset('assets/images/service/icon/11.svg') }}" alt="" class="icon">
                                     </div>
                                     <div class="details">
                                         <h6 class="title">Extensive Candidate Network</h6>
@@ -60,7 +60,7 @@
                                 <!-- single service details card -->
                                 <div class="service-details-card">
                                     <div class="thumbnail">
-                                        <img src="{{ asset('assets/images/service/icon/12.svg') }}" alt="" class="icon">
+                                        <img loading="lazy" src="{{ asset('assets/images/service/icon/12.svg') }}" alt="" class="icon">
                                     </div>
                                     <div class="details">
                                         <h6 class="title">Customized Recruitment Solutions</h6>
@@ -73,7 +73,7 @@
                                 <!-- single service details card -->
                                 <div class="service-details-card">
                                     <div class="thumbnail">
-                                        <img src="{{ asset('assets/images/service/icon/10.svg') }}" alt="" class="icon">
+                                        <img loading="lazy" src="{{ asset('assets/images/service/icon/10.svg') }}" alt="" class="icon">
                                     </div>
                                     <div class="details">
                                         <h6 class="title">Marketing Industry Knowledge</h6>
@@ -184,3 +184,4 @@
 
     @include('includes.site.contact_section')
 @endsection
+

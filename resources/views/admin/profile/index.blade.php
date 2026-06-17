@@ -273,7 +273,7 @@
                                 <div class="av-cell">
                                     <div class="av">
                                         @if(!empty($user->profile_picture))
-                                            <img src="{{ asset('profile_pictures/' . $user->profile_picture) }}" alt="">
+                                            <img loading="lazy" src="{{ asset('profile_pictures/' . $user->profile_picture) }}" alt="">
                                         @else
                                             {{ strtoupper(substr($user->first_name ?? 'U', 0, 1)) }}
                                         @endif
@@ -388,3 +388,4 @@ function deleteUser(id) {
 }
 </script>
 @endsection
+

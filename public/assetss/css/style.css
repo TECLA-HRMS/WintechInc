@@ -6036,9 +6036,8 @@ a.btn-hover-corner:hover:after {
     background-repeat: no-repeat;
     background-size: 100% 100%; 
     margin-top: 0px;
-    padding-top: 100px;   
+    padding-top: 40px;   
     height: 550px;  
-    padding-top: 150px;
     /*background: #1c345c;*/
 }
 .text-light11{

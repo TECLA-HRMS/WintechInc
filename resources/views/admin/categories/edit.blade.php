@@ -44,7 +44,7 @@
                     @enderror
                     <small class="text-muted">Leave empty to keep current image</small>
                     <div class="mt-2">
-                        <img src="{{ asset('storage/' . $category->cover_image) }}" 
+                        <img loading="lazy" src="{{ asset('storage/' . $category->cover_image) }}" 
                              alt="{{ $category->name }}" 
                              width="120" 
                              class="img-thumbnail">

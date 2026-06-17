@@ -206,7 +206,7 @@
                                 <label class="form-label">Company Logo</label>
                                 @if($job->company_logo ?? null)
                                 <div class="logo-preview">
-                                    <img src="{{ asset($job->company_logo) }}" alt="Current Logo">
+                                    <img loading="lazy" src="{{ asset($job->company_logo) }}" alt="Current Logo">
                                     <div class="logo-preview-text">
                                         <strong>Current Logo</strong>
                                         Upload a new file below to replace it
@@ -478,3 +478,4 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 
 @endsection
+

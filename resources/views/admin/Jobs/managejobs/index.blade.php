@@ -256,7 +256,7 @@
                     <!-- Company -->
                     <div class="jc-company">
                         @if($job->company_logo)
-                            <img src="{{ asset($job->company_logo) }}" alt="{{ $job->company_name }}" class="jc-logo">
+                            <img loading="lazy" src="{{ asset($job->company_logo) }}" alt="{{ $job->company_name }}" class="jc-logo">
                         @else
                             <div class="jc-logo-placeholder">{{ strtoupper(substr($job->company_name ?? 'C', 0, 1)) }}</div>
                         @endif
@@ -332,6 +332,10 @@
         @endforelse
     </div>
 
+    <div class="mt-4 d-flex justify-content-end">
+        {{ $manageJobs->links('pagination::bootstrap-5') }}
+    </div>
+
 </div>
 
 <script>
@@ -361,3 +365,4 @@ document.getElementById('filterType').addEventListener('change', filterJobs);
 </script>
 
 @endsection
+

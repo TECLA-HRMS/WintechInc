@@ -233,6 +233,7 @@ Route::get('/settings', [AdminSettingsController::class, 'index'])->name('settin
 Route::post('/settings/general', [AdminSettingsController::class, 'saveGeneral'])->name('settings.general');
 Route::post('/settings/email', [AdminSettingsController::class, 'saveEmail'])->name('settings.email');
 Route::post('/settings/test-mail', [AdminSettingsController::class, 'testMail'])->name('settings.test-mail');
+Route::post('/settings/appearance', [AdminSettingsController::class, 'saveAppearance'])->name('settings.appearance');
 
 // Newsletter
 Route::get('/newsletter', [NewsletterController::class, 'index'])->name('newsletter.index');
@@ -287,6 +288,7 @@ use App\Http\Controllers\Backend\PhotoController as AdminPhotoController;
 
 Route::prefix('resume')->name('resume.')->group(function () {
     Route::get('/', [App\Http\Controllers\Backend\Jobs\ManageresumeController::class, 'index'])->name('index');
+    Route::get('/bulk-download-resumes', [App\Http\Controllers\Backend\Jobs\ManageresumeController::class, 'bulkDownloadResumes'])->name('bulk-download-resumes');
     Route::get('/email-template/{type}', [App\Http\Controllers\Backend\Jobs\ManageresumeController::class, 'getEmailTemplate'])->name('email-template');
     Route::get('/stats/data', [App\Http\Controllers\Backend\Jobs\ManageresumeController::class, 'getStats'])->name('stats');
     Route::get('/{id}', [App\Http\Controllers\Backend\Jobs\ManageresumeController::class, 'show'])->name('show');

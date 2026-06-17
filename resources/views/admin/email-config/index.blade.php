@@ -194,8 +194,13 @@
             </div>
 
             <!-- Footer count -->
-            <div style="padding-top:1rem;border-top:1px solid var(--border);margin-top:.5rem;font-size:.8rem;color:var(--text-muted)">
-                Showing <strong id="visibleCount">{{ $emails->count() }}</strong> of <strong>{{ $emails->count() }}</strong> emails
+            <div class="d-flex justify-content-between align-items-center mt-3 pt-3" style="border-top:1px solid var(--border);">
+                <div style="font-size:.875rem;color:var(--text-muted)">
+                    Showing <strong>{{ $emails->firstItem() ?? 0 }}</strong> to <strong>{{ $emails->lastItem() ?? 0 }}</strong> of <strong>{{ $emails->total() }}</strong> emails
+                </div>
+                <div>
+                    {{ $emails->links('pagination::bootstrap-5') }}
+                </div>
             </div>
         </div>
     </div>

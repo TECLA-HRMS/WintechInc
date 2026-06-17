@@ -30,7 +30,7 @@
                     <div class="box-shadow-product">
                         <a href="#">
                             <div class="">
-                                <img src="{{ asset('assetss/imgs/dm/01.png') }}" alt="Voicebot" class="text-center img-fluid">
+                                <img loading="lazy" src="{{ asset('assetss/imgs/dm/01.png') }}" alt="Voicebot" class="text-center img-fluid">
                             </div>
                             <h3 class="voicebot-style mt-3 mb-3">Search Engine Optimization </h3>
                             <p> We conduct in-depth keyword research, on-page SEO, and off-page SEO for your business to get a top-ranking position in the search engine and generate high-quality leads to boost your business. </p>
@@ -42,7 +42,7 @@
                     <div class="box-shadow-product">
                         <a href="#">
                             <div class="">
-                                <img src="{{ asset('assetss/imgs/dm/02.png') }}" alt="Voicebot" class="text-center img-fluid">
+                                <img loading="lazy" src="{{ asset('assetss/imgs/dm/02.png') }}" alt="Voicebot" class="text-center img-fluid">
                             </div>
                             <h3 class="voicebot-style mt-3 mb-3">Search Engine Marketing</h3>
                             <p> We offer SEM and PPC marketing solution services and work to drive the right amount of quick and targeted traffic to your website, which raises your brand awareness. </p>
@@ -54,7 +54,7 @@
                     <div class="box-shadow-product">
                         <a href="#">
                             <div class="">
-                                <img src="{{ asset('assetss/imgs/dm/03.png') }}" alt="Voicebot" class="text-center img-fluid">
+                                <img loading="lazy" src="{{ asset('assetss/imgs/dm/03.png') }}" alt="Voicebot" class="text-center img-fluid">
                             </div>
                             <h3 class="voicebot-style mt-3 mb-3">Social Media Marketing</h3>
                             <p> With the aid of our service, you can witness a boost in consumer engagement, which drives business expansion and increases sales owing to a unique brand identity. </p>
@@ -66,7 +66,7 @@
                     <div class="box-shadow-product">
                         <a href="#">
                             <div class="">
-                                <img src="{{ asset('assetss/imgs/dm/04.png') }}" alt="Voicebot" class="text-center img-fluid">
+                                <img loading="lazy" src="{{ asset('assetss/imgs/dm/04.png') }}" alt="Voicebot" class="text-center img-fluid">
                             </div>
                             <h3 class="voicebot-style mt-3 mb-3">E-Mail Marketing</h3>
                             <p> Our email marketing services can be utilized to build marketing campaigns to promote your business or its products to increase sales. </p>
@@ -77,7 +77,7 @@
                     <div class="box-shadow-product">
                         <a href="#">
                             <div class="">
-                                <img src="{{ asset('assetss/imgs/dm/05.png') }}" alt="Voicebot" class="text-center img-fluid">
+                                <img loading="lazy" src="{{ asset('assetss/imgs/dm/05.png') }}" alt="Voicebot" class="text-center img-fluid">
                             </div>
                             <h3 class="voicebot-style mt-3 mb-3">Content Marketing</h3>
                             <p> We create focused content to promote your company's online brand recognition and support a consistent rise in site traffic, revenue, and conversions. </p>
@@ -88,7 +88,7 @@
                     <div class="box-shadow-product">
                         <a href="#">
                             <div class="">
-                                <img src="{{ asset('assetss/imgs/dm/06.png') }}" alt="Voicebot" class="text-center img-fluid">
+                                <img loading="lazy" src="{{ asset('assetss/imgs/dm/06.png') }}" alt="Voicebot" class="text-center img-fluid">
                             </div>
                             <h3 class="voicebot-style mt-3 mb-3">Performance Marketing </h3>
                             <p> Our performance marketing solution is a result-driven process and the customers can pay when they see measurable outcomes. </p>
@@ -127,7 +127,7 @@
                                         <div class="col-xl-2 col-md-6 col-6 mt-4 d-flex align-content-stretch">
                                             <div class="futuristic-box development-box" data-aos="zoom-in">
                                                 <figure>
-                                                    <img src="{{ asset('assetss/imgs/goals/icons/1.png') }}" alt="">
+                                                    <img loading="lazy" src="{{ asset('assetss/imgs/goals/icons/1.png') }}" alt="">
                                                     <figcaption class=" ">
                                                         <h6 class="marketing-text mt-3"> Lead <br> Generation </h6>
                                                     </figcaption>
@@ -137,7 +137,7 @@
                                         <div class="col-xl-2 col-md-6 col-6 mt-4 d-flex align-content-stretch">
                                             <div class="futuristic-box development-box" data-aos="zoom-in">
                                                 <figure>
-                                                    <img src="{{ asset('assetss/imgs/goals/icons/2.png') }}" alt="">
+                                                    <img loading="lazy" src="{{ asset('assetss/imgs/goals/icons/2.png') }}" alt="">
                                                     <figcaption class=" ">
                                                         <h6 class="marketing-text mt-3"> Brand <br> Awareness </h6>
                                                     </figcaption>
@@ -147,7 +147,7 @@
                                         <div class="col-xl-2 col-md-6 col-6 mt-4 d-flex align-content-stretch">
                                             <div class="futuristic-box development-box" data-aos="zoom-in">
                                                 <figure>
-                                                    <img src="{{ asset('assetss/imgs/goals/icons/3.png') }}" alt="">
+                                                    <img loading="lazy" src="{{ asset('assetss/imgs/goals/icons/3.png') }}" alt="">
                                                     <figcaption class=" ">
                                                         <h6 class="marketing-text mt-3"> Higher <br> Returns </h6>
                                                     </figcaption>
@@ -157,7 +157,7 @@
                                         <div class="col-xl-2 col-md-6 col-6 mt-4 d-flex align-content-stretch">
                                             <div class="futuristic-box development-box" data-aos="zoom-in">
                                                 <figure>
-                                                    <img src="{{ asset('assetss/imgs/goals/icons/4.png') }}" alt="">
+                                                    <img loading="lazy" src="{{ asset('assetss/imgs/goals/icons/4.png') }}" alt="">
                                                     <figcaption class=" ">
                                                         <h6 class="marketing-text mt-3"> Increased <br> Sales </h6>
                                                     </figcaption>
@@ -169,7 +169,7 @@
                                         <div class="col-xl-2 col-md-6 col-6 mt-4 d-flex align-content-stretch">
                                             <div class="futuristic-box development-box" data-aos="zoom-in">
                                                 <figure>
-                                                    <img src="{{ asset('assetss/imgs/goals/icons/5.png') }}" alt="">
+                                                    <img loading="lazy" src="{{ asset('assetss/imgs/goals/icons/5.png') }}" alt="">
                                                     <figcaption class=" ">
                                                         <h6 class="marketing-text mt-3"> Brand <br> Engagement </h6>
                                                     </figcaption>
@@ -179,7 +179,7 @@
                                         <div class="col-xl-2 col-md-6 col-6 mt-4 d-flex align-content-stretch">
                                             <div class="futuristic-box development-box" data-aos="zoom-in">
                                                 <figure>
-                                                    <img src="{{ asset('assetss/imgs/goals/icons/6.png') }}" alt="">
+                                                    <img loading="lazy" src="{{ asset('assetss/imgs/goals/icons/6.png') }}" alt="">
                                                     <figcaption class=" ">
                                                         <h6 class="marketing-text mt-3"> Customer <br> Acquisition </h6>
                                                     </figcaption>
@@ -189,7 +189,7 @@
                                         <div class="col-xl-2 col-md-6 col-6 mt-4 d-flex align-content-stretch">
                                             <div class="futuristic-box development-box" data-aos="zoom-in">
                                                 <figure>
-                                                    <img src="{{ asset('assetss/imgs/goals/icons/7.png') }}" alt="">
+                                                    <img loading="lazy" src="{{ asset('assetss/imgs/goals/icons/7.png') }}" alt="">
                                                     <figcaption class=" ">
                                                         <h6 class="marketing-text mt-3"> Higher <br> Traffic </h6>
                                                     </figcaption>
@@ -199,7 +199,7 @@
                                         <div class="col-xl-2 col-md-6 col-6 mt-4 d-flex align-content-stretch">
                                             <div class="futuristic-box development-box" data-aos="zoom-in">
                                                 <figure>
-                                                    <img src="{{ asset('assetss/imgs/goals/icons/8.png') }}" alt="">
+                                                    <img loading="lazy" src="{{ asset('assetss/imgs/goals/icons/8.png') }}" alt="">
                                                     <figcaption class=" ">
                                                         <h6 class="marketing-text mt-3"> Brand Trust & <br> Recognition </h6>
                                                     </figcaption>
@@ -225,12 +225,12 @@
                 </div>
             </div>
         </div>
-        <!--<img src="{{ asset('assetss/images/web-development/technology/10.png') }}" class="cta-one__bg-shape-1" alt="">-->
+        <!--<img loading="lazy" src="{{ asset('assetss/images/web-development/technology/10.png') }}" class="cta-one__bg-shape-1" alt="">-->
         <div class="row">
             <div class="col-lg-12">
                 <ul class="timeline">
                     <li>
-                        <img class="our-process" src="{{ asset('assetss/imgs/process/01.png') }}" alt="Research">
+                        <img loading="lazy" class="our-process" src="{{ asset('assetss/imgs/process/01.png') }}" alt="Research">
                         <div class="direction-r">
                             <div class="flag-wrapper">
                                 <span class="flag">Research</span>
@@ -239,7 +239,7 @@
                         </div>
                     </li>
                     <li>
-                        <img class="our-process1" src="{{ asset('assetss/imgs/process/02.png') }}" alt="Create">
+                        <img loading="lazy" class="our-process1" src="{{ asset('assetss/imgs/process/02.png') }}" alt="Create">
                         <div class="direction-l">
                             <div class="flag-wrapper">
                                 <span class="flag">Create</span>
@@ -248,7 +248,7 @@
                         </div>
                     </li>
                     <li>
-                        <img class="our-process" src="{{ asset('assetss/imgs/process/03.png') }}" alt="Promote">
+                        <img loading="lazy" class="our-process" src="{{ asset('assetss/imgs/process/03.png') }}" alt="Promote">
                         <div class="direction-r">
                             <div class="flag-wrapper">
                                 <span class="flag">Promote</span>
@@ -257,7 +257,7 @@
                         </div>
                     </li>
                     <li>
-                        <img class="our-process1" src="{{ asset('assetss/imgs/process/04.png') }}" alt="Analyze">
+                        <img loading="lazy" class="our-process1" src="{{ asset('assetss/imgs/process/04.png') }}" alt="Analyze">
                         <div class="direction-l">
                             <div class="flag-wrapper">
                                 <span class="flag">Analyze</span>
@@ -266,7 +266,7 @@
                         </div>
                     </li>
                     <li>
-                        <img class="our-process" src="{{ asset('assetss/imgs/process/05.png') }}" alt="Optimize">
+                        <img loading="lazy" class="our-process" src="{{ asset('assetss/imgs/process/05.png') }}" alt="Optimize">
                         <div class="direction-r">
                             <div class="flag-wrapper">
                                 <span class="flag">Optimize</span>
@@ -457,7 +457,7 @@
                             <div class="inner-box">
                                 <a class="overlay-link"></a>
                                 <div class="icon-box">
-                                    <img src="{{ asset('assetss/imgs/hire/1.png') }}" class="content-img">
+                                    <img loading="lazy" src="{{ asset('assetss/imgs/hire/1.png') }}" class="content-img">
                                 </div>
                                 <h6>Full Transparency</h6>
                             </div>
@@ -466,7 +466,7 @@
                             <div class="inner-box">
                                 <a class="overlay-link"></a>
                                 <div class="icon-box">
-                                    <img src="{{ asset('assetss/imgs/hire/2.png') }}" class="content-img">
+                                    <img loading="lazy" src="{{ asset('assetss/imgs/hire/2.png') }}" class="content-img">
                                 </div>
                                 <h6>Dedicated Account Manager</h6>
                             </div>
@@ -475,7 +475,7 @@
                             <div class="inner-box">
                                 <a class="overlay-link"></a>
                                 <div class="icon-box">
-                                    <img src="{{ asset('assetss/imgs/hire/3.png') }}" class="content-img">
+                                    <img loading="lazy" src="{{ asset('assetss/imgs/hire/3.png') }}" class="content-img">
                                 </div>
                                 <h6>Highly Experienced Team</h6>
                             </div>
@@ -484,7 +484,7 @@
                             <div class="inner-box">
                                 <a class="overlay-link"></a>
                                 <div class="icon-box">
-                                    <img src="{{ asset('assetss/imgs/hire/4.png') }}" class="content-img">
+                                    <img loading="lazy" src="{{ asset('assetss/imgs/hire/4.png') }}" class="content-img">
                                 </div>
                                 <h6>Regular Reporting</h6>
                             </div>
@@ -493,7 +493,7 @@
                             <div class="inner-box">
                                 <a class="overlay-link"></a>
                                 <div class="icon-box">
-                                    <img src="{{ asset('assetss/imgs/hire/5.png') }}" class="content-img">
+                                    <img loading="lazy" src="{{ asset('assetss/imgs/hire/5.png') }}" class="content-img">
                                 </div>
                                 <h6>Customer Support</h6>
                             </div>
@@ -502,7 +502,7 @@
                             <div class="inner-box">
                                 <a class="overlay-link"></a>
                                 <div class="icon-box">
-                                    <img src="{{ asset('assetss/imgs/hire/6.png') }}" class="content-img">
+                                    <img loading="lazy" src="{{ asset('assetss/imgs/hire/6.png') }}" class="content-img">
                                 </div>
                                 <h6>No Contracts</h6>
                             </div>
@@ -511,7 +511,7 @@
                             <div class="inner-box">
                                 <a class="overlay-link"></a>
                                 <div class="icon-box">
-                                    <img src="{{ asset('assetss/imgs/hire/7.png') }}" class="content-img">
+                                    <img loading="lazy" src="{{ asset('assetss/imgs/hire/7.png') }}" class="content-img">
                                 </div>
                                 <h6>Safe & Reliable</h6>
                             </div>
@@ -520,7 +520,7 @@
                             <div class="inner-box">
                                 <a class="overlay-link"></a>
                                 <div class="icon-box">
-                                    <img src="{{ asset('assetss/imgs/hire/8.png') }}" class="content-img">
+                                    <img loading="lazy" src="{{ asset('assetss/imgs/hire/8.png') }}" class="content-img">
                                 </div>
                                 <h6>Low cost & Affordable</h6>
                             </div>
@@ -535,7 +535,7 @@
             <div class="row">
                 <div class="col-xl-5 col-md-12 col-12" data-aos="fade-up">
                     <div class="frequently-img">
-                        <img src="assetss/images/digital-marketing/faq.webp" class="">
+                        <img loading="lazy" src="assetss/images/digital-marketing/faq.webp" class="">
                     </div>
                 </div>
                 <div class="col-xl-7 col-md-12 col-12" data-aos="fade-up">
@@ -624,3 +624,4 @@
 </main>
 
 @endsection
+

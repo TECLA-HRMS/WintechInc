@@ -21,7 +21,7 @@
                 <div class="footer-widget brand-widget">
                     <div class="footer-logo">
                         <a href="{{ url('/') }}">
-                            <img src="{{ asset('logo.png') }}" alt="Wintech Inc" class="brand-logo-img">
+                            <img loading="lazy" src="{{ asset('logo.png') }}" alt="Wintech Inc" class="brand-logo-img">
                         </a>
                     </div>
                     <p class="brand-desc">
@@ -130,11 +130,11 @@
     @endphp
     <!-- WhatsApp -->
     <a href="https://api.whatsapp.com/send?phone={{ $phoneNum }}&text=Hello!%20I%20would%20like%20to%20know%20more%20about%20your%20services." target="_blank" class="float-btn whatsapp-btn" title="Chat on WhatsApp">
-        <img src="{{ asset('whatsapp.png') }}" alt="WhatsApp">
+        <img loading="lazy" src="{{ asset('whatsapp.png') }}" alt="WhatsApp">
     </a>
     <!-- Phone Call -->
     <a href="tel:{{ $phoneNum }}" class="float-btn call-btn" title="Call Us Now">
-        <img src="{{ asset('call.gif') }}" alt="Call">
+        <img loading="lazy" src="{{ asset('call.gif') }}" alt="Call">
     </a>
 </div>
 

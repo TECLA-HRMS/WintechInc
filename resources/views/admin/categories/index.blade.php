@@ -33,7 +33,7 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>
-                                    <img src="{{ asset('storage/' . $category->cover_image) }}" 
+                                    <img loading="lazy" src="{{ asset('storage/' . $category->cover_image) }}" 
                                          alt="{{ $category->name }}" 
                                          width="60" 
                                          class="img-thumbnail">
@@ -64,6 +64,10 @@
                         @endforelse
                     </tbody>
                 </table>
+            </div>
+            
+            <div class="mt-4 d-flex justify-content-end">
+                {{ $categories->links('pagination::bootstrap-5') }}
             </div>
         </div>
     </div>

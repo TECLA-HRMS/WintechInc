@@ -24,7 +24,7 @@
             <div class="row">
                 <div class="col-xl-5 col-md-6 col-12 order-xl-1 order-1 mb-3">
                     <h4 class="d-block d-xl-none mobile-title "> Mobile App Development Service </h4>
-                    <img style="width: -webkit-fill-available;" class="mobile-view-02" src="{{ asset('assetss/imgs/mobile-app/sucess-stories.png') }}">
+                    <img loading="lazy" style="width: -webkit-fill-available;" class="mobile-view-02" src="{{ asset('assetss/imgs/mobile-app/sucess-stories.png') }}">
                 </div>
                 <div class="col-xl-1 col-md-6 col-12 order-xl-2 order-2 mb-3"></div>
                 <div class="col-xl-6 col-md-6 col-12 order-xl-2 order-2 mb-3">
@@ -60,7 +60,7 @@
             <div class="row">
                 <div class="col-xl-5 col-md-12 col-12 mb-5 mobile-r-03 mobile-r-04" data-aos="fade-up">
                       <h4 class="d-block d-xl-none mobile-title "> Android App Development </h4>
-                    <img class="mobile-view-01 mobile-r-06" src="{{ asset('assetss/images/mobile-app-development/android.png') }}">
+                    <img loading="lazy" class="mobile-view-01 mobile-r-06" src="{{ asset('assetss/images/mobile-app-development/android.png') }}">
                 </div>
                 <div class="col-xl-6 col-md-12 col-12 d-flex align-items-center" data-aos="fade-up">
                     <div class="best-ecommerce-heading">
@@ -71,7 +71,7 @@
                 </div>
                 <div class="col-xl-1"></div>
                 <div class="col-xl-5 col-md-12 col-12 mb-5 mobile-r-01" data-aos="fade-up">
-                    <img class="mobile-view-01" src="{{ asset('assetss/images/mobile-app-development/android.png') }}">
+                    <img loading="lazy" class="mobile-view-01" src="{{ asset('assetss/images/mobile-app-development/android.png') }}">
                 </div>
             </div>
         </div>
@@ -81,7 +81,7 @@
             <div class="row">
                 <div class="col-xl-5 col-md-6 col-12 order-xl-1 order-1 mb-3">
                     <h4 class="text-danger d-block d-xl-none mobile-title"> iOS App Development </h4>
-                    <img class="mobile-view-02" src="{{ asset('assetss/images/mobile-app-development/iso.png') }}">
+                    <img loading="lazy" class="mobile-view-02" src="{{ asset('assetss/images/mobile-app-development/iso.png') }}">
                 </div>
                 <div class="col-xl-1 col-md-6 col-12 order-xl-2 order-2 mb-3"></div>
                 <div class="col-xl-6 col-md-6 col-12 order-xl-2 order-2 mb-3">
@@ -104,7 +104,7 @@
                 <div class="carousel-inner" role="listbox">
                     <div class="carousel-item active">
                         <div class="testimonial4_slide">
-                            <!--<img src="assetss/images/mobile-app-development/testimonials/t-01.webp" class="img-circle img-responsive" /><br>-->
+                            <!--<img loading="lazy" src="assetss/images/mobile-app-development/testimonials/t-01.webp" class="img-circle img-responsive" /><br>-->
                             <h4>Clients, we serve</h4>
                             <p> We serve companies of all sizes from all key industries, as well as individuals and early-stage startups with on-time delivery and within-budget apps. </p>
                             <div class="container">
@@ -126,7 +126,7 @@
                     </div>
                     <div class="carousel-item">
                         <div class="testimonial4_slide">
-                            <!--<img src="assetss/images/mobile-app-development/testimonials/t-02.webp" class="img-circle img-responsive" /><br>-->
+                            <!--<img loading="lazy" src="assetss/images/mobile-app-development/testimonials/t-02.webp" class="img-circle img-responsive" /><br>-->
                             <h4>Our Approach</h4>
                             <p> Our app development process includes information collecting, brainstorming, UX/UI designing, prototyping, quality testing, and launching from the beginning to the end. </p>
                             <div class="container">
@@ -162,7 +162,7 @@
                 <div class="col-xl-4 col-12 mobile-view-03">
                     <div class="row">
                         <div class="col-xl-2 col-12">
-                            <img src="{{ asset('assetss/imgs/mobile-app/applications/1.png') }}" class="app-icm" alt="Voicebot">
+                            <img loading="lazy" src="{{ asset('assetss/imgs/mobile-app/applications/1.png') }}" class="app-icm" alt="Voicebot">
                         </div>
                         <div class="col-xl-10 col-12">
                             <h3 class="app-text">E-commerce Apps</h3>
@@ -174,7 +174,7 @@
                 <div class="col-xl-4 col-12 mobile-view-03">
                     <div class="row">
                         <div class="col-xl-2 col-12">
-                            <img src="{{ asset('assetss/imgs/mobile-app/applications/3.png') }}" class="app-icm" alt="Voicebot">
+                            <img loading="lazy" src="{{ asset('assetss/imgs/mobile-app/applications/3.png') }}" class="app-icm" alt="Voicebot">
                         </div>
                         <div class="col-xl-10 col-12">
                             <h3 class="app-text">Restaurant & Food delivery Apps </h3>
@@ -186,7 +186,7 @@
                 <div class="col-xl-4 col-12 mobile-view-03">
                     <div class="row">
                         <div class="col-xl-2 col-12">
-                            <img src="{{ asset('assetss/imgs/mobile-app/applications/5.png') }}" class="app-icm" alt="Voicebot">
+                            <img loading="lazy" src="{{ asset('assetss/imgs/mobile-app/applications/5.png') }}" class="app-icm" alt="Voicebot">
                         </div>
                         <div class="col-xl-10 col-12">
                             <h3 class="app-text"> Travel booking apps </h3>
@@ -197,7 +197,7 @@
                 <div class="col-xl-4 col-12 mobile-view-03">
                     <div class="row">
                         <div class="col-xl-2 col-12">
-                            <img src="{{ asset('assetss/imgs/mobile-app/applications/7.png') }}" class="app-icm" alt="Voicebot">
+                            <img loading="lazy" src="{{ asset('assetss/imgs/mobile-app/applications/7.png') }}" class="app-icm" alt="Voicebot">
                         </div>
                         <div class="col-xl-10 col-12">
                             <h3 class="app-text"> Health & Fitness Apps </h3>
@@ -208,7 +208,7 @@
                 <div class="col-xl-4 col-12 mobile-view-03">
                     <div class="row">
                         <div class="col-xl-2 col-12">
-                            <img src="{{ asset('assetss/imgs/mobile-app/applications/8.png') }}" class="app-icm" alt="Voicebot">
+                            <img loading="lazy" src="{{ asset('assetss/imgs/mobile-app/applications/8.png') }}" class="app-icm" alt="Voicebot">
                         </div>
                         <div class="col-xl-10 col-12">
                             <h3 class="app-text"> Delivery management Apps </h3>
@@ -219,7 +219,7 @@
                 <div class="col-xl-4 col-12 mobile-view-03">
                     <div class="row">
                         <div class="col-xl-2 col-12">
-                            <img src="{{ asset('assetss/imgs/mobile-app/applications/9.png') }}" class="app-icm" alt="Voicebot">
+                            <img loading="lazy" src="{{ asset('assetss/imgs/mobile-app/applications/9.png') }}" class="app-icm" alt="Voicebot">
                         </div>
                         <div class="col-xl-10 col-12">
                             <h3 class="app-text">News Apps </h3>
@@ -230,7 +230,7 @@
                 <div class="col-xl-4 col-12 mobile-view-03">
                     <div class="row">
                         <div class="col-xl-2 col-12">
-                            <img src="{{ asset('assetss/imgs/mobile-app/applications/10.png') }}" class="app-icm" alt="Voicebot">
+                            <img loading="lazy" src="{{ asset('assetss/imgs/mobile-app/applications/10.png') }}" class="app-icm" alt="Voicebot">
                         </div>
                         <div class="col-xl-10 col-12">
                             <h3 class="app-text">Travel Booking App </h3>
@@ -241,7 +241,7 @@
                 <div class="col-xl-4 col-12 mobile-view-03">
                     <div class="row">
                         <div class="col-xl-2 col-12">
-                            <img src="{{ asset('assetss/imgs/mobile-app/applications/11.png') }}" class="app-icm" alt="Voicebot">
+                            <img loading="lazy" src="{{ asset('assetss/imgs/mobile-app/applications/11.png') }}" class="app-icm" alt="Voicebot">
                         </div>
                         <div class="col-xl-10 col-12">
                             <h3 class="app-text">Finance Apps </h3>
@@ -252,7 +252,7 @@
                 <div class="col-xl-4 col-12 mobile-view-03">
                     <div class="row">
                         <div class="col-xl-2 col-12">
-                            <img src="{{ asset('assetss/imgs/mobile-app/applications/12.png') }}" class="app-icm" alt="Voicebot">
+                            <img loading="lazy" src="{{ asset('assetss/imgs/mobile-app/applications/12.png') }}" class="app-icm" alt="Voicebot">
                         </div>
                         <div class="col-xl-10 col-12">
                             <h3 class="app-text"> Lifestyle Apps</h3>
@@ -527,7 +527,7 @@
     <!--        <div class="row">-->
     <!--            <div class="col-xl-6 col-md-6 col-12 mb-4">-->
     <!--                <figure class="marketing-box" data-aos="zoom-in">-->
-    <!--                    <img src="{{ asset('assetss/images/mobile-app-development/client-accounts-img.png') }}" alt="Smart Salez">-->
+    <!--                    <img loading="lazy" src="{{ asset('assetss/images/mobile-app-development/client-accounts-img.png') }}" alt="Smart Salez">-->
     <!--                    <figcaption class="card clients">-->
     <!--                        <h3 class="">Clients, we serve</h3>-->
     <!--                        <p class="">We serve companies of all sizes from all key industries, as well as individuals and early-stage startups with on-time delivery and within-budget apps.</p>-->
@@ -542,7 +542,7 @@
     <!--            </div>-->
     <!--            <div class="col-xl-6 col-md-6 col-12 mb-4">-->
     <!--                <figure class="marketing-box" data-aos="zoom-in">-->
-    <!--                    <img src="{{ asset('assetss/images/mobile-app-development/approach-img.png') }}" alt="Smart Salez">-->
+    <!--                    <img loading="lazy" src="{{ asset('assetss/images/mobile-app-development/approach-img.png') }}" alt="Smart Salez">-->
     <!--                    <figcaption class="card clients">-->
     <!--                        <h3 class="">Our Approach</h3>-->
     <!--                        <p class="">Our app development process includes information collecting, brainstorming, UX/UI designing, prototyping, quality testing, and launching from the beginning to the end.</p>-->
@@ -574,7 +574,7 @@
                                 <div class="col-xl-2 col-md-6 col-6 mt-4 d-flex align-content-stretch">
                                     <div class="futuristic-box development-box" data-aos="zoom-in">
                                         <figure>
-                                            <img src="{{ asset('assetss/images/e-commerce-development/icons/platform-icons/team.png') }}" alt="" style="height: 60px !important;">
+                                            <img loading="lazy" src="{{ asset('assetss/images/e-commerce-development/icons/platform-icons/team.png') }}" alt="" style="height: 60px !important;">
                                             <figcaption class=" ">
                                                 <h6 class="text-white text-left mt-3">Highly <br> experienced team</h6>
                                             </figcaption>
@@ -584,7 +584,7 @@
                                 <div class="col-xl-2 col-md-6 col-6 mt-4 d-flex align-content-stretch">
                                     <div class="futuristic-box development-box" data-aos="zoom-in">
                                         <figure>
-                                            <img src="{{ asset('assetss/img/transparenc.png') }}" alt="">
+                                            <img loading="lazy" src="{{ asset('assetss/img/transparenc.png') }}" alt="">
                                             <figcaption class=" ">
                                                 <h6 class="text-white text-left mt-3">Full <br> transparency</h6>
                                             </figcaption>
@@ -594,7 +594,7 @@
                                 <div class="col-xl-2 col-md-6 col-6 mt-4 d-flex align-content-stretch">
                                     <div class="futuristic-box development-box" data-aos="zoom-in">
                                         <figure>
-                                            <img src="{{ asset('assetss/img/satisfaction.png') }}" alt="">
+                                            <img loading="lazy" src="{{ asset('assetss/img/satisfaction.png') }}" alt="">
                                             <figcaption class=" ">
                                                 <h6 class="text-white text-left mt-3">100% Client <br> satisfaction</h6>
                                             </figcaption>
@@ -604,7 +604,7 @@
                                 <div class="col-xl-2 col-md-6 col-6 mt-4 d-flex align-content-stretch">
                                     <div class="futuristic-box development-box" data-aos="zoom-in">
                                         <figure>
-                                            <img src="{{ asset('assetss/img/support.png') }}" alt="">
+                                            <img loading="lazy" src="{{ asset('assetss/img/support.png') }}" alt="">
                                             <figcaption class=" ">
                                                 <h6 class="text-white text-left mt-3">24/7 Friendly <br> Customer Support</h6>
                                             </figcaption>
@@ -614,7 +614,7 @@
                                 <div class="col-xl-2 col-md-6 col-6 mt-4 d-flex align-content-stretch">
                                     <div class="futuristic-box development-box" data-aos="zoom-in">
                                         <figure>
-                                            <img src="{{ asset('assetss/img/agreement.png') }}" alt="">
+                                            <img loading="lazy" src="{{ asset('assetss/img/agreement.png') }}" alt="">
                                             <figcaption class=" ">
                                                 <h6 class="text-white text-left mt-3">Non-disclosure <br> agreement</h6>
                                             </figcaption>
@@ -624,7 +624,7 @@
                                 <div class="col-xl-2 col-md-6 col-6 mt-4 d-flex align-content-stretch">
                                     <div class="futuristic-box development-box" data-aos="zoom-in">
                                         <figure>
-                                            <img src="{{ asset('assetss/img/reliable.png') }}" alt="">
+                                            <img loading="lazy" src="{{ asset('assetss/img/reliable.png') }}" alt="">
                                             <figcaption class=" ">
                                                 <h6 class="text-white text-left mt-3">Reliable & <br> affordable solution</h6>
                                             </figcaption>
@@ -643,7 +643,7 @@
             <div class="row">
                 <div class="col-xl-5 col-md-12 col-12" data-aos="fade-up">
                     <div class="frequently-img">
-                        <img src="{{ asset('assetss/images/mobile-app-development/mad-frequently-img.png') }}" alt="Smart Salez">
+                        <img loading="lazy" src="{{ asset('assetss/images/mobile-app-development/mad-frequently-img.png') }}" alt="Smart Salez">
                     </div>
                 </div>
                 <div class="col-xl-7 col-md-12 col-12" data-aos="fade-up">
@@ -726,3 +726,4 @@
 </main>
 
 @endsection
+

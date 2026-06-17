@@ -24,7 +24,7 @@ class ContactReportController extends Controller
             $query->whereDate('created_at', '<=', $request->end_date);
         }
 
-        $contacts = $query->orderBy('created_at', 'desc')->get();
+        $contacts = $query->orderBy('created_at', 'desc')->paginate(10)->withQueryString();
 
         return view('admin.report.contact.index', compact('contacts'));
     }

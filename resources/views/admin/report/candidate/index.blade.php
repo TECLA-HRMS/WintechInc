@@ -122,6 +122,12 @@
                         @endforelse
                     </tbody>
                 </table>
+              </div>
+              @if($applications->hasPages())
+                  <div class="cr-pagination mt-4">
+                      @include('includes.admin.pagination', ['paginator' => $applications])
+                  </div>
+              @endif
             </div>
         </div>
     </div>

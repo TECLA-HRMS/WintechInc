@@ -25,7 +25,7 @@
                     <label class="form-label">Banner Image</label>
                     <input type="file" name="banner" class="form-control @error('banner') is-invalid @enderror" onchange="previewImage(event)">
                     @error('banner') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                    <img id="preview" class="mt-2" style="max-width: 200px; display: none;">
+                    <img loading="lazy" id="preview" class="mt-2" style="max-width: 200px; display: none;">
                 </div>
 
                 <div class="mb-3">

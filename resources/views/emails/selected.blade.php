@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Congratulations â€“ You've Been Selected!</title>
+  <title>Congratulations – You've Been Selected!</title>
 </head>
 <body style="margin:0;padding:0;background:#f0f2f5;font-family:'Segoe UI',Arial,sans-serif;">
 
@@ -18,7 +18,7 @@
 
               <!-- Logo -->
               <div style="margin-bottom:18px;">
-                <img src="{{ url('frontend/images/logos/logo.png') }}"
+                <img loading="lazy" src="{{ url('frontend/images/logos/logo.png') }}"
                      alt="Wintech Inc"
                      style="height:60px;max-width:200px;object-fit:contain;filter:brightness(0) invert(1);">
               </div>
@@ -29,11 +29,11 @@
 
               <!-- Trophy icon -->
               <div style="margin-bottom:12px;">
-                <span style="font-size:48px;line-height:1;">ðŸ†</span>
+                <span style="font-size:48px;line-height:1;">🏆</span>
               </div>
 
               <h1 style="margin:0 0 6px;color:#fff;font-size:26px;font-weight:700;letter-spacing:-0.3px;">Congratulations, {{ $name }}!</h1>
-              <p style="margin:0;color:rgba(255,255,255,0.78);font-size:14px;">You've been selected â€” welcome to the team!</p>
+              <p style="margin:0;color:rgba(255,255,255,0.78);font-size:14px;">You've been selected — welcome to the team!</p>
             </td>
           </tr>
 
@@ -98,7 +98,7 @@
                   <td align="center">
                     <a href="{{ url('/') }}"
                        style="display:inline-block;background:linear-gradient(135deg,#ba1c26,#e33842);color:#fff;font-size:15px;font-weight:700;text-decoration:none;padding:14px 44px;border-radius:50px;letter-spacing:0.3px;box-shadow:0 6px 20px rgba(186,28,38,0.35);">
-                      Visit Our Website â†’
+                      Visit Our Website →
                     </a>
                   </td>
                 </tr>
@@ -128,14 +128,14 @@
           <!-- Footer -->
           <tr>
             <td style="background:#071056;border-radius:0 0 16px 16px;padding:28px 40px;text-align:center;">
-              <img src="{{ url('frontend/images/logos/logo.png') }}"
+              <img loading="lazy" src="{{ url('frontend/images/logos/logo.png') }}"
                    alt="Wintech Inc"
                    style="height:36px;max-width:140px;object-fit:contain;filter:brightness(0) invert(1);margin-bottom:12px;display:block;margin-left:auto;margin-right:auto;">
               <p style="margin:0 0 4px;color:#fff;font-size:13px;font-weight:700;">Wintech Inc</p>
-              <p style="margin:0 0 14px;color:rgba(255,255,255,0.5);font-size:11px;letter-spacing:0.5px;">Staffing &nbsp;Â·&nbsp; Recruitment &nbsp;Â·&nbsp; IT Solutions</p>
+              <p style="margin:0 0 14px;color:rgba(255,255,255,0.5);font-size:11px;letter-spacing:0.5px;">Staffing &nbsp;·&nbsp; Recruitment &nbsp;·&nbsp; IT Solutions</p>
               <p style="margin:0;color:rgba(255,255,255,0.3);font-size:11px;">
                 This is an automated email. Please do not reply directly to this message.<br>
-                Â© {{ date('Y') }} Wintech Inc. All rights reserved.
+                © {{ date('Y') }} Wintech Inc. All rights reserved.
               </p>
             </td>
           </tr>
@@ -147,4 +147,5 @@
 
 </body>
 </html>
+
 

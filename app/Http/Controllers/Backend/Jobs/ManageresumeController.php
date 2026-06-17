@@ -13,6 +13,7 @@ use Illuminate\Support\Str;
 use App\Mail\ApplicationStatusMail;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Response;
+use ZipArchive;
 
 class ManageresumeController extends Controller
 {
@@ -351,6 +352,15 @@ public function updateStatus(Request $request, $id)
 
     public function index(Request $request)
     {
+        $jobs = DB::table('managejobs')->select('id', 'job_title')->orderBy('job_title')->get();
+        $companies = DB::table('managejobs')
+            ->select('company_name')
+            ->whereNotNull('company_name')
+            ->where('company_name', '!=', '')
+            ->distinct()
+            ->orderBy('company_name')
+            ->pluck('company_name');
+
         $query = DB::table('job_applications')
             ->join('managejobs', 'job_applications.job_id', '=', 'managejobs.id')
             ->select(
@@ -389,6 +399,24 @@ public function updateStatus(Request $request, $id)
             $query->where('job_applications.status', $request->status);
         }
 
+        // Apply job filter
+        if ($request->filled('job_id') && $request->job_id !== 'all') {
+            $query->where('job_applications.job_id', $request->job_id);
+        }
+
+        // Apply company filter
+        if ($request->filled('company') && $request->company !== 'all') {
+            $query->where('managejobs.company_name', $request->company);
+        }
+
+        // Apply date filter
+        if ($request->filled('start_date')) {
+            $query->whereDate('job_applications.created_at', '>=', $request->start_date);
+        }
+        if ($request->filled('end_date')) {
+            $query->whereDate('job_applications.created_at', '<=', $request->end_date);
+        }
+
         // Apply sorting
         $sort = $request->get('sort', 'latest');
         switch ($sort) {
@@ -406,7 +434,7 @@ public function updateStatus(Request $request, $id)
         // Paginate with query string preservation
         $applications = $query->paginate(15)->withQueryString();
 
-        return view('admin.Jobs.manageresume.index', compact('applications'));
+        return view('admin.Jobs.manageresume.index', compact('applications', 'jobs', 'companies'));
     }
 
     /**
@@ -447,4 +475,98 @@ public function updateStatus(Request $request, $id)
      * Update application status.
      */
   
+    /**
+     * Bulk Download Resumes (ZIP)
+     */
+    public function bulkDownloadResumes(Request $request)
+    {
+        $query = DB::table('job_applications')
+            ->join('managejobs', 'job_applications.job_id', '=', 'managejobs.id')
+            ->select('job_applications.*', 'managejobs.job_title', 'managejobs.company_name');
+
+        if ($request->filled('search')) {
+            $s = $request->search;
+            $query->where(function($q) use ($s) {
+                $q->where('job_applications.full_name', 'like', "%$s%")
+                  ->orWhere('job_applications.email', 'like', "%$s%")
+                  ->orWhere('job_applications.phone', 'like', "%$s%")
+                  ->orWhere('managejobs.job_title', 'like', "%$s%")
+                  ->orWhere('managejobs.company_name', 'like', "%$s%");
+            });
+        }
+
+        if ($request->filled('status') && $request->status !== 'all') {
+            $query->where('job_applications.status', $request->status);
+        }
+
+        if ($request->filled('job_id') && $request->job_id !== 'all') {
+            $query->where('job_applications.job_id', $request->job_id);
+        }
+
+        if ($request->filled('company') && $request->company !== 'all') {
+            $query->where('managejobs.company_name', $request->company);
+        }
+
+        if ($request->filled('start_date')) {
+            $query->whereDate('job_applications.created_at', '>=', $request->start_date);
+        }
+
+        if ($request->filled('end_date')) {
+            $query->whereDate('job_applications.created_at', '<=', $request->end_date);
+        }
+
+        $applications = $query->get();
+
+        if ($applications->isEmpty()) {
+            return redirect()->back()->with('error', 'No applications found matching your criteria.');
+        }
+
+        $zip = new ZipArchive;
+        $zipFileName = 'Resumes_' . date('Y-m-d_H-i-s') . '.zip';
+        $zipPath = public_path('storage/' . $zipFileName);
+
+        if ($zip->open($zipPath, ZipArchive::CREATE) === TRUE) {
+            $filesAdded = 0;
+
+            foreach ($applications as $app) {
+                if (!empty($app->resume)) {
+                    $possiblePaths = [
+                        public_path($app->resume),
+                        public_path('storage/' . $app->resume),
+                        storage_path('app/public/' . $app->resume),
+                    ];
+
+                    $filePath = null;
+                    foreach ($possiblePaths as $path) {
+                        if (file_exists($path)) {
+                            $filePath = $path;
+                            break;
+                        }
+                    }
+
+                    if ($filePath) {
+                        $extension = pathinfo($filePath, PATHINFO_EXTENSION);
+                        $candidateName = preg_replace('/[^A-Za-z0-9_\-]/', '_', $app->full_name);
+                        $jobTitle = preg_replace('/[^A-Za-z0-9_\-]/', '_', $app->job_title ?? 'Job');
+                        $fileNameInZip = $candidateName . '_' . $jobTitle . '_Resume.' . $extension;
+                        
+                        $zip->addFile($filePath, $fileNameInZip);
+                        $filesAdded++;
+                    }
+                }
+            }
+            $zip->close();
+
+            if ($filesAdded == 0) {
+                if (file_exists($zipPath)) {
+                    unlink($zipPath);
+                }
+                return redirect()->back()->with('error', 'No resume files were found for the matching applications.');
+            }
+
+            return response()->download($zipPath)->deleteFileAfterSend(true);
+        }
+
+        return redirect()->back()->with('error', 'Could not create ZIP file.');
+    }
 }

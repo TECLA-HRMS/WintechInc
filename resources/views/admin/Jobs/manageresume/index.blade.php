@@ -167,9 +167,14 @@
                 <span>Job Applications</span>
             </div>
         </div>
+        <div class="cr-header-right d-flex gap-2">
+            <a href="{{ route('admin.resume.bulk-download-resumes', request()->all()) }}" class="btn-filter btn-apply" style="text-decoration:none;">
+                <i class="fa-solid fa-download"></i> Bulk Resume Download
+            </a>
+        </div>
     </div>
 
-    <!-- Stat Cards -->
+    <!-- Status Tabs -->
     @php
         $total       = \Illuminate\Support\Facades\DB::table('job_applications')->count();
         $pending     = \Illuminate\Support\Facades\DB::table('job_applications')->where('status','pending')->count();
@@ -179,45 +184,6 @@
         $rejected    = \Illuminate\Support\Facades\DB::table('job_applications')->where('status','rejected')->count();
         $currentStatus = request('status', 'all');
     @endphp
-    <div class="stat-grid">
-        <div class="stat-box">
-            <div class="stat-icon purple"><i class="fa-solid fa-users"></i></div>
-            <div>
-                <div class="stat-label">Total</div>
-                <div class="stat-value">{{ $total }}</div>
-            </div>
-        </div>
-        <div class="stat-box">
-            <div class="stat-icon amber"><i class="fa-solid fa-clock"></i></div>
-            <div>
-                <div class="stat-label">Pending</div>
-                <div class="stat-value">{{ $pending }}</div>
-            </div>
-        </div>
-        <div class="stat-box">
-            <div class="stat-icon blue"><i class="fa-solid fa-thumbtack"></i></div>
-            <div>
-                <div class="stat-label">Shortlisted</div>
-                <div class="stat-value">{{ $shortlisted }}</div>
-            </div>
-        </div>
-        <div class="stat-box">
-            <div class="stat-icon green"><i class="fa-solid fa-circle-check"></i></div>
-            <div>
-                <div class="stat-label">Selected</div>
-                <div class="stat-value">{{ $selected }}</div>
-            </div>
-        </div>
-        <div class="stat-box">
-            <div class="stat-icon red"><i class="fa-solid fa-circle-xmark"></i></div>
-            <div>
-                <div class="stat-label">Rejected</div>
-                <div class="stat-value">{{ $rejected }}</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Status Tabs -->
     <div class="status-tabs">
         <a href="{{ request()->fullUrlWithQuery(['status' => null, 'page' => null]) }}" class="status-tab all {{ $currentStatus == 'all' || !$currentStatus ? 'active' : '' }}">
             <i class="fa-solid fa-users"></i>
@@ -258,15 +224,43 @@
             <div class="filter-bar">
                 <form method="GET" action="{{ request()->url() }}">
                     <input type="hidden" name="status" value="{{ request('status') }}">
-                    <div class="row g-3 align-items-end">
-                        <div class="col-md-5">
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-4">
                             <label class="form-label">Search</label>
                             <div class="search-wrap">
                                 <i class="fa-solid fa-magnifying-glass search-icon"></i>
                                 <input type="text" name="search" class="form-control"
-                                       placeholder="Name, email, job title, company..."
+                                       placeholder="Name, email, company..."
                                        value="{{ request('search') }}">
                             </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Filter by Job</label>
+                            <select name="job_id" class="form-select">
+                                <option value="all" {{ request('job_id') == 'all' ? 'selected' : '' }}>All Jobs</option>
+                                @foreach($jobs as $job)
+                                    <option value="{{ $job->id }}" {{ request('job_id') == $job->id ? 'selected' : '' }}>{{ Str::limit($job->job_title, 35) }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Filter by Company</label>
+                            <select name="company" class="form-select">
+                                <option value="all" {{ request('company') == 'all' ? 'selected' : '' }}>All Companies</option>
+                                @foreach($companies as $company)
+                                    <option value="{{ $company }}" {{ request('company') == $company ? 'selected' : '' }}>{{ Str::limit($company, 35) }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row g-3 align-items-end">
+                        <div class="col-md-3">
+                            <label class="form-label">Start Date</label>
+                            <input type="date" name="start_date" class="form-control" value="{{ request('start_date') }}">
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">End Date</label>
+                            <input type="date" name="end_date" class="form-control" value="{{ request('end_date') }}">
                         </div>
                         <div class="col-md-3">
                             <label class="form-label">Sort By</label>
@@ -276,11 +270,11 @@
                                 <option value="name"   {{ request('sort') == 'name'   ? 'selected' : '' }}>Name A–Z</option>
                             </select>
                         </div>
-                        <div class="col-md-4 d-flex gap-2">
-                            <button type="submit" class="btn-filter btn-apply">
+                        <div class="col-md-3 d-flex gap-2">
+                            <button type="submit" class="btn-filter btn-apply flex-grow-1">
                                 <i class="fa-solid fa-filter"></i> Apply
                             </button>
-                            <a href="{{ request()->fullUrlWithQuery(['search' => null, 'sort' => null, 'page' => null]) }}" class="btn-filter btn-reset">
+                            <a href="{{ request()->fullUrlWithQuery(['search' => null, 'job_id' => null, 'company' => null, 'start_date' => null, 'end_date' => null, 'sort' => null, 'page' => null]) }}" class="btn-filter btn-reset">
                                 <i class="fa-solid fa-rotate-right"></i> Reset
                             </a>
                         </div>

@@ -27,7 +27,7 @@
                     <!-- service details left area start -->
                     <div class="service-detials-step-1">
                         <div class="thumbnail">
-                            <img src="image/consultancy12.webp" alt="business-area">
+                            <img loading="lazy" src="image/consultancy12.webp" alt="business-area">
                         </div>
                         <h4 class="title">Placement  Service for Hospital</h4>
                         <p class="disc">
@@ -39,7 +39,7 @@
                                 <!-- single service details card -->
                                 <div class="service-details-card">
                                     <div class="thumbnail">
-                                        <img src="{{ asset('assets/images/service/icon/09.svg') }}" alt="" class="icon">
+                                        <img loading="lazy" src="{{ asset('assets/images/service/icon/09.svg') }}" alt="" class="icon">
                                     </div>
                                     <div class="details">
                                         <h6 class="title">Services Offered</h6>
@@ -53,7 +53,7 @@
                                 <!-- single service details card -->
                                 <div class="service-details-card">
                                     <div class="thumbnail">
-                                        <img src="{{ asset('assets/images/service/icon/11.svg') }}" alt="" class="icon">
+                                        <img loading="lazy" src="{{ asset('assets/images/service/icon/11.svg') }}" alt="" class="icon">
                                     </div>
                                     <div class="details">
                                         <h6 class="title">Specialization</h6>
@@ -66,7 +66,7 @@
                                 <!-- single service details card -->
                                 <div class="service-details-card">
                                     <div class="thumbnail">
-                                        <img src="{{ asset('assets/images/service/icon/12.svg') }}" alt="" class="icon">
+                                        <img loading="lazy" src="{{ asset('assets/images/service/icon/12.svg') }}" alt="" class="icon">
                                     </div>
                                     <div class="details">
                                         <h6 class="title">Local and National Services</h6>
@@ -79,7 +79,7 @@
                                 <!-- single service details card -->
                                 <div class="service-details-card">
                                     <div class="thumbnail">
-                                        <img src="{{ asset('assets/images/service/icon/10.svg') }}" alt="" class="icon">
+                                        <img loading="lazy" src="{{ asset('assets/images/service/icon/10.svg') }}" alt="" class="icon">
                                     </div>
                                     <div class="details">
                                         <h6 class="title">Hospital Partnerships</h6>
@@ -189,3 +189,4 @@
 
     @include('includes.site.contact_section')
 @endsection
+

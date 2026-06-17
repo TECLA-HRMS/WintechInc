@@ -42,7 +42,7 @@
             {{-- Image panel --}}
             <div class="bx-img-panel">
                 <a href="{{ route('blog.show', $post->slug) }}" tabindex="-1">
-                    <img src="{{ $post->featured_image ? asset($post->featured_image) : asset('assets/images/blog/01.jpg') }}"
+                    <img loading="lazy" src="{{ $post->featured_image ? asset($post->featured_image) : asset('assets/images/blog/01.jpg') }}"
                          alt="{{ $post->title }}"
                          class="bx-img">
                 </a>
@@ -56,7 +56,6 @@
             <div class="bx-body">
                 <div class="bx-meta-row">
                     <span class="bx-meta"><i class="far fa-calendar-alt"></i> {{ \Carbon\Carbon::parse($post->published_at)->format('d M Y') }}</span>
-                    <span class="bx-meta bx-meta-read"><i class="far fa-clock"></i> {{ $readingTime }} min</span>
                 </div>
 
                 <a href="{{ route('blog.show', $post->slug) }}" class="bx-title-link">
@@ -417,3 +416,4 @@
 </style>
 
 @endsection
+

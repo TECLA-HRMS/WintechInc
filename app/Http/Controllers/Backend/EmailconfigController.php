@@ -17,7 +17,7 @@ class EmailconfigController extends Controller
    
 public function index()
 {
-    $emails = Email::latest()->get(); // Fetch all emails
+    $emails = Email::latest()->paginate(10); // Fetch paginated emails
     return view('admin.email-config.index', compact('emails'));
 }
 

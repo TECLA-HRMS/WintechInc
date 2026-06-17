@@ -555,34 +555,95 @@ body { background: var(--surface-2); font-family: var(--font); color: var(--text
 .pf-save-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(7,16,86,0.35); }
 .pf-save-btn:active { transform: translateY(0); }
 
+/* Navigation buttons (Wizard) */
+.pf-btn-nav {
+  padding: 12px 24px; border-radius: 8px;
+  font-family: var(--font); font-weight: 600; font-size: 14px;
+  cursor: pointer; transition: var(--transition);
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+}
+.pf-btn-next { background: var(--navy); color: #fff; border: none; }
+.pf-btn-next:hover { background: #1a2eb5; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(7,16,86,0.15); }
+.pf-btn-prev { background: transparent; color: var(--text-secondary); border: 1.5px solid var(--border-strong); }
+.pf-btn-prev:hover { background: var(--surface-2); color: var(--text-primary); }
+.pf-wizard-actions { display: flex; gap: 12px; justify-content: space-between; width: 100%; align-items: center; }
+.pf-wizard-actions.right { justify-content: flex-end; }
+
 /* Mobile tabs */
 .pf-mobile-tabs {
   display: none;
-  overflow-x: auto; scrollbar-width: none;
-  gap: 8px; padding-bottom: 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  gap: 8px;
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+  -webkit-overflow-scrolling: touch;
 }
 .pf-mobile-tabs::-webkit-scrollbar { display: none; }
 .pf-mobile-tab {
-  flex-shrink: 0; display: flex; align-items: center; gap: 8px;
-  padding: 10px 18px; border-radius: 99px;
+  flex-shrink: 0;
+  display: flex; align-items: center; gap: 8px;
+  padding: 12px 20px; border-radius: 99px;
   background: var(--surface); border: 1.5px solid var(--border);
-  font-size: 13px; font-weight: 700; color: var(--text-secondary);
+  font-size: 14px; font-weight: 700; color: var(--text-secondary);
   cursor: pointer; transition: var(--transition); font-family: var(--font);
+  white-space: nowrap;
 }
 .pf-mobile-tab.active { background: var(--navy); color: #fff; border-color: var(--navy); }
 @media(max-width:1024px) {
   .pf-sidebar { position: static; }
-  .pf-hero-card + .pf-card { display: none; }
-  .pf-card:has(.pf-nav) { display: none; }
-  .pf-mobile-tabs { display: flex; }
+  .pf-hero-card + .pf-card { display: none; } /* Hide heavy stats on mobile */
+  .pf-sidebar-nav-card { display: none !important; }
+  .pf-mobile-tabs { display: flex; } /* Show mobile horizontal tabs */
+  
+  /* Remove stacking overrides so JS can toggle .active normally */
 }
 
-/* Responsive padding */
+/* Responsive adjustments */
 @media(max-width:768px) {
-  .pf-page { padding: 100px 16px 60px; }
-  .pf-section-hdr, .pf-form-body, .pf-save-wrap { padding-left: 20px; padding-right: 20px; }
-  .pf-save-wrap { flex-direction: column; gap: 16px; }
-  .pf-save-btn { width: 100%; justify-content: center; }
+  .pf-page { padding: 100px 16px 100px; } /* extra bottom padding for fixed bar */
+  .pf-section-hdr, .pf-form-body { padding-left: 20px; padding-right: 20px; }
+  .pf-form-body { padding-bottom: 60px; } /* space so content isnt hidden behind fixed bar */
+  
+  /* Sticky bottom save bar */
+  .pf-save-wrap { 
+    position: fixed; 
+    bottom: 0; left: 0; right: 0; 
+    z-index: 1000; 
+    background: var(--surface); 
+    box-shadow: 0 -4px 16px rgba(0,0,0,0.1); 
+    padding: 16px 20px; 
+    border-radius: 0;
+    flex-direction: row; 
+    text-align: center; 
+  }
+  .pf-save-hint { display: none; } /* hide hint to save space */
+  .pf-save-btn { width: 100%; justify-content: center; padding: 14px 20px; font-size: 15px; }
+  .pf-wizard-actions { flex-direction: row; gap: 8px; justify-content: space-between; }
+  .pf-wizard-actions button { flex: 1; padding: 14px 10px; font-size: 14px; }
+  .pf-wizard-actions .pf-btn-next { flex: 2; }
+  
+  .pf-avatar-upload { flex-direction: column; text-align: center; gap: 16px; padding: 20px 16px; }
+  .pf-avatar-actions { justify-content: center; flex-wrap: wrap; }
+  
+  .pf-resume-zone { flex-direction: column; text-align: center; gap: 16px; }
+  .pf-resume-badge { margin-left: 0; justify-content: center; width: 100%; flex-wrap: wrap; margin-top: 8px; }
+  
+  .pf-section-hdr { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .pf-section-hdr h2 { font-size: 18px; }
+  .btn-add-entry { width: 100%; justify-content: center; }
+  
+  .pf-skills-search { flex-direction: column; align-items: stretch; gap: 12px; }
+  .pf-skills-search i { display: none; }
+  .pf-add-skill-btn { width: 100%; justify-content: center; }
+}
+
+@media(max-width:480px) {
+  .pf-hero-card { padding: 24px 16px; }
+  .pf-date-pair { flex-direction: column; gap: 10px; }
+  .pf-entry-hdr { flex-direction: column; gap: 12px; align-items: flex-start; }
+  .pf-entry-hdr .btn-del { width: 100%; text-align: center; }
 }
 </style>
 
@@ -601,7 +662,7 @@ body { background: var(--surface-2); font-family: var(--font); color: var(--text
   @endif
 
   {{-- Mobile Tabs --}}
-  <div class="pf-mobile-tabs d-flex" id="mobileTabs">
+  <div class="pf-mobile-tabs" id="mobileTabs">
     <button type="button" class="pf-mobile-tab active" data-tab="personal"><i class="fa-solid fa-user-tie"></i> Profile</button>
     <button type="button" class="pf-mobile-tab" data-tab="education"><i class="fa-solid fa-graduation-cap"></i> Education</button>
     <button type="button" class="pf-mobile-tab" data-tab="experience"><i class="fa-solid fa-briefcase"></i> Experience</button>
@@ -618,7 +679,7 @@ body { background: var(--surface-2); font-family: var(--font); color: var(--text
         <div class="pf-avatar-ring" onclick="document.getElementById('profilePicInput').click()" title="Change photo">
           <div class="pf-avatar-wrap" id="sidebarAvatarWrap">
             @if(!empty($user->profile_picture))
-              <img src="{{ asset('profile_pictures/' . $user->profile_picture) }}" alt="Profile" id="sidebarAvatarImg">
+              <img loading="lazy" src="{{ asset('profile_pictures/' . $user->profile_picture) }}" alt="Profile" id="sidebarAvatarImg">
             @else
               <span class="pf-avatar-initials">{{ strtoupper(substr($user->first_name ?? 'J',0,1).substr($user->last_name ?? 'D',0,1)) }}</span>
             @endif
@@ -676,7 +737,7 @@ body { background: var(--surface-2); font-family: var(--font); color: var(--text
       </div>
 
       {{-- Sidebar Nav --}}
-      <div class="pf-card">
+      <div class="pf-card pf-sidebar-nav-card">
         <div class="pf-nav" id="sidebarNav">
           <button type="button" class="pf-nav-item active" data-tab="personal">
             <span class="pf-nav-icon"><i class="fa-solid fa-user-tie"></i></span>
@@ -726,7 +787,7 @@ body { background: var(--surface-2); font-family: var(--font); color: var(--text
                 <div class="pf-avatar-upload" onclick="document.getElementById('profilePicInput').click()">
                   <div class="pf-avatar-upload-preview" id="avatarPreview">
                     @if(!empty($user->profile_picture))
-                      <img src="{{ asset('profile_pictures/' . $user->profile_picture) }}" alt="Profile" id="previewImg">
+                      <img loading="lazy" src="{{ asset('profile_pictures/' . $user->profile_picture) }}" alt="Profile" id="previewImg">
                     @else
                       <span id="previewInitials">{{ strtoupper(substr($user->first_name ?? 'J',0,1).substr($user->last_name ?? 'D',0,1)) }}</span>
                     @endif
@@ -840,8 +901,10 @@ body { background: var(--surface-2); font-family: var(--font); color: var(--text
 
             </div>
             <div class="pf-save-wrap">
-              <span class="pf-save-hint"><i class="fa-solid fa-shield-halved"></i> Your data is encrypted and secure</span>
-              <button type="submit" class="pf-save-btn"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button>
+              <div class="pf-wizard-actions">
+                <button type="submit" class="pf-save-btn"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button>
+                <button type="button" class="pf-btn-nav pf-btn-next" onclick="switchTab('education')">Next: Education <i class="fa-solid fa-arrow-right"></i></button>
+              </div>
             </div>
           </div>
         </div>
@@ -854,7 +917,6 @@ body { background: var(--surface-2); font-family: var(--font); color: var(--text
                 <span class="pf-section-icon"><i class="fa-solid fa-graduation-cap"></i></span>
                 Education History
               </h2>
-              <button type="button" class="btn-add-entry" id="addEducation"><i class="fa-solid fa-plus"></i> Add Degree</button>
             </div>
             <div class="pf-form-body">
               <div id="educationList">
@@ -951,10 +1013,16 @@ body { background: var(--surface-2); font-family: var(--font); color: var(--text
                   </div>
                 @endif
               </div>
+              <div style="margin-top: 24px;">
+                <button type="button" class="btn-add-entry" id="addEducation" style="width: 100%; justify-content: center; padding: 14px; border-style: dashed; font-size: 15px;"><i class="fa-solid fa-plus"></i> Add New Education</button>
+              </div>
             </div>
             <div class="pf-save-wrap">
-              <span class="pf-save-hint"><i class="fa-solid fa-shield-halved"></i> Your data is encrypted and secure</span>
-              <button type="submit" class="pf-save-btn"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button>
+              <div class="pf-wizard-actions">
+                <button type="button" class="pf-btn-nav pf-btn-prev" onclick="switchTab('personal')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                <button type="submit" class="pf-save-btn"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button>
+                <button type="button" class="pf-btn-nav pf-btn-next" onclick="switchTab('experience')">Next: Experience <i class="fa-solid fa-arrow-right"></i></button>
+              </div>
             </div>
           </div>
         </div>
@@ -967,7 +1035,6 @@ body { background: var(--surface-2); font-family: var(--font); color: var(--text
                 <span class="pf-section-icon"><i class="fa-solid fa-briefcase"></i></span>
                 Work Experience
               </h2>
-              <button type="button" class="btn-add-entry" id="addExperience"><i class="fa-solid fa-plus"></i> Add Role</button>
             </div>
             <div class="pf-form-body">
               <div id="experienceList">
@@ -1143,10 +1210,16 @@ body { background: var(--surface-2); font-family: var(--font); color: var(--text
                   </div>
                 @endif
               </div>
+              <div style="margin-top: 24px;">
+                <button type="button" class="btn-add-entry" id="addExperience" style="width: 100%; justify-content: center; padding: 14px; border-style: dashed; font-size: 15px;"><i class="fa-solid fa-plus"></i> Add New Experience</button>
+              </div>
             </div>
             <div class="pf-save-wrap">
-              <span class="pf-save-hint"><i class="fa-solid fa-shield-halved"></i> Your data is encrypted and secure</span>
-              <button type="submit" class="pf-save-btn"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button>
+              <div class="pf-wizard-actions">
+                <button type="button" class="pf-btn-nav pf-btn-prev" onclick="switchTab('education')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                <button type="submit" class="pf-save-btn"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button>
+                <button type="button" class="pf-btn-nav pf-btn-next" onclick="switchTab('skills')">Next: Skills <i class="fa-solid fa-arrow-right"></i></button>
+              </div>
             </div>
           </div>
         </div>
@@ -1190,8 +1263,10 @@ body { background: var(--surface-2); font-family: var(--font); color: var(--text
               <input type="hidden" name="skills" id="skillsInput" value="{{ $user->skills ? $user->skills->pluck('skill_name')->implode(',') : '' }}">
             </div>
             <div class="pf-save-wrap">
-              <span class="pf-save-hint"><i class="fa-solid fa-shield-halved"></i> Your data is encrypted and secure</span>
-              <button type="submit" class="pf-save-btn"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button>
+              <div class="pf-wizard-actions">
+                <button type="button" class="pf-btn-nav pf-btn-prev" onclick="switchTab('experience')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                <button type="submit" class="pf-save-btn" style="margin: 0;"><i class="fa-solid fa-floppy-disk"></i> Save All Changes</button>
+              </div>
             </div>
           </div>
         </div>
@@ -1209,6 +1284,7 @@ function switchTab(tabName) {
   document.querySelectorAll('.pf-mobile-tab').forEach(t => t.classList.remove('active'));
   document.getElementById('tab-' + tabName).classList.add('active');
   document.querySelectorAll('[data-tab="' + tabName + '"]').forEach(el => el.classList.add('active'));
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 document.querySelectorAll('.pf-nav-item, .pf-mobile-tab').forEach(btn => {
   btn.addEventListener('click', function() { switchTab(this.dataset.tab); });

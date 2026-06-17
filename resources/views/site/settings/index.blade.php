@@ -192,7 +192,7 @@
   padding: 28px 20px 20px;
   text-align: center;
   border-bottom: 1px solid var(--sidebar-border);
-  background: linear-gradient(180deg, rgba(177,30,36,0.08) 0%, transparent 100%);
+  background: linear-gradient(180deg, rgba(7,16,86,0.08) 0%, transparent 100%);
 }
 
 .sp-avatar {
@@ -208,7 +208,7 @@
   font-weight: 800;
   color: #fff;
   position: relative;
-  box-shadow: 0 0 0 3px rgba(177,30,36,0.3), 0 0 0 6px rgba(177,30,36,0.1);
+  box-shadow: 0 0 0 3px rgba(7,16,86,0.3), 0 0 0 6px rgba(7,16,86,0.1);
   letter-spacing: -0.02em;
 }
 
@@ -282,7 +282,7 @@
   background: var(--sidebar-active);
   color: #fff;
   font-weight: 600;
-  box-shadow: 0 4px 16px rgba(177,30,36,0.3);
+  box-shadow: 0 4px 16px rgba(7,16,86,0.3);
 }
 
 .sp-nav-item.active .sp-nav-icon {
@@ -304,13 +304,13 @@
 
 .sp-nav-item-badge {
   margin-left: auto;
-  background: rgba(177,30,36,0.2);
+  background: rgba(7,16,86,0.2);
   color: #f87171;
   font-size: 10px;
   font-weight: 700;
   padding: 2px 8px;
   border-radius: 999px;
-  border: 1px solid rgba(177,30,36,0.3);
+  border: 1px solid rgba(7,16,86,0.3);
 }
 
 .sp-nav-item.active .sp-nav-item-badge {
@@ -321,23 +321,35 @@
 
 /* Mobile sidebar */
 @media (max-width: 991px) {
-  .sp-sidebar-profile { padding: 20px 16px 16px; }
-  .sp-avatar { width: 56px; height: 56px; font-size: 20px; }
+  .sp-sidebar-profile { padding: 24px 16px 16px; border-bottom: none; }
+  .sp-avatar { width: 64px; height: 64px; font-size: 22px; margin-bottom: 8px; }
+  .sp-sidebar-name { font-size: 16px; }
   .sp-sidebar-nav {
     display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    padding: 10px;
+    flex-wrap: nowrap;
+    gap: 8px;
+    padding: 12px 16px 16px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    border-top: 1px solid rgba(255,255,255,0.05);
   }
+  .sp-sidebar-nav::-webkit-scrollbar { display: none; } /* Hide scrollbar for Chrome/Safari */
   .sp-nav-group-label { display: none; }
   .sp-nav-item {
-    flex: none;
+    flex: 0 0 auto;
     width: auto;
-    padding: 9px 14px;
-    font-size: 13px;
-    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 99px;
     margin-bottom: 0;
     white-space: nowrap;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .sp-nav-item.active {
+    background: linear-gradient(135deg, var(--brand), var(--brand-light));
+    border-color: transparent;
   }
   .sp-nav-item-badge { display: none; }
 }
@@ -391,7 +403,7 @@
   color: #fff;
   font-size: 20px;
   flex-shrink: 0;
-  box-shadow: 0 4px 12px rgba(177,30,36,0.25);
+  box-shadow: 0 4px 12px rgba(7,16,86,0.25);
 }
 
 .sp-section-header h2 {
@@ -524,14 +536,21 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
+  margin-bottom: 20px;
 }
 
+.sp-grid-2:last-child { margin-bottom: 0; }
+
 @media (max-width: 640px) {
-  .sp-grid-2 { grid-template-columns: 1fr; gap: 0; }
+  .sp-grid-2 { grid-template-columns: 1fr; gap: 20px; }
 }
 
 .sp-form-group {
   margin-bottom: 20px;
+}
+
+.sp-grid-2 .sp-form-group {
+  margin-bottom: 0;
 }
 
 .sp-form-group:last-child { margin-bottom: 0; }
@@ -620,7 +639,7 @@ textarea.sp-input {
 
 .sp-file-drop:hover, .sp-file-drop.dragover {
   border-color: var(--brand);
-  background: rgba(177,30,36,0.03);
+  background: rgba(7,16,86,0.03);
 }
 
 .sp-file-drop-icon {
@@ -712,7 +731,7 @@ textarea.sp-input {
 
 .sp-switch input:checked ~ .sp-switch-track {
   background: linear-gradient(135deg, var(--brand), var(--brand-light));
-  box-shadow: 0 2px 8px rgba(177,30,36,0.3);
+  box-shadow: 0 2px 8px rgba(7,16,86,0.3);
 }
 
 .sp-switch input:checked ~ .sp-switch-track::after {
@@ -832,12 +851,12 @@ textarea.sp-input {
 .sp-btn-primary {
   background: linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%);
   color: #fff;
-  box-shadow: 0 4px 14px rgba(177,30,36,0.25), inset 0 1px 0 rgba(255,255,255,0.1);
+  box-shadow: 0 4px 14px rgba(7,16,86,0.25), inset 0 1px 0 rgba(255,255,255,0.1);
 }
 
 .sp-btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(177,30,36,0.35), inset 0 1px 0 rgba(255,255,255,0.1);
+  box-shadow: 0 8px 20px rgba(7,16,86,0.35), inset 0 1px 0 rgba(255,255,255,0.1);
 }
 
 .sp-btn-primary:active { transform: translateY(0); }
@@ -939,13 +958,13 @@ textarea.sp-input {
 .sp-chip:hover {
   border-color: var(--brand);
   color: var(--brand);
-  background: rgba(177,30,36,0.04);
+  background: rgba(7,16,86,0.04);
 }
 
 .sp-chip.checked {
   border-color: var(--brand);
   color: var(--brand);
-  background: rgba(177,30,36,0.08);
+  background: rgba(7,16,86,0.08);
   font-weight: 600;
 }
 
@@ -1051,7 +1070,11 @@ textarea.sp-input {
     <aside class="sp-sidebar">
       <div class="sp-sidebar-profile">
         <div class="sp-avatar">
-          {{ strtoupper(substr($user->first_name ?? $user->name ?? 'U', 0, 1)) }}
+          @if($user->profile_picture)
+            <img loading="lazy" src="{{ asset('profile_pictures/' . $user->profile_picture) }}" alt="Avatar" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">
+          @else
+            {{ strtoupper(substr($user->first_name ?? $user->name ?? 'U', 0, 1)) }}
+          @endif
           <div class="sp-avatar-online"></div>
         </div>
         <div class="sp-sidebar-name">{{ $user->first_name ?? $user->name ?? 'User' }} {{ $user->last_name ?? '' }}</div>
@@ -1070,10 +1093,15 @@ textarea.sp-input {
         </button>
 
         <div class="sp-nav-group-label">Preferences</div>
-        <button class="sp-nav-item" data-section="security" id="nav-security">
-          <i class="fa-solid fa-shield-halved sp-nav-icon"></i>
-          <span>Security</span>
+        <button class="sp-nav-item" data-section="job-preferences" id="nav-job-preferences">
+          <i class="fa-solid fa-briefcase sp-nav-icon"></i>
+          <span>Job Preferences</span>
         </button>
+        <button class="sp-nav-item" data-section="notifications" id="nav-notifications">
+          <i class="fa-solid fa-bell sp-nav-icon"></i>
+          <span>Notifications</span>
+        </button>
+
         <button class="sp-nav-item" data-section="resume" id="nav-resume">
           <i class="fa-solid fa-file-pdf sp-nav-icon"></i>
           <span>Resume</span>
@@ -1217,8 +1245,8 @@ textarea.sp-input {
             {{-- Photo --}}
             <div class="sp-photo-upload">
               <div class="sp-photo-preview">
-                @if($user->profile_photo ?? null)
-                  <img src="{{ asset('profile_photos/' . $user->profile_photo) }}" alt="Profile Photo">
+                @if($user->profile_picture)
+                  <img loading="lazy" src="{{ asset('profile_pictures/' . $user->profile_picture) }}" alt="Profile Photo">
                 @else
                   {{ strtoupper(substr($user->first_name ?? $user->name ?? 'U', 0, 1)) }}
                 @endif
@@ -1229,7 +1257,7 @@ textarea.sp-input {
                 <label class="sp-btn sp-btn-secondary sp-btn-sm" style="cursor:pointer;">
                   <i class="fa-solid fa-arrow-up-from-bracket"></i>
                   Upload Photo
-                  <input type="file" name="profile_photo" accept="image/*" style="display:none;" onchange="previewPhoto(this)">
+                  <input type="file" name="profile_picture" accept="image/*" style="display:none;" onchange="previewPhoto(this)">
                 </label>
               </div>
             </div>
@@ -1303,95 +1331,161 @@ textarea.sp-input {
       </div>
 
       {{-- ========================
-           SECURITY SECTION
+           JOB PREFERENCES SECTION
       ======================== --}}
-      <div class="sp-section" id="security">
+      <div class="sp-section" id="job-preferences">
         <div class="sp-section-header">
           <div class="sp-section-header-top">
-            <div class="sp-section-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="sp-section-icon"><i class="fa-solid fa-briefcase"></i></div>
             <div>
-              <h2>Security Settings</h2>
-              <p>Protect your account and manage login sessions</p>
+              <h2>Job Preferences</h2>
+              <p>Let us know what kind of roles you are looking for</p>
             </div>
           </div>
         </div>
         <div class="sp-section-body">
-
-          <div class="sp-subsection-title">Security Features</div>
-
-          <div class="sp-action-card">
-            <div class="sp-action-card-icon blue"><i class="fa-solid fa-mobile-screen"></i></div>
-            <div class="sp-action-card-body">
-              <h4>Two-Factor Authentication (2FA)</h4>
-              <p>Add an extra layer of security to your account. When enabled, you'll need to provide a verification code in addition to your password.</p>
-              <button type="button" class="sp-btn sp-btn-secondary sp-btn-sm" onclick="enable2FA()">
-                <i class="fa-solid fa-shield-halved"></i>
-                Enable 2FA
-              </button>
-            </div>
-          </div>
-
-          <div class="sp-action-card">
-            <div class="sp-action-card-icon green"><i class="fa-solid fa-desktop"></i></div>
-            <div class="sp-action-card-body">
-              <h4>Active Sessions</h4>
-              <p>View and manage all devices where you are currently logged in. Revoke access to any suspicious sessions.</p>
-              <button type="button" class="sp-btn sp-btn-secondary sp-btn-sm" onclick="viewSessions()">
-                <i class="fa-solid fa-desktop"></i>
-                View Sessions
-              </button>
-            </div>
-          </div>
-
-          <div class="sp-action-card">
-            <div class="sp-action-card-icon purple"><i class="fa-solid fa-clock-rotate-left"></i></div>
-            <div class="sp-action-card-body">
-              <h4>Login History</h4>
-              <p>Review recent login activity and identify any unauthorized access to your account.</p>
-              <button type="button" class="sp-btn sp-btn-secondary sp-btn-sm" onclick="viewLoginHistory()">
-                <i class="fa-solid fa-clock-rotate-left"></i>
-                View History
-              </button>
-            </div>
-          </div>
-
-          <div class="sp-divider"></div>
-          <div class="sp-subsection-title">Security Preferences</div>
-
-          <form action="{{ route('settings.security') }}" method="POST">
+          <form action="{{ route('settings.job-preferences') }}" method="POST">
             @csrf
-            <div class="sp-toggle-list">
-              <div class="sp-toggle-item">
-                <div class="sp-toggle-text">
-                  <h4>Login Alerts</h4>
-                  <p>Get notified via email when someone logs into your account from a new device or location</p>
-                </div>
-                <label class="sp-switch">
-                  <input type="checkbox" name="login_alerts" {{ ($settings['security']['login_alerts'] ?? true) ? 'checked' : '' }}>
-                  <span class="sp-switch-track"></span>
-                </label>
+            <div class="sp-grid-2">
+              <div class="sp-form-group">
+                <label class="sp-label">Preferred Job Type</label>
+                <select name="preferred_job_type" class="sp-input">
+                  <option value="Full-Time" {{ ($settings['job']['preferred_job_type'] ?? '') == 'Full-Time' ? 'selected' : '' }}>Full-Time</option>
+                  <option value="Part-Time" {{ ($settings['job']['preferred_job_type'] ?? '') == 'Part-Time' ? 'selected' : '' }}>Part-Time</option>
+                  <option value="Contract" {{ ($settings['job']['preferred_job_type'] ?? '') == 'Contract' ? 'selected' : '' }}>Contract</option>
+                  <option value="Freelance" {{ ($settings['job']['preferred_job_type'] ?? '') == 'Freelance' ? 'selected' : '' }}>Freelance</option>
+                  <option value="Internship" {{ ($settings['job']['preferred_job_type'] ?? '') == 'Internship' ? 'selected' : '' }}>Internship</option>
+                </select>
               </div>
-              <div class="sp-toggle-item">
-                <div class="sp-toggle-text">
-                  <h4>Suspicious Activity Alerts</h4>
-                  <p>Receive immediate alerts when unusual or suspicious activity is detected on your account</p>
-                </div>
-                <label class="sp-switch">
-                  <input type="checkbox" name="suspicious_alerts" {{ ($settings['security']['suspicious_alerts'] ?? true) ? 'checked' : '' }}>
-                  <span class="sp-switch-track"></span>
-                </label>
+              <div class="sp-form-group">
+                <label class="sp-label">Job Search Status</label>
+                <select name="preferred_job_status" class="sp-input">
+                  <option value="Actively looking" {{ ($settings['job']['preferred_job_status'] ?? '') == 'Actively looking' ? 'selected' : '' }}>Actively looking</option>
+                  <option value="Open to offers" {{ ($settings['job']['preferred_job_status'] ?? '') == 'Open to offers' ? 'selected' : '' }}>Open to offers</option>
+                  <option value="Not looking" {{ ($settings['job']['preferred_job_status'] ?? '') == 'Not looking' ? 'selected' : '' }}>Not looking</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="sp-form-group">
+              <label class="sp-label">Preferred Location</label>
+              <input type="text" name="preferred_location" class="sp-input" value="{{ $settings['job']['preferred_location'] ?? '' }}" placeholder="e.g. Remote, New York, London">
+            </div>
+
+            <div class="sp-grid-2">
+              <div class="sp-form-group">
+                <label class="sp-label">Expected Salary (Min)</label>
+                <input type="number" name="expected_salary_min" class="sp-input" value="{{ $settings['job']['expected_salary_min'] ?? '' }}" placeholder="e.g. 50000">
+              </div>
+              <div class="sp-form-group">
+                <label class="sp-label">Expected Salary (Max)</label>
+                <input type="number" name="expected_salary_max" class="sp-input" value="{{ $settings['job']['expected_salary_max'] ?? '' }}" placeholder="e.g. 90000">
+              </div>
+            </div>
+
+            <div class="sp-form-group">
+              <label class="sp-label">Job Posted Timeframe</label>
+              <select name="job_posted_timeframe" class="sp-input">
+                <option value="Any Time" {{ ($settings['job']['job_posted_timeframe'] ?? '') == 'Any Time' ? 'selected' : '' }}>Any Time</option>
+                <option value="Last 24 Hours" {{ ($settings['job']['job_posted_timeframe'] ?? '') == 'Last 24 Hours' ? 'selected' : '' }}>Last 24 Hours</option>
+                <option value="Last 7 Days" {{ ($settings['job']['job_posted_timeframe'] ?? 'Last 7 Days') == 'Last 7 Days' ? 'selected' : '' }}>Last 7 Days</option>
+                <option value="Last 14 Days" {{ ($settings['job']['job_posted_timeframe'] ?? '') == 'Last 14 Days' ? 'selected' : '' }}>Last 14 Days</option>
+                <option value="Last 30 Days" {{ ($settings['job']['job_posted_timeframe'] ?? '') == 'Last 30 Days' ? 'selected' : '' }}>Last 30 Days</option>
+              </select>
+            </div>
+
+            <div class="sp-form-group">
+              <label class="sp-label">Preferred Job Functions</label>
+              <div style="display:flex;flex-wrap:wrap;gap:10px;">
+                @php $userFunctions = $notifPrefs->preferred_job_functions ?? []; @endphp
+                @foreach($jobFunctions ?? [] as $jf)
+                  <label style="display:flex;align-items:center;gap:6px;font-size:14px;color:var(--text-secondary);cursor:pointer;">
+                    <input type="checkbox" name="preferred_job_functions[]" value="{{ $jf }}" {{ in_array($jf, $userFunctions) ? 'checked' : '' }}>
+                    {{ $jf }}
+                  </label>
+                @endforeach
               </div>
             </div>
 
             <div class="sp-btn-row">
               <button type="submit" class="sp-btn sp-btn-primary">
                 <i class="fa-solid fa-floppy-disk"></i>
-                Save Security Settings
+                Save Preferences
               </button>
             </div>
           </form>
         </div>
       </div>
+
+      {{-- ========================
+           NOTIFICATIONS SECTION
+      ======================== --}}
+      <div class="sp-section" id="notifications">
+        <div class="sp-section-header">
+          <div class="sp-section-header-top">
+            <div class="sp-section-icon"><i class="fa-solid fa-bell"></i></div>
+            <div>
+              <h2>Notification Settings</h2>
+              <p>Control what emails and alerts you receive</p>
+            </div>
+          </div>
+        </div>
+        <div class="sp-section-body">
+          <form action="{{ route('settings.notifications') }}" method="POST">
+            @csrf
+            <div class="sp-toggle-list">
+              <div class="sp-toggle-item">
+                <div class="sp-toggle-text">
+                  <h4>Job Alerts</h4>
+                  <p>Get notified when jobs matching your preferences are posted</p>
+                </div>
+                <label class="sp-switch">
+                  <input type="checkbox" name="job_alerts" {{ ($settings['notifications']['job_alerts'] ?? true) ? 'checked' : '' }}>
+                  <span class="sp-switch-track"></span>
+                </label>
+              </div>
+              <div class="sp-toggle-item">
+                <div class="sp-toggle-text">
+                  <h4>Application Updates</h4>
+                  <p>Receive updates when the status of your job application changes</p>
+                </div>
+                <label class="sp-switch">
+                  <input type="checkbox" name="application_updates" {{ ($settings['notifications']['application_updates'] ?? true) ? 'checked' : '' }}>
+                  <span class="sp-switch-track"></span>
+                </label>
+              </div>
+              <div class="sp-toggle-item">
+                <div class="sp-toggle-text">
+                  <h4>Profile Views</h4>
+                  <p>Get notified when an employer views your profile or resume</p>
+                </div>
+                <label class="sp-switch">
+                  <input type="checkbox" name="profile_views" {{ ($settings['notifications']['profile_views'] ?? true) ? 'checked' : '' }}>
+                  <span class="sp-switch-track"></span>
+                </label>
+              </div>
+              <div class="sp-toggle-item">
+                <div class="sp-toggle-text">
+                  <h4>Marketing & Promotions</h4>
+                  <p>Receive occasional updates about our platform features and offers</p>
+                </div>
+                <label class="sp-switch">
+                  <input type="checkbox" name="marketing_emails" {{ ($settings['notifications']['marketing_emails'] ?? false) ? 'checked' : '' }}>
+                  <span class="sp-switch-track"></span>
+                </label>
+              </div>
+            </div>
+            <div class="sp-btn-row">
+              <button type="submit" class="sp-btn sp-btn-primary">
+                <i class="fa-solid fa-floppy-disk"></i>
+                Save Notifications
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+
 
       {{-- ========================
            RESUME SECTION
@@ -1560,7 +1654,7 @@ function previewPhoto(input) {
     reader.onload = e => {
       const preview = document.querySelector('.sp-photo-preview');
       if (preview) {
-        preview.innerHTML = `<img src="${e.target.result}" alt="Preview">`;
+        preview.innerHTML = `<img loading="lazy" src="${e.target.result}" alt="Preview">`;
       }
     };
     reader.readAsDataURL(input.files[0]);
@@ -1579,7 +1673,7 @@ if (resumeInput) {
     if (this.files.length > 0) {
       resumeFileName.innerHTML = `<strong>${this.files[0].name}</strong> — Ready to upload`;
       resumeDropZone.style.borderColor = 'var(--brand)';
-      resumeDropZone.style.background = 'rgba(177,30,36,0.04)';
+      resumeDropZone.style.background = 'rgba(7,16,86,0.04)';
     }
   });
 }
@@ -1723,3 +1817,5 @@ function viewLoginHistory()  { showToast('Login history feature coming soon!', '
 </script>
 
 @endsection
+
+

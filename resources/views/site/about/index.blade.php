@@ -81,7 +81,7 @@
                 <!-- about-right Start-->
                 <div class="col-lg-6 col-md-12 col-sm-12 col-12 order-lg-2 order-md-1 order-sm-1 order-1">
                     <div class="about-one-thumbnail">
-                        <img src="{{ asset('image/about.png') }}" alt="about-finbiz">
+                        <img loading="lazy" src="{{ asset('image/about.png') }}" alt="about-finbiz">
                         <div class="experience">
                             <div class="left single">
                                 <h2 class="title">25+</h2>
@@ -193,3 +193,4 @@
     <!-- rts skills area end -->
 
 @endsection
+

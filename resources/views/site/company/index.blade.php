@@ -1,207 +1,5 @@
 @extends('layouts.site')
 @section('content')
-
-<div class="space-for-header"></div>
-
-{{-- ═══════════════════════════════════════════════════
-     3D HERO SECTION
-════════════════════════════════════════════════════ --}}
-<section class="cr-hero-3d">
-  <div class="cr-hero-3d__bg"></div>
-  <div class="cr-hero-3d__shapes">
-      <div class="shape shape-1"></div>
-      <div class="shape shape-2"></div>
-  </div>
-  <div class="cr-hero-3d__inner">
-    <nav class="cr-breadcrumb-3d">
-      <a href="{{ url('/') }}">Home</a>
-      <span class="sep">/</span>
-      <span class="active">Register Company</span>
-    </nav>
-    <h1 class="cr-hero-3d__title">Register Your Company</h1>
-    <p class="cr-hero-3d__sub">Partner with Wintech Inc to acquire exceptional talent. Our streamlined, modern candidate matching process will connect you with the right professionals.</p>
-  </div>
-</section>
-
-{{-- ═══════════════════════════════════════════════════
-     MAIN CONTENT & 3D LAYOUT
-════════════════════════════════════════════════════ --}}
-<section class="cr-main-3d">
-  <div class="cr-wrap-3d">
-    <div class="cr-layout-3d">
-
-      {{-- LEFT: 3D Info Panel --}}
-      <aside class="cr-aside-3d">
-        <div class="cr-aside-card-3d">
-          <div class="cr-aside-logo-3d">
-            <img src="{{ asset('logo.png') }}" alt="Wintech Logo">
-          </div>
-          <h3>How It Works</h3>
-
-          <div class="cr-steps-3d">
-            <div class="cr-step-3d">
-              <div class="cr-step-3d__num-wrap">
-                <div class="cr-step-3d__num">1</div>
-              </div>
-              <div class="cr-step-3d__content">
-                <strong>Fill the Form</strong>
-                <p>Provide your company and job requirement details</p>
-              </div>
-            </div>
-            <div class="cr-step-3d">
-              <div class="cr-step-3d__num-wrap">
-                <div class="cr-step-3d__num">2</div>
-              </div>
-              <div class="cr-step-3d__content">
-                <strong>We Review</strong>
-                <p>Our team reviews your requirements within 24 hours</p>
-              </div>
-            </div>
-            <div class="cr-step-3d">
-              <div class="cr-step-3d__num-wrap">
-                <div class="cr-step-3d__num">3</div>
-              </div>
-              <div class="cr-step-3d__content">
-                <strong>Get Matched</strong>
-                <p>We connect you with the best-fit candidates</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="cr-badges-3d">
-            <span class="badge-item-3d">
-              <i class="fas fa-shield-alt"></i> 100% Secure
-            </span>
-            <span class="badge-item-3d">
-              <i class="fas fa-bolt"></i> 24hr Response
-            </span>
-          </div>
-
-          <div class="cr-contact-3d">
-            <a href="tel:+919940436371"><i class="fas fa-phone-alt"></i> +91 99404 36371</a>
-            <a href="mailto:lochana@wintechinc.in"><i class="fas fa-envelope"></i> lochana@wintechinc.in</a>
-          </div>
-        </div>
-      </aside>
-
-      {{-- RIGHT: 3D Form Card --}}
-      <div class="cr-form-card-3d">
-        <div class="cr-form-header-3d">
-          <h2>Submit Your Details</h2>
-          <p>Fill in the form below and our recruitment experts will contact you shortly.</p>
-        </div>
-
-        @if(session('success'))
-        <div class="cr-alert-3d">
-          <div class="alert-icon-3d"><i class="fas fa-check-circle"></i></div>
-          <div class="alert-text-3d">{{ session('success') }}</div>
-        </div>
-        @endif
-
-        <form action="{{ route('company.register.submit') }}" method="POST" enctype="multipart/form-data">
-          @csrf
-
-          {{-- Personal Info --}}
-          <div class="cr-section-label-3d">Personal Information</div>
-          <div class="cr-grid-3d cr-grid-3d--3">
-            <div class="cr-field-3d">
-              <label>Full Name <span>*</span></label>
-              <input type="text" name="name" placeholder="Your full name" value="{{ old('name') }}" required>
-            </div>
-            <div class="cr-field-3d">
-              <label>Email <span>*</span></label>
-              <input type="email" name="email" placeholder="your@email.com" value="{{ old('email') }}" required>
-            </div>
-            <div class="cr-field-3d">
-              <label>Mobile <span>*</span></label>
-              <input type="tel" name="mobile" placeholder="+91 98765 43210" value="{{ old('mobile') }}" required>
-            </div>
-          </div>
-
-          {{-- Company Info --}}
-          <div class="cr-section-label-3d">Company Information</div>
-          <div class="cr-grid-3d cr-grid-3d--2">
-            <div class="cr-field-3d">
-              <label>Company Name</label>
-              <input type="text" name="company_name" placeholder="Your company" value="{{ old('company_name') }}">
-            </div>
-            <div class="cr-field-3d">
-              <label>Website</label>
-              <input type="url" name="company_website" placeholder="https://yourcompany.com" value="{{ old('company_website') }}">
-            </div>
-            <div class="cr-field-3d">
-              <label>Location</label>
-              <input type="text" name="location" placeholder="City, State" value="{{ old('location') }}">
-            </div>
-            <div class="cr-field-3d">
-              <label>Address</label>
-              <input type="text" name="address" placeholder="Full address" value="{{ old('address') }}">
-            </div>
-          </div>
-
-          {{-- Job Requirements --}}
-          <div class="cr-section-label-3d">Job Requirements</div>
-          <div class="cr-grid-3d cr-grid-3d--3">
-            <div class="cr-field-3d">
-              <label>Position / Role</label>
-              <input type="text" name="position" placeholder="e.g. Software Engineer" value="{{ old('position') }}">
-            </div>
-            <div class="cr-field-3d">
-              <label>Salary Range</label>
-              <input type="text" name="salary" placeholder="e.g. 5-8 LPA" value="{{ old('salary') }}">
-            </div>
-            <div class="cr-field-3d">
-              <label>Experience Required</label>
-              <input type="text" name="experience" placeholder="e.g. 2-4 years" value="{{ old('experience') }}">
-            </div>
-          </div>
-          <div class="cr-field-3d cr-field-3d--full">
-            <label>Job Description</label>
-            <textarea name="job_desc" rows="4" placeholder="Describe the role, responsibilities, and skills required...">{{ old('job_desc') }}</textarea>
-          </div>
-
-          {{-- Attachments --}}
-          <div class="cr-section-label-3d">Attachments <small>optional</small></div>
-          <div class="cr-grid-3d cr-grid-3d--2">
-            <div class="cr-upload-3d" id="jdUpload" onclick="document.getElementById('job_brief').click()">
-              <div class="cr-upload-3d__icon">
-                <i class="fas fa-file-pdf"></i>
-              </div>
-              <div class="cr-upload-3d__text">
-                <span id="jd-name">Job Description Brief</span>
-                <small>PDF, DOC, DOCX — max 2MB</small>
-              </div>
-              <input type="file" name="job_brief" id="job_brief" accept=".pdf,.doc,.docx" style="display:none" onchange="handleUpload(this,'jdUpload','jd-name','Job Description Brief')">
-            </div>
-            <div class="cr-upload-3d" id="logoUpload" onclick="document.getElementById('company_logo').click()">
-              <div class="cr-upload-3d__icon">
-                <i class="fas fa-image"></i>
-              </div>
-              <div class="cr-upload-3d__text">
-                <span id="logo-name">Company Logo</span>
-                <small>JPG, PNG, GIF — max 2MB</small>
-              </div>
-              <input type="file" name="company_logo" id="company_logo" accept="image/*" style="display:none" onchange="handleUpload(this,'logoUpload','logo-name','Company Logo')">
-            </div>
-          </div>
-
-          {{-- Submit --}}
-          <div class="cr-submit-3d">
-            <button type="submit" class="cr-btn-3d">
-              Submit Registration <i class="fas fa-arrow-right"></i>
-            </button>
-            <span class="cr-submit-3d__note">
-              <i class="fas fa-lock"></i> Your information is secure
-            </span>
-          </div>
-        </form>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-{{-- ═══════════════════════════════════════════════════ PREMIUM 3D CSS STYLES --}}
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
@@ -767,6 +565,209 @@
 }
 </style>
 
+<div class="space-for-header"></div>
+
+{{-- ═══════════════════════════════════════════════════
+     3D HERO SECTION
+════════════════════════════════════════════════════ --}}
+<section class="cr-hero-3d">
+  <div class="cr-hero-3d__bg"></div>
+  <div class="cr-hero-3d__shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+  </div>
+  <div class="cr-hero-3d__inner">
+    <nav class="cr-breadcrumb-3d">
+      <a href="{{ url('/') }}">Home</a>
+      <span class="sep">/</span>
+      <span class="active">Register Company</span>
+    </nav>
+    <h1 class="cr-hero-3d__title">Register Your Company</h1>
+    <p class="cr-hero-3d__sub">Partner with Wintech Inc to acquire exceptional talent. Our streamlined, modern candidate matching process will connect you with the right professionals.</p>
+  </div>
+</section>
+
+{{-- ═══════════════════════════════════════════════════
+     MAIN CONTENT & 3D LAYOUT
+════════════════════════════════════════════════════ --}}
+<section class="cr-main-3d">
+  <div class="cr-wrap-3d">
+    <div class="cr-layout-3d">
+
+      {{-- LEFT: 3D Info Panel --}}
+      <aside class="cr-aside-3d">
+        <div class="cr-aside-card-3d">
+          <div class="cr-aside-logo-3d">
+            <img loading="lazy" src="{{ asset('logo.png') }}" alt="Wintech Logo">
+          </div>
+          <h3>How It Works</h3>
+
+          <div class="cr-steps-3d">
+            <div class="cr-step-3d">
+              <div class="cr-step-3d__num-wrap">
+                <div class="cr-step-3d__num">1</div>
+              </div>
+              <div class="cr-step-3d__content">
+                <strong>Fill the Form</strong>
+                <p>Provide your company and job requirement details</p>
+              </div>
+            </div>
+            <div class="cr-step-3d">
+              <div class="cr-step-3d__num-wrap">
+                <div class="cr-step-3d__num">2</div>
+              </div>
+              <div class="cr-step-3d__content">
+                <strong>We Review</strong>
+                <p>Our team reviews your requirements within 24 hours</p>
+              </div>
+            </div>
+            <div class="cr-step-3d">
+              <div class="cr-step-3d__num-wrap">
+                <div class="cr-step-3d__num">3</div>
+              </div>
+              <div class="cr-step-3d__content">
+                <strong>Get Matched</strong>
+                <p>We connect you with the best-fit candidates</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="cr-badges-3d">
+            <span class="badge-item-3d">
+              <i class="fas fa-shield-alt"></i> 100% Secure
+            </span>
+            <span class="badge-item-3d">
+              <i class="fas fa-bolt"></i> 24hr Response
+            </span>
+          </div>
+
+          <div class="cr-contact-3d">
+            <a href="tel:+919940436371"><i class="fas fa-phone-alt"></i> +91 99404 36371</a>
+            <a href="mailto:lochana@wintechinc.in"><i class="fas fa-envelope"></i> lochana@wintechinc.in</a>
+          </div>
+        </div>
+      </aside>
+
+      {{-- RIGHT: 3D Form Card --}}
+      <div class="cr-form-card-3d">
+        <div class="cr-form-header-3d">
+          <h2>Submit Your Details</h2>
+          <p>Fill in the form below and our recruitment experts will contact you shortly.</p>
+        </div>
+
+        @if(session('success'))
+        <div class="cr-alert-3d">
+          <div class="alert-icon-3d"><i class="fas fa-check-circle"></i></div>
+          <div class="alert-text-3d">{{ session('success') }}</div>
+        </div>
+        @endif
+
+        <form action="{{ route('company.register.submit') }}" method="POST" enctype="multipart/form-data">
+          @csrf
+
+          {{-- Personal Info --}}
+          <div class="cr-section-label-3d">Personal Information</div>
+          <div class="cr-grid-3d cr-grid-3d--3">
+            <div class="cr-field-3d">
+              <label>Full Name <span>*</span></label>
+              <input type="text" name="name" placeholder="Your full name" value="{{ old('name') }}" required>
+            </div>
+            <div class="cr-field-3d">
+              <label>Email <span>*</span></label>
+              <input type="email" name="email" placeholder="your@email.com" value="{{ old('email') }}" required>
+            </div>
+            <div class="cr-field-3d">
+              <label>Mobile <span>*</span></label>
+              <input type="tel" name="mobile" placeholder="+91 98765 43210" value="{{ old('mobile') }}" required>
+            </div>
+          </div>
+
+          {{-- Company Info --}}
+          <div class="cr-section-label-3d">Company Information</div>
+          <div class="cr-grid-3d cr-grid-3d--2">
+            <div class="cr-field-3d">
+              <label>Company Name</label>
+              <input type="text" name="company_name" placeholder="Your company" value="{{ old('company_name') }}">
+            </div>
+            <div class="cr-field-3d">
+              <label>Website</label>
+              <input type="url" name="company_website" placeholder="https://yourcompany.com" value="{{ old('company_website') }}">
+            </div>
+            <div class="cr-field-3d">
+              <label>Location</label>
+              <input type="text" name="location" placeholder="City, State" value="{{ old('location') }}">
+            </div>
+            <div class="cr-field-3d">
+              <label>Address</label>
+              <input type="text" name="address" placeholder="Full address" value="{{ old('address') }}">
+            </div>
+          </div>
+
+          {{-- Job Requirements --}}
+          <div class="cr-section-label-3d">Job Requirements</div>
+          <div class="cr-grid-3d cr-grid-3d--3">
+            <div class="cr-field-3d">
+              <label>Position / Role</label>
+              <input type="text" name="position" placeholder="e.g. Software Engineer" value="{{ old('position') }}">
+            </div>
+            <div class="cr-field-3d">
+              <label>Salary Range</label>
+              <input type="text" name="salary" placeholder="e.g. 5-8 LPA" value="{{ old('salary') }}">
+            </div>
+            <div class="cr-field-3d">
+              <label>Experience Required</label>
+              <input type="text" name="experience" placeholder="e.g. 2-4 years" value="{{ old('experience') }}">
+            </div>
+          </div>
+          <div class="cr-field-3d cr-field-3d--full">
+            <label>Job Description</label>
+            <textarea name="job_desc" rows="4" placeholder="Describe the role, responsibilities, and skills required...">{{ old('job_desc') }}</textarea>
+          </div>
+
+          {{-- Attachments --}}
+          <div class="cr-section-label-3d">Attachments <small>optional</small></div>
+          <div class="cr-grid-3d cr-grid-3d--2">
+            <div class="cr-upload-3d" id="jdUpload" onclick="document.getElementById('job_brief').click()">
+              <div class="cr-upload-3d__icon">
+                <i class="fas fa-file-pdf"></i>
+              </div>
+              <div class="cr-upload-3d__text">
+                <span id="jd-name">Job Description Brief</span>
+                <small>PDF, DOC, DOCX — max 2MB</small>
+              </div>
+              <input type="file" name="job_brief" id="job_brief" accept=".pdf,.doc,.docx" style="display:none" onchange="handleUpload(this,'jdUpload','jd-name','Job Description Brief')">
+            </div>
+            <div class="cr-upload-3d" id="logoUpload" onclick="document.getElementById('company_logo').click()">
+              <div class="cr-upload-3d__icon">
+                <i class="fas fa-image"></i>
+              </div>
+              <div class="cr-upload-3d__text">
+                <span id="logo-name">Company Logo</span>
+                <small>JPG, PNG, GIF — max 2MB</small>
+              </div>
+              <input type="file" name="company_logo" id="company_logo" accept="image/*" style="display:none" onchange="handleUpload(this,'logoUpload','logo-name','Company Logo')">
+            </div>
+          </div>
+
+          {{-- Submit --}}
+          <div class="cr-submit-3d">
+            <button type="submit" class="cr-btn-3d">
+              Submit Registration <i class="fas fa-arrow-right"></i>
+            </button>
+            <span class="cr-submit-3d__note">
+              <i class="fas fa-lock"></i> Your information is secure
+            </span>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{{-- ═══════════════════════════════════════════════════ PREMIUM 3D CSS STYLES --}}
+
+
 <script>
 function handleUpload(input, boxId, labelId, defaultText) {
   const box = document.getElementById(boxId);
@@ -782,3 +783,5 @@ function handleUpload(input, boxId, labelId, defaultText) {
 </script>
 
 @endsection
+
+

@@ -151,7 +151,7 @@
 <body>
     <div class="container">
         <div class="left-section">
-            <img src="{{ asset('logo.png') }}" alt="Wintech Inc Logo">
+            <img loading="lazy" src="{{ asset('logo.png') }}" alt="Wintech Inc Logo">
         </div>
         <div class="right-section">
             <div class="logo">

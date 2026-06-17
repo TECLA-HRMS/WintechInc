@@ -21,7 +21,7 @@
                     <!-- service details left area start -->
                     <div class="service-detials-step-1">
                         <div class="thumbnail">
-                            <img src="{{ asset('image/consultancy11.png') }}" alt="business-area">
+                            <img loading="lazy" src="{{ asset('image/consultancy11.png') }}" alt="business-area">
                         </div>
                         <h4 class="title">Manpower Outsourcing Services</h4>
                         <p class="disc">
@@ -33,7 +33,7 @@
                                 <!-- single service details card -->
                                 <div class="service-details-card">
                                     <div class="thumbnail">
-                                        <img src="{{ asset('assets/images/service/icon/09.svg') }}" alt="" class="icon">
+                                        <img loading="lazy" src="{{ asset('assets/images/service/icon/09.svg') }}" alt="" class="icon">
                                     </div>
                                     <div class="details">
                                         <h6 class="title">Access to Skilled Professionals</h6>
@@ -47,7 +47,7 @@
                                 <!-- single service details card -->
                                 <div class="service-details-card">
                                     <div class="thumbnail">
-                                        <img src="{{ asset('assets/images/service/icon/11.svg') }}" alt="" class="icon">
+                                        <img loading="lazy" src="{{ asset('assets/images/service/icon/11.svg') }}" alt="" class="icon">
                                     </div>
                                     <div class="details">
                                         <h6 class="title">Cost Savings</h6>
@@ -60,7 +60,7 @@
                                 <!-- single service details card -->
                                 <div class="service-details-card">
                                     <div class="thumbnail">
-                                        <img src="{{ asset('assets/images/service/icon/12.svg') }}" alt="" class="icon">
+                                        <img loading="lazy" src="{{ asset('assets/images/service/icon/12.svg') }}" alt="" class="icon">
                                     </div>
                                     <div class="details">
                                         <h6 class="title">Flexibility and Scalability</h6>
@@ -73,7 +73,7 @@
                                 <!-- single service details card -->
                                 <div class="service-details-card">
                                     <div class="thumbnail">
-                                        <img src="{{ asset('assets/images/service/icon/10.svg') }}" alt="" class="icon">
+                                        <img loading="lazy" src="{{ asset('assets/images/service/icon/10.svg') }}" alt="" class="icon">
                                     </div>
                                     <div class="details">
                                         <h6 class="title">Focus on Core Competencies</h6>
@@ -184,3 +184,4 @@
 
     @include('includes.site.contact_section')
 @endsection
+

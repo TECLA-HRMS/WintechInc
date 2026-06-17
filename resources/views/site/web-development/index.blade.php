@@ -124,7 +124,7 @@
                 <div class="service-block col-lg-4 col-md-6 col-sm-12">
                     <div class="inner-box">
                         <div class="icon-box">
-                            <img class="serves-img-sec" src="{{ asset('assetss/images/web-development/2-sec/startups.png') }}" alt="">
+                            <img loading="lazy" class="serves-img-sec" src="{{ asset('assetss/images/web-development/2-sec/startups.png') }}" alt="">
                         </div>
                         <div class="wd-platforms">
                             <h5><a>Startups</a></h5>
@@ -135,7 +135,7 @@
                 <div class="service-block col-lg-4 col-md-6 col-sm-12">
                     <div class="inner-box">
                         <div class="icon-box">
-                            <img class="serves-img-sec" src="{{ asset('assetss/images/web-development/2-sec/enterprises-bg.png') }}" alt="">
+                            <img loading="lazy" class="serves-img-sec" src="{{ asset('assetss/images/web-development/2-sec/enterprises-bg.png') }}" alt="">
                         </div>
                         <div class="wd-platforms">
                             <h5><a>Enterprises</a></h5>
@@ -146,7 +146,7 @@
                 <div class="service-block col-lg-4 col-md-6 col-sm-12">
                     <div class="inner-box">
                         <div class="icon-box">
-                            <img class="serves-img-sec" src="{{ asset('assetss/images/web-development/2-sec/non-profits.png') }}" alt="">
+                            <img loading="lazy" class="serves-img-sec" src="{{ asset('assetss/images/web-development/2-sec/non-profits.png') }}" alt="">
                         </div>
                         <div class="wd-platforms">
                             <h5><a>Non-profits</a></h5>
@@ -330,7 +330,7 @@
                             <div class="inner-box">
                                 <a class="overlay-link"></a>
                                 <div class="icon-box">
-                                    <img src="{{ asset('assetss/imgs/web/industries/1.png') }}" class="content-img">
+                                    <img loading="lazy" src="{{ asset('assetss/imgs/web/industries/1.png') }}" class="content-img">
                                 </div>
                                 <h6 style="font-size: 15px;">Retail</h6>
                             </div>
@@ -339,7 +339,7 @@
                             <div class="inner-box">
                                 <a class="overlay-link"></a>
                                 <div class="icon-box">
-                                    <img src="{{ asset('assetss/imgs/web/industries/2.png') }}" class="content-img">
+                                    <img loading="lazy" src="{{ asset('assetss/imgs/web/industries/2.png') }}" class="content-img">
                                 </div>
                                 <h6  style="font-size: 15px;">Real Estate</h6>
                             </div>
@@ -348,7 +348,7 @@
                             <div class="inner-box">
                                 <a class="overlay-link"></a>
                                 <div class="icon-box">
-                                    <img src="{{ asset('assetss/imgs/web/industries/3.png') }}" class="content-img">
+                                    <img loading="lazy" src="{{ asset('assetss/imgs/web/industries/3.png') }}" class="content-img">
                                 </div>
                                 <h6 style="font-size: 15px;">Automobile</h6>
                             </div>
@@ -357,7 +357,7 @@
                             <div class="inner-box">
                                 <a class="overlay-link"></a>
                                 <div class="icon-box">
-                                    <img src="{{ asset('assetss/imgs/web/industries/4.png') }}" class="content-img">
+                                    <img loading="lazy" src="{{ asset('assetss/imgs/web/industries/4.png') }}" class="content-img">
                                 </div>
                                 <h6 style="font-size: 15px;"> Travel & Hospitality</h6>
                             </div>
@@ -366,7 +366,7 @@
                             <div class="inner-box">
                                 <a class="overlay-link"></a>
                                 <div class="icon-box">
-                                    <img src="{{ asset('assetss/imgs/web/industries/5.png') }}" class="content-img">
+                                    <img loading="lazy" src="{{ asset('assetss/imgs/web/industries/5.png') }}" class="content-img">
                                 </div>
                                 <h6 style="font-size: 15px;">Healthcare</h6>
                             </div>
@@ -375,7 +375,7 @@
                             <div class="inner-box">
                                 <a class="overlay-link"></a>
                                 <div class="icon-box">
-                                    <img src="{{ asset('assetss/imgs/web/industries/6.png') }}" class="content-img">
+                                    <img loading="lazy" src="{{ asset('assetss/imgs/web/industries/6.png') }}" class="content-img">
                                 </div>
                                 <h6 style="font-size: 15px;">Education</h6>
                             </div>
@@ -384,7 +384,7 @@
                             <div class="inner-box">
                                 <a class="overlay-link"></a>
                                 <div class="icon-box">
-                                    <img src="{{ asset('assetss/imgs/web/industries/7.png') }}" class="content-img">
+                                    <img loading="lazy" src="{{ asset('assetss/imgs/web/industries/7.png') }}" class="content-img">
                                 </div>
                                 <h6 style="font-size: 15px;">Finance</h6>
                             </div>
@@ -393,7 +393,7 @@
                             <div class="inner-box">
                                 <a class="overlay-link"></a>
                                 <div class="icon-box">
-                                    <img src="{{ asset('assetss/imgs/web/industries/8.png') }}" class="content-img">
+                                    <img loading="lazy" src="{{ asset('assetss/imgs/web/industries/8.png') }}" class="content-img">
                                 </div>
                                 <h6 style="font-size: 15px;">Logistics</h6>
                             </div>
@@ -423,7 +423,7 @@
                                         <div class="col-xl-4 col-md-6 col-6 mt-4 d-flex align-content-stretch">
                                             <div class="futuristic-box development-box" data-aos="zoom-in">
                                                 <figure>
-                                                    <img src="{{ asset('assetss/images/web-development/hire/1.png') }}" alt="">
+                                                    <img loading="lazy" src="{{ asset('assetss/images/web-development/hire/1.png') }}" alt="">
                                                     <figcaption class=" ">
                                                         <h6 class="text-white text-left mt-3"style="font-size: 15px;"> Professionals with extensive knowledge </h6>
                                                     </figcaption>
@@ -433,7 +433,7 @@
                                         <div class="col-xl-4 col-md-6 col-6 mt-4 d-flex align-content-stretch">
                                             <div class="futuristic-box development-box" data-aos="zoom-in">
                                                 <figure>
-                                                    <img src="{{ asset('assetss/images/web-development/hire/2.png') }}" alt="">
+                                                    <img loading="lazy" src="{{ asset('assetss/images/web-development/hire/2.png') }}" alt="">
                                                     <figcaption class=" ">
                                                         <h6 class="text-white text-left mt-3"style="font-size: 15px;"> Quick response times </h6>
                                                     </figcaption>
@@ -443,7 +443,7 @@
                                         <div class="col-xl-4 col-md-6 col-6 mt-4 d-flex align-content-stretch">
                                             <div class="futuristic-box development-box" data-aos="zoom-in">
                                                 <figure>
-                                                    <img src="{{ asset('assetss/images/web-development/hire/3.png') }}" alt="">
+                                                    <img loading="lazy" src="{{ asset('assetss/images/web-development/hire/3.png') }}" alt="">
                                                     <figcaption class=" ">
                                                         <h6 class="text-white text-left mt-3"style="font-size: 15px;"> Cost-effective service </h6>
                                                     </figcaption>
@@ -453,7 +453,7 @@
                                         <div class="col-xl-4 col-md-6 col-6 mt-4 d-flex align-content-stretch">
                                             <div class="futuristic-box development-box" data-aos="zoom-in">
                                                 <figure>
-                                                    <img src="{{ asset('assetss/images/web-development/hire/4.png') }}" alt="">
+                                                    <img loading="lazy" src="{{ asset('assetss/images/web-development/hire/4.png') }}" alt="">
                                                     <figcaption class=" ">
                                                         <h6 class="text-white text-left mt-3"style="font-size: 15px;"> Assist with maintenance and support </h6>
                                                     </figcaption>
@@ -463,7 +463,7 @@
                                         <div class="col-xl-4 col-md-6 col-6 mt-4 d-flex align-content-stretch">
                                             <div class="futuristic-box development-box" data-aos="zoom-in">
                                                 <figure>
-                                                    <img src="{{ asset('assetss/images/web-development/hire/5.png') }}" alt="">
+                                                    <img loading="lazy" src="{{ asset('assetss/images/web-development/hire/5.png') }}" alt="">
                                                     <figcaption class=" ">
                                                         <h6 class="text-white text-left mt-3"style="font-size: 15px;"> Full transparency </h6>
                                                     </figcaption>
@@ -473,7 +473,7 @@
                                         <div class="col-xl-4 col-md-6 col-6 mt-4 d-flex align-content-stretch">
                                             <div class="futuristic-box development-box" data-aos="zoom-in">
                                                 <figure>
-                                                    <img src="{{ asset('assetss/images/web-development/hire/6.png') }}" alt="">
+                                                    <img loading="lazy" src="{{ asset('assetss/images/web-development/hire/6.png') }}" alt="">
                                                     <figcaption class=" ">
                                                         <h6 class="text-white text-left mt-3"style="font-size: 15px;"> Innovative approach </h6>
                                                     </figcaption>
@@ -500,12 +500,12 @@
                     </div>
                 </div>
             </div>
-            <img src="{{ asset('assets/image/shapes/10.png') }}" class="cta-one__bg-shape-1" alt="">
+            <img loading="lazy" src="{{ asset('assets/image/shapes/10.png') }}" class="cta-one__bg-shape-1" alt="">
             <div class="row">
                 <div class="col-lg-12">
                     <ul class="timeline">
                         <li>
-                            <img class="our-process" src="{{ asset('assets/imgs/web/process/5.png') }}" alt="">
+                            <img loading="lazy" class="our-process" src="{{ asset('assets/imgs/web/process/5.png') }}" alt="">
                             <div class="direction-r">
                                 <div class="flag-wrapper">
                                     <span class="flag">Discovery & Research </span>
@@ -514,7 +514,7 @@
                             </div>
                         </li>
                         <li>
-                            <img class="our-process1" src="{{ asset('assets/imgs/web/process/4.png') }}" alt="">
+                            <img loading="lazy" class="our-process1" src="{{ asset('assets/imgs/web/process/4.png') }}" alt="">
                             <div class="direction-l">
                                 <div class="flag-wrapper">
                                     <span class="flag">Design & Wireframing </span>
@@ -523,7 +523,7 @@
                             </div>
                         </li>
                         <li>
-                            <img class="our-process" src="{{ asset('assets/imgs/web/process/1.png') }}" alt="">
+                            <img loading="lazy" class="our-process" src="{{ asset('assets/imgs/web/process/1.png') }}" alt="">
                             <div class="direction-r">
                                 <div class="flag-wrapper">
                                     <span class="flag">Coding </span>
@@ -532,7 +532,7 @@
                             </div>
                         </li>
                         <li>
-                            <img class="our-process1" src="{{ asset('assets/imgs/web/process/2.png') }}" alt="">
+                            <img loading="lazy" class="our-process1" src="{{ asset('assets/imgs/web/process/2.png') }}" alt="">
                             <div class="direction-l">
                                 <div class="flag-wrapper">
                                     <span class="flag">Testing </span>
@@ -541,7 +541,7 @@
                             </div>
                         </li>
                         <li>
-                            <img class="our-process" src="{{ asset('assets/imgs/web/process/3.png') }}" alt="">
+                            <img loading="lazy" class="our-process" src="{{ asset('assets/imgs/web/process/3.png') }}" alt="">
                             <div class="direction-r">
                                 <div class="flag-wrapper">
                                     <span class="flag">Launch </span>
@@ -567,17 +567,17 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="brand-carousel section-padding owl-carousel">
-                                    <div class="single-logo"><img alt="" class="tech-logo-size" src="{{ asset('assetss/images/web-development/technology/1.png') }}"></div>
-                                    <div class="single-logo"><img alt="" class="tech-logo-size" src="{{ asset('assetss/images/web-development/technology/2.png') }}"></div>
-                                    <div class="single-logo"><img alt="" class="tech-logo-size" src="{{ asset('assetss/images/web-development/technology/3.png') }}"></div>
-                                    <div class="single-logo"><img alt="" class="tech-logo-size" src="{{ asset('assetss/images/web-development/technology/4.png') }}"></div>
-                                    <div class="single-logo"><img alt="" class="tech-logo-size" src="{{ asset('assetss/images/web-development/technology/5.png') }}"></div>
-                                    <div class="single-logo"><img alt="" class="tech-logo-size" src="{{ asset('assetss/images/web-development/technology/6.png') }}"></div>
-                                    <div class="single-logo"><img alt="" class="tech-logo-size" src="{{ asset('assetss/images/web-development/technology/7.png') }}"></div>
-                                    <div class="single-logo"><img alt="" class="tech-logo-size" src="{{ asset('assetss/images/web-development/technology/8.png') }}"></div>
-                                    <div class="single-logo"><img alt="" class="tech-logo-size" src="{{ asset('assetss/images/web-development/technology/9.png') }}"></div>
-                                    <div class="single-logo"><img alt="" class="tech-logo-size" src="{{ asset('assetss/images/web-development/technology/10.png') }}"></div>
-                                    <div class="single-logo"><img alt="" class="tech-logo-size" src="{{ asset('assetss/images/web-development/technology/11.png') }}"></div>
+                                    <div class="single-logo"><img loading="lazy" alt="" class="tech-logo-size" src="{{ asset('assetss/images/web-development/technology/1.png') }}"></div>
+                                    <div class="single-logo"><img loading="lazy" alt="" class="tech-logo-size" src="{{ asset('assetss/images/web-development/technology/2.png') }}"></div>
+                                    <div class="single-logo"><img loading="lazy" alt="" class="tech-logo-size" src="{{ asset('assetss/images/web-development/technology/3.png') }}"></div>
+                                    <div class="single-logo"><img loading="lazy" alt="" class="tech-logo-size" src="{{ asset('assetss/images/web-development/technology/4.png') }}"></div>
+                                    <div class="single-logo"><img loading="lazy" alt="" class="tech-logo-size" src="{{ asset('assetss/images/web-development/technology/5.png') }}"></div>
+                                    <div class="single-logo"><img loading="lazy" alt="" class="tech-logo-size" src="{{ asset('assetss/images/web-development/technology/6.png') }}"></div>
+                                    <div class="single-logo"><img loading="lazy" alt="" class="tech-logo-size" src="{{ asset('assetss/images/web-development/technology/7.png') }}"></div>
+                                    <div class="single-logo"><img loading="lazy" alt="" class="tech-logo-size" src="{{ asset('assetss/images/web-development/technology/8.png') }}"></div>
+                                    <div class="single-logo"><img loading="lazy" alt="" class="tech-logo-size" src="{{ asset('assetss/images/web-development/technology/9.png') }}"></div>
+                                    <div class="single-logo"><img loading="lazy" alt="" class="tech-logo-size" src="{{ asset('assetss/images/web-development/technology/10.png') }}"></div>
+                                    <div class="single-logo"><img loading="lazy" alt="" class="tech-logo-size" src="{{ asset('assetss/images/web-development/technology/11.png') }}"></div>
                                 </div>
                             </div>
                         </div>
@@ -624,7 +624,7 @@
             <div class="row">
                 <div class="col-xl-5 col-md-12 col-12" data-aos="fade-up">
                     <div class="frequently-img">
-                        <img src="assetss/images/web-development/faq.webp" alt="Wintech" class="">
+                        <img loading="lazy" src="assetss/images/web-development/faq.webp" alt="Wintech" class="">
                     </div>
                 </div>
                 <div class="col-xl-7 col-md-12 col-12" data-aos="fade-up">
@@ -707,3 +707,4 @@
 </main>
 
 @endsection
+

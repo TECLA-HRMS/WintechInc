@@ -130,7 +130,7 @@
             <div class="cr-card">
                 <div class="candidate-hero">
                     @if(!empty($application->profile_picture))
-                        <img src="{{ asset('profile_pictures/' . $application->profile_picture) }}" alt="" style="width:64px;height:64px;border-radius:14px;object-fit:cover;flex-shrink:0">
+                        <img loading="lazy" src="{{ asset('profile_pictures/' . $application->profile_picture) }}" alt="" style="width:64px;height:64px;border-radius:14px;object-fit:cover;flex-shrink:0">
                     @else
                         <div class="candidate-avatar">{{ strtoupper(substr($application->full_name, 0, 1)) }}</div>
                     @endif
@@ -463,3 +463,4 @@
 </div>
 
 @endsection
+

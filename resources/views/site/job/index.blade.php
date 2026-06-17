@@ -1,473 +1,6 @@
 @extends('layouts.site')
 
 @section('content')
-
-<div class="space-for-header"></div>
-
-{{-- ═══════════════════════════════════════════════════
-     PAGE HERO
-════════════════════════════════════════════════════ --}}
-<section class="jb-hero">
-  <div class="jb-hero__bg"></div>
-  <div class="jb-hero__inner">
-    <nav class="jb-breadcrumb" aria-label="Breadcrumb">
-      <a href="{{ url('/') }}">Home</a>
-      <span class="jb-breadcrumb__sep">/</span>
-      <span>Careers</span>
-    </nav>
-    <h1 class="jb-hero__title">Explore Opportunities</h1>
-    <p class="jb-hero__subtitle">Discover roles that match your skills and aspirations</p>
-  </div>
-</section>
-
-{{-- ═══════════════════════════════════════════════════
-     MAIN CONTENT
-════════════════════════════════════════════════════ --}}
-<section class="jb-main-section">
-  <div class="jb-wrap">
-    <div class="jb-grid">
-
-      {{-- ─── SIDEBAR FILTERS ─── --}}
-      <aside class="jb-filters" id="desktopSidebar">
-        <div class="jb-filters__inner">
-          <div class="jb-filters__top">
-            <h3 class="jb-filters__heading">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
-              Filters
-            </h3>
-            @php
-              $hasActiveFilters = !empty($currentFilters['search']) || !empty($currentFilters['job_type']) || !empty($currentFilters['work_mode']) || !empty($currentFilters['job_function']) || !empty($currentFilters['location']) || !empty($currentFilters['experience']) || !empty($currentFilters['salary_min']) || !empty($currentFilters['salary_max']) || !empty($currentFilters['posted_date']);
-            @endphp
-            @if($hasActiveFilters)
-            <a href="{{ route('jobs.index') }}" class="jb-filters__reset">Clear All</a>
-            @endif
-          </div>
-
-          <form action="{{ route('jobs.index') }}" method="GET" id="desktopFilterForm">
-            @if(!empty($currentFilters['search']))<input type="hidden" name="search" value="{{ $currentFilters['search'] }}">@endif
-            @if(!empty($currentFilters['sort_by']))<input type="hidden" name="sort_by" value="{{ $currentFilters['sort_by'] }}">@endif
-
-            {{-- Salary Range --}}
-            <div class="jb-fblock open">
-              <button type="button" class="jb-fblock__head" onclick="this.closest('.jb-fblock').classList.toggle('open')">
-                <span>Salary Range</span>
-                <svg class="jb-fblock__arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
-              </button>
-              <div class="jb-fblock__body">
-                <div class="jb-salary-inputs">
-                  <input type="number" name="salary_min" class="jb-input-sm" placeholder="Min ₹" value="{{ $currentFilters['salary_min'] ?? '' }}">
-                  <span>to</span>
-                  <input type="number" name="salary_max" class="jb-input-sm" placeholder="Max ₹" value="{{ $currentFilters['salary_max'] ?? '' }}">
-                </div>
-              </div>
-            </div>
-
-            {{-- Job Type --}}
-            <div class="jb-fblock open">
-              <button type="button" class="jb-fblock__head" onclick="this.closest('.jb-fblock').classList.toggle('open')">
-                <span>Job Type</span>
-                <svg class="jb-fblock__arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
-              </button>
-              <div class="jb-fblock__body">
-                @forelse($jobTypes->filter() as $type)
-                <label class="jb-checkbox">
-                  <input type="checkbox" name="job_type[]" value="{{ $type }}" {{ in_array($type,(array)($currentFilters['job_type']??[])) ? 'checked' : '' }}>
-                  <span class="jb-checkbox__mark"></span>
-                  <span class="jb-checkbox__text">{{ $type }}</span>
-                </label>
-                @empty<p class="jb-no-opt">No options</p>@endforelse
-              </div>
-            </div>
-
-            {{-- Work Mode --}}
-            <div class="jb-fblock open">
-              <button type="button" class="jb-fblock__head" onclick="this.closest('.jb-fblock').classList.toggle('open')">
-                <span>Work Mode</span>
-                <svg class="jb-fblock__arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
-              </button>
-              <div class="jb-fblock__body">
-                @forelse($workModes->filter() as $mode)
-                <label class="jb-checkbox">
-                  <input type="checkbox" name="work_mode[]" value="{{ $mode }}" {{ in_array($mode,(array)($currentFilters['work_mode']??[])) ? 'checked' : '' }}>
-                  <span class="jb-checkbox__mark"></span>
-                  <span class="jb-checkbox__text">{{ $mode }}</span>
-                </label>
-                @empty<p class="jb-no-opt">No options</p>@endforelse
-              </div>
-            </div>
-
-            {{-- Job Functions --}}
-            <div class="jb-fblock">
-              <button type="button" class="jb-fblock__head" onclick="this.closest('.jb-fblock').classList.toggle('open')">
-                <span>Job Function</span>
-                <svg class="jb-fblock__arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
-              </button>
-              <div class="jb-fblock__body">
-                @forelse($jobFunctions->filter() as $fn)
-                <label class="jb-checkbox">
-                  <input type="checkbox" name="job_function[]" value="{{ $fn }}" {{ in_array($fn,(array)($currentFilters['job_function']??[])) ? 'checked' : '' }}>
-                  <span class="jb-checkbox__mark"></span>
-                  <span class="jb-checkbox__text">{{ $fn }}</span>
-                </label>
-                @empty<p class="jb-no-opt">No options</p>@endforelse
-              </div>
-            </div>
-
-            {{-- Experience --}}
-            <div class="jb-fblock">
-              <button type="button" class="jb-fblock__head" onclick="this.closest('.jb-fblock').classList.toggle('open')">
-                <span>Experience</span>
-                <svg class="jb-fblock__arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
-              </button>
-              <div class="jb-fblock__body">
-                @forelse($experiences->filter() as $exp)
-                <label class="jb-checkbox">
-                  <input type="checkbox" name="experience[]" value="{{ $exp }}" {{ in_array($exp,(array)($currentFilters['experience']??[])) ? 'checked' : '' }}>
-                  <span class="jb-checkbox__mark"></span>
-                  <span class="jb-checkbox__text">{{ $exp }}</span>
-                </label>
-                @empty<p class="jb-no-opt">No options</p>@endforelse
-              </div>
-            </div>
-
-            {{-- Location --}}
-            <div class="jb-fblock">
-              <button type="button" class="jb-fblock__head" onclick="this.closest('.jb-fblock').classList.toggle('open')">
-                <span>Location</span>
-                <svg class="jb-fblock__arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
-              </button>
-              <div class="jb-fblock__body">
-                @forelse($locations->filter() as $loc)
-                <label class="jb-checkbox">
-                  <input type="checkbox" name="location[]" value="{{ $loc }}" {{ in_array($loc,(array)($currentFilters['location']??[])) ? 'checked' : '' }}>
-                  <span class="jb-checkbox__mark"></span>
-                  <span class="jb-checkbox__text">{{ $loc }}</span>
-                </label>
-                @empty<p class="jb-no-opt">No options</p>@endforelse
-              </div>
-            </div>
-
-            {{-- Date Posted --}}
-            <div class="jb-fblock">
-              <button type="button" class="jb-fblock__head" onclick="this.closest('.jb-fblock').classList.toggle('open')">
-                <span>Date Posted</span>
-                <svg class="jb-fblock__arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
-              </button>
-              <div class="jb-fblock__body">
-                @foreach(['last_24_hours'=>'Last 24 Hours','last_7_days'=>'Last 7 Days','last_30_days'=>'Last 30 Days'] as $val=>$label)
-                <label class="jb-checkbox">
-                  <input type="radio" name="posted_date" value="{{ $val }}" {{ ($currentFilters['posted_date']??'')==$val ? 'checked' : '' }}>
-                  <span class="jb-checkbox__mark jb-checkbox__mark--radio"></span>
-                  <span class="jb-checkbox__text">{{ $label }}</span>
-                </label>
-                @endforeach
-              </div>
-            </div>
-
-            <div class="jb-filters__submit">
-              <button type="submit" class="jb-btn">Apply Filters</button>
-            </div>
-          </form>
-        </div>
-      </aside>
-
-      {{-- ─── MAIN CONTENT AREA ─── --}}
-      <div class="jb-content">
-
-        {{-- Search Bar --}}
-        <form action="{{ route('jobs.index') }}" method="GET" id="mainSearchForm">
-          <div class="jb-search">
-            <svg class="jb-search__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            <input type="text" name="search" class="jb-search__input" placeholder="Search by title, company, or keyword..." value="{{ $currentFilters['search'] ?? '' }}">
-            @if(!empty($currentFilters['search']))
-            <button type="button" class="jb-search__clear" onclick="removeFilter('search')">×</button>
-            @endif
-            <button type="submit" class="jb-search__btn">Search</button>
-
-            {{-- Mobile filter toggle --}}
-            <button type="button" class="jb-mobile-filter-btn" onclick="openMobileFilters()">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
-              @php $activeCount = count((array)($currentFilters['job_type']??[])) + count((array)($currentFilters['work_mode']??[])) + count((array)($currentFilters['job_function']??[])) + count((array)($currentFilters['location']??[])) + count((array)($currentFilters['experience']??[])) + (!empty($currentFilters['posted_date']) ? 1 : 0) + (!empty($currentFilters['salary_min']) || !empty($currentFilters['salary_max']) ? 1 : 0); @endphp
-              @if($activeCount > 0)<span class="jb-mobile-filter-btn__badge">{{ $activeCount }}</span>@endif
-            </button>
-          </div>
-
-          {{-- Hidden filter state --}}
-          <input type="hidden" name="sort_by" value="{{ $currentFilters['sort_by'] ?? 'featured' }}">
-          @foreach((array)($currentFilters['job_type'] ?? []) as $v)<input type="hidden" name="job_type[]" value="{{ $v }}">@endforeach
-          @foreach((array)($currentFilters['work_mode'] ?? []) as $v)<input type="hidden" name="work_mode[]" value="{{ $v }}">@endforeach
-          @foreach((array)($currentFilters['job_function'] ?? []) as $v)<input type="hidden" name="job_function[]" value="{{ $v }}">@endforeach
-          @foreach((array)($currentFilters['location'] ?? []) as $v)<input type="hidden" name="location[]" value="{{ $v }}">@endforeach
-          @foreach((array)($currentFilters['experience'] ?? []) as $v)<input type="hidden" name="experience[]" value="{{ $v }}">@endforeach
-          @if(!empty($currentFilters['salary_min']))<input type="hidden" name="salary_min" value="{{ $currentFilters['salary_min'] }}">@endif
-          @if(!empty($currentFilters['salary_max']))<input type="hidden" name="salary_max" value="{{ $currentFilters['salary_max'] }}">@endif
-          @if(!empty($currentFilters['posted_date']))<input type="hidden" name="posted_date" value="{{ $currentFilters['posted_date'] }}">@endif
-        </form>
-
-        {{-- Active Filters --}}
-        @if($hasActiveFilters)
-        <div class="jb-active-tags">
-          @if(!empty($currentFilters['search']))
-            <span class="jb-tag">"{{ $currentFilters['search'] }}" <button onclick="removeFilter('search')">×</button></span>
-          @endif
-          @foreach((array)($currentFilters['job_type'] ?? []) as $type)
-            <span class="jb-tag">{{ $type }} <button onclick="removeArrayFilter('job_type', '{{ $type }}')">×</button></span>
-          @endforeach
-          @foreach((array)($currentFilters['work_mode'] ?? []) as $mode)
-            <span class="jb-tag">{{ $mode }} <button onclick="removeArrayFilter('work_mode', '{{ $mode }}')">×</button></span>
-          @endforeach
-          @foreach((array)($currentFilters['job_function'] ?? []) as $fn)
-            <span class="jb-tag">{{ $fn }} <button onclick="removeArrayFilter('job_function', '{{ $fn }}')">×</button></span>
-          @endforeach
-          @foreach((array)($currentFilters['location'] ?? []) as $loc)
-            <span class="jb-tag">{{ $loc }} <button onclick="removeArrayFilter('location', '{{ $loc }}')">×</button></span>
-          @endforeach
-          @foreach((array)($currentFilters['experience'] ?? []) as $exp)
-            <span class="jb-tag">{{ $exp }} <button onclick="removeArrayFilter('experience', '{{ $exp }}')">×</button></span>
-          @endforeach
-          @if(!empty($currentFilters['salary_min']) || !empty($currentFilters['salary_max']))
-            <span class="jb-tag">₹{{ number_format($currentFilters['salary_min'] ?? 0) }} – ₹{{ number_format($currentFilters['salary_max'] ?? 0) }} <button onclick="removeSalaryFilter()">×</button></span>
-          @endif
-          @if(!empty($currentFilters['posted_date']))
-            <span class="jb-tag">{{ str_replace('_',' ',ucwords($currentFilters['posted_date'],'_')) }} <button onclick="removeFilter('posted_date')">×</button></span>
-          @endif
-          <a href="{{ route('jobs.index') }}" class="jb-tag jb-tag--clear">Clear All</a>
-        </div>
-        @endif
-
-        {{-- Results Header --}}
-        <div class="jb-toolbar">
-          <span class="jb-toolbar__count"><strong>{{ $jobs->total() }}</strong> job{{ $jobs->total() != 1 ? 's' : '' }} found</span>
-          <select class="jb-toolbar__sort" onchange="updateSort(this.value)">
-            <option value="featured" {{ ($currentFilters['sort_by'] ?? 'featured') == 'featured' ? 'selected' : '' }}>Featured</option>
-            <option value="newest" {{ ($currentFilters['sort_by'] ?? 'featured') == 'newest' ? 'selected' : '' }}>Newest</option>
-            <option value="oldest" {{ ($currentFilters['sort_by'] ?? 'featured') == 'oldest' ? 'selected' : '' }}>Oldest</option>
-          </select>
-        </div>
-
-        {{-- Job Listings --}}
-        <div class="jb-listings">
-          @forelse($jobs as $job)
-          @php
-            $typeSlug = strtolower(str_replace(' ', '-', $job->job_type ?? 'full-time'));
-            $typeColors = [
-              'full-time'  => '#059669',
-              'part-time'  => '#ea580c',
-              'internship' => '#2563eb',
-              'contract'   => '#9333ea',
-              'remote'     => '#0d9488',
-            ];
-            $tc = $typeColors[$typeSlug] ?? '#059669';
-          @endphp
-          <a href="{{ route('jobs.show', $job->id) }}" class="jb-item">
-            <div class="jb-item__left">
-              <div class="jb-item__logo">
-                @if($job->company_logo)
-                  <img src="{{ asset($job->company_logo) }}" alt="{{ $job->company_name }}">
-                @else
-                  <span class="jb-item__logo-letter">{{ strtoupper(substr($job->company_name ?? 'C', 0, 1)) }}</span>
-                @endif
-              </div>
-            </div>
-            <div class="jb-item__center">
-              <h3 class="jb-item__title">{{ $job->job_title }}</h3>
-              <div class="jb-item__info">
-                <span class="jb-item__company">{{ $job->company_name ?? 'Company' }}</span>
-                <span class="jb-item__dot">•</span>
-                <span class="jb-item__loc">{{ $job->job_location ?? 'Location not specified' }}</span>
-                @if($job->work_mode)
-                <span class="jb-item__dot">•</span>
-                <span>{{ $job->work_mode }}</span>
-                @endif
-              </div>
-              <div class="jb-item__tags">
-                <span class="jb-item__type" style="color:{{ $tc }}; background: {{ $tc }}15; border-color: {{ $tc }}30;">{{ $job->job_type ?? 'Full-Time' }}</span>
-                @if($job->experience)
-                <span class="jb-item__exp">{{ $job->experience }}</span>
-                @endif
-                @if($job->vacancies)
-                <span class="jb-item__exp">{{ $job->vacancies }} Opening{{ $job->vacancies > 1 ? 's' : '' }}</span>
-                @endif
-              </div>
-            </div>
-            <div class="jb-item__right">
-              <div class="jb-item__salary">
-                @if($job->salary_from && $job->salary_to)
-                  ₹{{ number_format($job->salary_from/100000, 1) }}L – ₹{{ number_format($job->salary_to/100000, 1) }}L
-                  <small>/year</small>
-                @else
-                  Not Disclosed
-                @endif
-              </div>
-              <span class="jb-item__arrow">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-              </span>
-            </div>
-          </a>
-          @empty
-          <div class="jb-empty">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
-            <h4>No jobs match your criteria</h4>
-            <p>Try adjusting your filters or search terms.</p>
-            <a href="{{ route('jobs.index') }}" class="jb-btn">Reset Filters</a>
-          </div>
-          @endforelse
-        </div>
-
-        {{-- Pagination --}}
-        @if($jobs->hasPages())
-        <div class="jb-pagination">
-          {{ $jobs->appends($currentFilters)->links('pagination::bootstrap-4') }}
-        </div>
-        @endif
-
-      </div>
-    </div>
-  </div>
-</section>
-
-{{-- ═══════════════════════════════════════════════════
-     MOBILE FILTER DRAWER
-════════════════════════════════════════════════════ --}}
-<div class="jb-mob-overlay" id="mobOverlay" onclick="closeMobileFilters()"></div>
-<div class="jb-mob-drawer" id="mobDrawer">
-  <div class="jb-mob-drawer__head">
-    <h4>Filters</h4>
-    <button onclick="closeMobileFilters()">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </button>
-  </div>
-  <form action="{{ route('jobs.index') }}" method="GET" id="mobileFilterForm">
-    @if(!empty($currentFilters['search']))<input type="hidden" name="search" value="{{ $currentFilters['search'] }}">@endif
-    @if(!empty($currentFilters['sort_by']))<input type="hidden" name="sort_by" value="{{ $currentFilters['sort_by'] }}">@endif
-
-    <div class="jb-mob-drawer__body">
-      {{-- Salary --}}
-      <div class="jb-fblock open">
-        <button type="button" class="jb-fblock__head" onclick="this.closest('.jb-fblock').classList.toggle('open')">
-          <span>Salary Range</span>
-          <svg class="jb-fblock__arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
-        </button>
-        <div class="jb-fblock__body">
-          <div class="jb-salary-inputs">
-            <input type="number" name="salary_min" class="jb-input-sm" placeholder="Min ₹" value="{{ $currentFilters['salary_min'] ?? '' }}">
-            <span>to</span>
-            <input type="number" name="salary_max" class="jb-input-sm" placeholder="Max ₹" value="{{ $currentFilters['salary_max'] ?? '' }}">
-          </div>
-        </div>
-      </div>
-
-      {{-- Job Type --}}
-      <div class="jb-fblock open">
-        <button type="button" class="jb-fblock__head" onclick="this.closest('.jb-fblock').classList.toggle('open')">
-          <span>Job Type</span>
-          <svg class="jb-fblock__arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
-        </button>
-        <div class="jb-fblock__body">
-          @forelse($jobTypes->filter() as $type)
-          <label class="jb-checkbox">
-            <input type="checkbox" name="job_type[]" value="{{ $type }}" {{ in_array($type,(array)($currentFilters['job_type']??[])) ? 'checked' : '' }}>
-            <span class="jb-checkbox__mark"></span>
-            <span class="jb-checkbox__text">{{ $type }}</span>
-          </label>
-          @empty<p class="jb-no-opt">No options</p>@endforelse
-        </div>
-      </div>
-
-      {{-- Work Mode --}}
-      <div class="jb-fblock open">
-        <button type="button" class="jb-fblock__head" onclick="this.closest('.jb-fblock').classList.toggle('open')">
-          <span>Work Mode</span>
-          <svg class="jb-fblock__arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
-        </button>
-        <div class="jb-fblock__body">
-          @forelse($workModes->filter() as $mode)
-          <label class="jb-checkbox">
-            <input type="checkbox" name="work_mode[]" value="{{ $mode }}" {{ in_array($mode,(array)($currentFilters['work_mode']??[])) ? 'checked' : '' }}>
-            <span class="jb-checkbox__mark"></span>
-            <span class="jb-checkbox__text">{{ $mode }}</span>
-          </label>
-          @empty<p class="jb-no-opt">No options</p>@endforelse
-        </div>
-      </div>
-
-      {{-- Job Functions --}}
-      <div class="jb-fblock">
-        <button type="button" class="jb-fblock__head" onclick="this.closest('.jb-fblock').classList.toggle('open')">
-          <span>Job Function</span>
-          <svg class="jb-fblock__arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
-        </button>
-        <div class="jb-fblock__body">
-          @forelse($jobFunctions->filter() as $fn)
-          <label class="jb-checkbox">
-            <input type="checkbox" name="job_function[]" value="{{ $fn }}" {{ in_array($fn,(array)($currentFilters['job_function']??[])) ? 'checked' : '' }}>
-            <span class="jb-checkbox__mark"></span>
-            <span class="jb-checkbox__text">{{ $fn }}</span>
-          </label>
-          @empty<p class="jb-no-opt">No options</p>@endforelse
-        </div>
-      </div>
-
-      {{-- Experience --}}
-      <div class="jb-fblock">
-        <button type="button" class="jb-fblock__head" onclick="this.closest('.jb-fblock').classList.toggle('open')">
-          <span>Experience</span>
-          <svg class="jb-fblock__arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
-        </button>
-        <div class="jb-fblock__body">
-          @forelse($experiences->filter() as $exp)
-          <label class="jb-checkbox">
-            <input type="checkbox" name="experience[]" value="{{ $exp }}" {{ in_array($exp,(array)($currentFilters['experience']??[])) ? 'checked' : '' }}>
-            <span class="jb-checkbox__mark"></span>
-            <span class="jb-checkbox__text">{{ $exp }}</span>
-          </label>
-          @empty<p class="jb-no-opt">No options</p>@endforelse
-        </div>
-      </div>
-
-      {{-- Location --}}
-      <div class="jb-fblock">
-        <button type="button" class="jb-fblock__head" onclick="this.closest('.jb-fblock').classList.toggle('open')">
-          <span>Location</span>
-          <svg class="jb-fblock__arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
-        </button>
-        <div class="jb-fblock__body">
-          @forelse($locations->filter() as $loc)
-          <label class="jb-checkbox">
-            <input type="checkbox" name="location[]" value="{{ $loc }}" {{ in_array($loc,(array)($currentFilters['location']??[])) ? 'checked' : '' }}>
-            <span class="jb-checkbox__mark"></span>
-            <span class="jb-checkbox__text">{{ $loc }}</span>
-          </label>
-          @empty<p class="jb-no-opt">No options</p>@endforelse
-        </div>
-      </div>
-
-      {{-- Date Posted --}}
-      <div class="jb-fblock">
-        <button type="button" class="jb-fblock__head" onclick="this.closest('.jb-fblock').classList.toggle('open')">
-          <span>Date Posted</span>
-          <svg class="jb-fblock__arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
-        </button>
-        <div class="jb-fblock__body">
-          @foreach(['last_24_hours'=>'Last 24 Hours','last_7_days'=>'Last 7 Days','last_30_days'=>'Last 30 Days'] as $val=>$label)
-          <label class="jb-checkbox">
-            <input type="radio" name="posted_date" value="{{ $val }}" {{ ($currentFilters['posted_date']??'')==$val ? 'checked' : '' }}>
-            <span class="jb-checkbox__mark jb-checkbox__mark--radio"></span>
-            <span class="jb-checkbox__text">{{ $label }}</span>
-          </label>
-          @endforeach
-        </div>
-      </div>
-    </div>
-
-    <div class="jb-mob-drawer__foot">
-      <a href="{{ route('jobs.index') }}" class="jb-btn jb-btn--outline">Reset</a>
-      <button type="submit" class="jb-btn">Apply</button>
-    </div>
-  </form>
-</div>
-
-{{-- ═══════════════════════════════════════════════════ STYLES --}}
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
 
@@ -1121,6 +654,474 @@
 }
 </style>
 
+<div class="space-for-header"></div>
+
+{{-- ═══════════════════════════════════════════════════
+     PAGE HERO
+════════════════════════════════════════════════════ --}}
+<section class="jb-hero">
+  <div class="jb-hero__bg"></div>
+  <div class="jb-hero__inner">
+    <nav class="jb-breadcrumb" aria-label="Breadcrumb">
+      <a href="{{ url('/') }}">Home</a>
+      <span class="jb-breadcrumb__sep">/</span>
+      <span>Careers</span>
+    </nav>
+    <h1 class="jb-hero__title">Explore Opportunities</h1>
+    <p class="jb-hero__subtitle">Discover roles that match your skills and aspirations</p>
+  </div>
+</section>
+
+{{-- ═══════════════════════════════════════════════════
+     MAIN CONTENT
+════════════════════════════════════════════════════ --}}
+<section class="jb-main-section">
+  <div class="jb-wrap">
+    <div class="jb-grid">
+
+      {{-- ─── SIDEBAR FILTERS ─── --}}
+      <aside class="jb-filters" id="desktopSidebar">
+        <div class="jb-filters__inner">
+          <div class="jb-filters__top">
+            <h3 class="jb-filters__heading">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+              Filters
+            </h3>
+            @php
+              $hasActiveFilters = !empty($currentFilters['search']) || !empty($currentFilters['job_type']) || !empty($currentFilters['work_mode']) || !empty($currentFilters['job_function']) || !empty($currentFilters['location']) || !empty($currentFilters['experience']) || !empty($currentFilters['salary_min']) || !empty($currentFilters['salary_max']) || !empty($currentFilters['posted_date']);
+            @endphp
+            @if($hasActiveFilters)
+            <a href="{{ route('jobs.index') }}" class="jb-filters__reset">Clear All</a>
+            @endif
+          </div>
+
+          <form action="{{ route('jobs.index') }}" method="GET" id="desktopFilterForm">
+            @if(!empty($currentFilters['search']))<input type="hidden" name="search" value="{{ $currentFilters['search'] }}">@endif
+            @if(!empty($currentFilters['sort_by']))<input type="hidden" name="sort_by" value="{{ $currentFilters['sort_by'] }}">@endif
+
+            {{-- Salary Range --}}
+            <div class="jb-fblock open">
+              <button type="button" class="jb-fblock__head" onclick="this.closest('.jb-fblock').classList.toggle('open')">
+                <span>Salary Range</span>
+                <svg class="jb-fblock__arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <div class="jb-fblock__body">
+                <div class="jb-salary-inputs">
+                  <input type="number" name="salary_min" class="jb-input-sm" placeholder="Min ₹" value="{{ $currentFilters['salary_min'] ?? '' }}">
+                  <span>to</span>
+                  <input type="number" name="salary_max" class="jb-input-sm" placeholder="Max ₹" value="{{ $currentFilters['salary_max'] ?? '' }}">
+                </div>
+              </div>
+            </div>
+
+            {{-- Job Type --}}
+            <div class="jb-fblock open">
+              <button type="button" class="jb-fblock__head" onclick="this.closest('.jb-fblock').classList.toggle('open')">
+                <span>Job Type</span>
+                <svg class="jb-fblock__arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <div class="jb-fblock__body">
+                @forelse($jobTypes->filter() as $type)
+                <label class="jb-checkbox">
+                  <input type="checkbox" name="job_type[]" value="{{ $type }}" {{ in_array($type,(array)($currentFilters['job_type']??[])) ? 'checked' : '' }}>
+                  <span class="jb-checkbox__mark"></span>
+                  <span class="jb-checkbox__text">{{ $type }}</span>
+                </label>
+                @empty<p class="jb-no-opt">No options</p>@endforelse
+              </div>
+            </div>
+
+            {{-- Work Mode --}}
+            <div class="jb-fblock open">
+              <button type="button" class="jb-fblock__head" onclick="this.closest('.jb-fblock').classList.toggle('open')">
+                <span>Work Mode</span>
+                <svg class="jb-fblock__arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <div class="jb-fblock__body">
+                @forelse($workModes->filter() as $mode)
+                <label class="jb-checkbox">
+                  <input type="checkbox" name="work_mode[]" value="{{ $mode }}" {{ in_array($mode,(array)($currentFilters['work_mode']??[])) ? 'checked' : '' }}>
+                  <span class="jb-checkbox__mark"></span>
+                  <span class="jb-checkbox__text">{{ $mode }}</span>
+                </label>
+                @empty<p class="jb-no-opt">No options</p>@endforelse
+              </div>
+            </div>
+
+            {{-- Job Functions --}}
+            <div class="jb-fblock">
+              <button type="button" class="jb-fblock__head" onclick="this.closest('.jb-fblock').classList.toggle('open')">
+                <span>Job Function</span>
+                <svg class="jb-fblock__arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <div class="jb-fblock__body">
+                @forelse($jobFunctions->filter() as $fn)
+                <label class="jb-checkbox">
+                  <input type="checkbox" name="job_function[]" value="{{ $fn }}" {{ in_array($fn,(array)($currentFilters['job_function']??[])) ? 'checked' : '' }}>
+                  <span class="jb-checkbox__mark"></span>
+                  <span class="jb-checkbox__text">{{ $fn }}</span>
+                </label>
+                @empty<p class="jb-no-opt">No options</p>@endforelse
+              </div>
+            </div>
+
+            {{-- Experience --}}
+            <div class="jb-fblock">
+              <button type="button" class="jb-fblock__head" onclick="this.closest('.jb-fblock').classList.toggle('open')">
+                <span>Experience</span>
+                <svg class="jb-fblock__arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <div class="jb-fblock__body">
+                @forelse($experiences->filter() as $exp)
+                <label class="jb-checkbox">
+                  <input type="checkbox" name="experience[]" value="{{ $exp }}" {{ in_array($exp,(array)($currentFilters['experience']??[])) ? 'checked' : '' }}>
+                  <span class="jb-checkbox__mark"></span>
+                  <span class="jb-checkbox__text">{{ $exp }}</span>
+                </label>
+                @empty<p class="jb-no-opt">No options</p>@endforelse
+              </div>
+            </div>
+
+            {{-- Location --}}
+            <div class="jb-fblock">
+              <button type="button" class="jb-fblock__head" onclick="this.closest('.jb-fblock').classList.toggle('open')">
+                <span>Location</span>
+                <svg class="jb-fblock__arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <div class="jb-fblock__body">
+                @forelse($locations->filter() as $loc)
+                <label class="jb-checkbox">
+                  <input type="checkbox" name="location[]" value="{{ $loc }}" {{ in_array($loc,(array)($currentFilters['location']??[])) ? 'checked' : '' }}>
+                  <span class="jb-checkbox__mark"></span>
+                  <span class="jb-checkbox__text">{{ $loc }}</span>
+                </label>
+                @empty<p class="jb-no-opt">No options</p>@endforelse
+              </div>
+            </div>
+
+            {{-- Date Posted --}}
+            <div class="jb-fblock">
+              <button type="button" class="jb-fblock__head" onclick="this.closest('.jb-fblock').classList.toggle('open')">
+                <span>Date Posted</span>
+                <svg class="jb-fblock__arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <div class="jb-fblock__body">
+                @foreach(['last_24_hours'=>'Last 24 Hours','last_7_days'=>'Last 7 Days','last_30_days'=>'Last 30 Days'] as $val=>$label)
+                <label class="jb-checkbox">
+                  <input type="radio" name="posted_date" value="{{ $val }}" {{ ($currentFilters['posted_date']??'')==$val ? 'checked' : '' }}>
+                  <span class="jb-checkbox__mark jb-checkbox__mark--radio"></span>
+                  <span class="jb-checkbox__text">{{ $label }}</span>
+                </label>
+                @endforeach
+              </div>
+            </div>
+
+            <div class="jb-filters__submit">
+              <button type="submit" class="jb-btn">Apply Filters</button>
+            </div>
+          </form>
+        </div>
+      </aside>
+
+      {{-- ─── MAIN CONTENT AREA ─── --}}
+      <div class="jb-content">
+
+        {{-- Search Bar --}}
+        <form action="{{ route('jobs.index') }}" method="GET" id="mainSearchForm">
+          <div class="jb-search">
+            <svg class="jb-search__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" name="search" class="jb-search__input" placeholder="Search by title, company, or keyword..." value="{{ $currentFilters['search'] ?? '' }}">
+            @if(!empty($currentFilters['search']))
+            <button type="button" class="jb-search__clear" onclick="removeFilter('search')">×</button>
+            @endif
+            <button type="submit" class="jb-search__btn">Search</button>
+
+            {{-- Mobile filter toggle --}}
+            <button type="button" class="jb-mobile-filter-btn" onclick="openMobileFilters()">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+              @php $activeCount = count((array)($currentFilters['job_type']??[])) + count((array)($currentFilters['work_mode']??[])) + count((array)($currentFilters['job_function']??[])) + count((array)($currentFilters['location']??[])) + count((array)($currentFilters['experience']??[])) + (!empty($currentFilters['posted_date']) ? 1 : 0) + (!empty($currentFilters['salary_min']) || !empty($currentFilters['salary_max']) ? 1 : 0); @endphp
+              @if($activeCount > 0)<span class="jb-mobile-filter-btn__badge">{{ $activeCount }}</span>@endif
+            </button>
+          </div>
+
+          {{-- Hidden filter state --}}
+          <input type="hidden" name="sort_by" value="{{ $currentFilters['sort_by'] ?? 'featured' }}">
+          @foreach((array)($currentFilters['job_type'] ?? []) as $v)<input type="hidden" name="job_type[]" value="{{ $v }}">@endforeach
+          @foreach((array)($currentFilters['work_mode'] ?? []) as $v)<input type="hidden" name="work_mode[]" value="{{ $v }}">@endforeach
+          @foreach((array)($currentFilters['job_function'] ?? []) as $v)<input type="hidden" name="job_function[]" value="{{ $v }}">@endforeach
+          @foreach((array)($currentFilters['location'] ?? []) as $v)<input type="hidden" name="location[]" value="{{ $v }}">@endforeach
+          @foreach((array)($currentFilters['experience'] ?? []) as $v)<input type="hidden" name="experience[]" value="{{ $v }}">@endforeach
+          @if(!empty($currentFilters['salary_min']))<input type="hidden" name="salary_min" value="{{ $currentFilters['salary_min'] }}">@endif
+          @if(!empty($currentFilters['salary_max']))<input type="hidden" name="salary_max" value="{{ $currentFilters['salary_max'] }}">@endif
+          @if(!empty($currentFilters['posted_date']))<input type="hidden" name="posted_date" value="{{ $currentFilters['posted_date'] }}">@endif
+        </form>
+
+        {{-- Active Filters --}}
+        @if($hasActiveFilters)
+        <div class="jb-active-tags">
+          @if(!empty($currentFilters['search']))
+            <span class="jb-tag">"{{ $currentFilters['search'] }}" <button onclick="removeFilter('search')">×</button></span>
+          @endif
+          @foreach((array)($currentFilters['job_type'] ?? []) as $type)
+            <span class="jb-tag">{{ $type }} <button onclick="removeArrayFilter('job_type', '{{ $type }}')">×</button></span>
+          @endforeach
+          @foreach((array)($currentFilters['work_mode'] ?? []) as $mode)
+            <span class="jb-tag">{{ $mode }} <button onclick="removeArrayFilter('work_mode', '{{ $mode }}')">×</button></span>
+          @endforeach
+          @foreach((array)($currentFilters['job_function'] ?? []) as $fn)
+            <span class="jb-tag">{{ $fn }} <button onclick="removeArrayFilter('job_function', '{{ $fn }}')">×</button></span>
+          @endforeach
+          @foreach((array)($currentFilters['location'] ?? []) as $loc)
+            <span class="jb-tag">{{ $loc }} <button onclick="removeArrayFilter('location', '{{ $loc }}')">×</button></span>
+          @endforeach
+          @foreach((array)($currentFilters['experience'] ?? []) as $exp)
+            <span class="jb-tag">{{ $exp }} <button onclick="removeArrayFilter('experience', '{{ $exp }}')">×</button></span>
+          @endforeach
+          @if(!empty($currentFilters['salary_min']) || !empty($currentFilters['salary_max']))
+            <span class="jb-tag">₹{{ number_format($currentFilters['salary_min'] ?? 0) }} – ₹{{ number_format($currentFilters['salary_max'] ?? 0) }} <button onclick="removeSalaryFilter()">×</button></span>
+          @endif
+          @if(!empty($currentFilters['posted_date']))
+            <span class="jb-tag">{{ str_replace('_',' ',ucwords($currentFilters['posted_date'],'_')) }} <button onclick="removeFilter('posted_date')">×</button></span>
+          @endif
+          <a href="{{ route('jobs.index') }}" class="jb-tag jb-tag--clear">Clear All</a>
+        </div>
+        @endif
+
+        {{-- Results Header --}}
+        <div class="jb-toolbar">
+          <span class="jb-toolbar__count"><strong>{{ $jobs->total() }}</strong> job{{ $jobs->total() != 1 ? 's' : '' }} found</span>
+          <select class="jb-toolbar__sort" onchange="updateSort(this.value)">
+            <option value="featured" {{ ($currentFilters['sort_by'] ?? 'featured') == 'featured' ? 'selected' : '' }}>Featured</option>
+            <option value="newest" {{ ($currentFilters['sort_by'] ?? 'featured') == 'newest' ? 'selected' : '' }}>Newest</option>
+            <option value="oldest" {{ ($currentFilters['sort_by'] ?? 'featured') == 'oldest' ? 'selected' : '' }}>Oldest</option>
+          </select>
+        </div>
+
+        {{-- Job Listings --}}
+        <div class="jb-listings">
+          @forelse($jobs as $job)
+          @php
+            $typeSlug = strtolower(str_replace(' ', '-', $job->job_type ?? 'full-time'));
+            $typeColors = [
+              'full-time'  => '#059669',
+              'part-time'  => '#ea580c',
+              'internship' => '#2563eb',
+              'contract'   => '#9333ea',
+              'remote'     => '#0d9488',
+            ];
+            $tc = $typeColors[$typeSlug] ?? '#059669';
+          @endphp
+          <a href="{{ route('jobs.show', $job->id) }}" class="jb-item">
+            <div class="jb-item__left">
+              <div class="jb-item__logo">
+                @if($job->company_logo)
+                  <img loading="lazy" src="{{ asset($job->company_logo) }}" alt="{{ $job->company_name }}">
+                @else
+                  <span class="jb-item__logo-letter">{{ strtoupper(substr($job->company_name ?? 'C', 0, 1)) }}</span>
+                @endif
+              </div>
+            </div>
+            <div class="jb-item__center">
+              <h3 class="jb-item__title">{{ $job->job_title }}</h3>
+              <div class="jb-item__info">
+                <span class="jb-item__company">{{ $job->company_name ?? 'Company' }}</span>
+                <span class="jb-item__dot">•</span>
+                <span class="jb-item__loc">{{ $job->job_location ?? 'Location not specified' }}</span>
+                @if($job->work_mode)
+                <span class="jb-item__dot">•</span>
+                <span>{{ $job->work_mode }}</span>
+                @endif
+              </div>
+              <div class="jb-item__tags">
+                <span class="jb-item__type" style="color:{{ $tc }}; background: {{ $tc }}15; border-color: {{ $tc }}30;">{{ $job->job_type ?? 'Full-Time' }}</span>
+                @if($job->experience)
+                <span class="jb-item__exp">{{ $job->experience }}</span>
+                @endif
+                @if($job->vacancies)
+                <span class="jb-item__exp">{{ $job->vacancies }} Opening{{ $job->vacancies > 1 ? 's' : '' }}</span>
+                @endif
+              </div>
+            </div>
+            <div class="jb-item__right">
+              <div class="jb-item__salary">
+                @if($job->salary_from && $job->salary_to)
+                  ₹{{ number_format($job->salary_from/100000, 1) }}L – ₹{{ number_format($job->salary_to/100000, 1) }}L
+                  <small>/year</small>
+                @else
+                  Not Disclosed
+                @endif
+              </div>
+              <span class="jb-item__arrow">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+              </span>
+            </div>
+          </a>
+          @empty
+          <div class="jb-empty">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+            <h4>No jobs match your criteria</h4>
+            <p>Try adjusting your filters or search terms.</p>
+            <a href="{{ route('jobs.index') }}" class="jb-btn">Reset Filters</a>
+          </div>
+          @endforelse
+        </div>
+
+        {{-- Pagination --}}
+        @if($jobs->hasPages())
+        <div class="jb-pagination">
+          {{ $jobs->appends($currentFilters)->links('pagination::bootstrap-4') }}
+        </div>
+        @endif
+
+      </div>
+    </div>
+  </div>
+</section>
+
+{{-- ═══════════════════════════════════════════════════
+     MOBILE FILTER DRAWER
+════════════════════════════════════════════════════ --}}
+<div class="jb-mob-overlay" id="mobOverlay" onclick="closeMobileFilters()"></div>
+<div class="jb-mob-drawer" id="mobDrawer">
+  <div class="jb-mob-drawer__head">
+    <h4>Filters</h4>
+    <button onclick="closeMobileFilters()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <form action="{{ route('jobs.index') }}" method="GET" id="mobileFilterForm">
+    @if(!empty($currentFilters['search']))<input type="hidden" name="search" value="{{ $currentFilters['search'] }}">@endif
+    @if(!empty($currentFilters['sort_by']))<input type="hidden" name="sort_by" value="{{ $currentFilters['sort_by'] }}">@endif
+
+    <div class="jb-mob-drawer__body">
+      {{-- Salary --}}
+      <div class="jb-fblock open">
+        <button type="button" class="jb-fblock__head" onclick="this.closest('.jb-fblock').classList.toggle('open')">
+          <span>Salary Range</span>
+          <svg class="jb-fblock__arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="jb-fblock__body">
+          <div class="jb-salary-inputs">
+            <input type="number" name="salary_min" class="jb-input-sm" placeholder="Min ₹" value="{{ $currentFilters['salary_min'] ?? '' }}">
+            <span>to</span>
+            <input type="number" name="salary_max" class="jb-input-sm" placeholder="Max ₹" value="{{ $currentFilters['salary_max'] ?? '' }}">
+          </div>
+        </div>
+      </div>
+
+      {{-- Job Type --}}
+      <div class="jb-fblock open">
+        <button type="button" class="jb-fblock__head" onclick="this.closest('.jb-fblock').classList.toggle('open')">
+          <span>Job Type</span>
+          <svg class="jb-fblock__arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="jb-fblock__body">
+          @forelse($jobTypes->filter() as $type)
+          <label class="jb-checkbox">
+            <input type="checkbox" name="job_type[]" value="{{ $type }}" {{ in_array($type,(array)($currentFilters['job_type']??[])) ? 'checked' : '' }}>
+            <span class="jb-checkbox__mark"></span>
+            <span class="jb-checkbox__text">{{ $type }}</span>
+          </label>
+          @empty<p class="jb-no-opt">No options</p>@endforelse
+        </div>
+      </div>
+
+      {{-- Work Mode --}}
+      <div class="jb-fblock open">
+        <button type="button" class="jb-fblock__head" onclick="this.closest('.jb-fblock').classList.toggle('open')">
+          <span>Work Mode</span>
+          <svg class="jb-fblock__arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="jb-fblock__body">
+          @forelse($workModes->filter() as $mode)
+          <label class="jb-checkbox">
+            <input type="checkbox" name="work_mode[]" value="{{ $mode }}" {{ in_array($mode,(array)($currentFilters['work_mode']??[])) ? 'checked' : '' }}>
+            <span class="jb-checkbox__mark"></span>
+            <span class="jb-checkbox__text">{{ $mode }}</span>
+          </label>
+          @empty<p class="jb-no-opt">No options</p>@endforelse
+        </div>
+      </div>
+
+      {{-- Job Functions --}}
+      <div class="jb-fblock">
+        <button type="button" class="jb-fblock__head" onclick="this.closest('.jb-fblock').classList.toggle('open')">
+          <span>Job Function</span>
+          <svg class="jb-fblock__arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="jb-fblock__body">
+          @forelse($jobFunctions->filter() as $fn)
+          <label class="jb-checkbox">
+            <input type="checkbox" name="job_function[]" value="{{ $fn }}" {{ in_array($fn,(array)($currentFilters['job_function']??[])) ? 'checked' : '' }}>
+            <span class="jb-checkbox__mark"></span>
+            <span class="jb-checkbox__text">{{ $fn }}</span>
+          </label>
+          @empty<p class="jb-no-opt">No options</p>@endforelse
+        </div>
+      </div>
+
+      {{-- Experience --}}
+      <div class="jb-fblock">
+        <button type="button" class="jb-fblock__head" onclick="this.closest('.jb-fblock').classList.toggle('open')">
+          <span>Experience</span>
+          <svg class="jb-fblock__arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="jb-fblock__body">
+          @forelse($experiences->filter() as $exp)
+          <label class="jb-checkbox">
+            <input type="checkbox" name="experience[]" value="{{ $exp }}" {{ in_array($exp,(array)($currentFilters['experience']??[])) ? 'checked' : '' }}>
+            <span class="jb-checkbox__mark"></span>
+            <span class="jb-checkbox__text">{{ $exp }}</span>
+          </label>
+          @empty<p class="jb-no-opt">No options</p>@endforelse
+        </div>
+      </div>
+
+      {{-- Location --}}
+      <div class="jb-fblock">
+        <button type="button" class="jb-fblock__head" onclick="this.closest('.jb-fblock').classList.toggle('open')">
+          <span>Location</span>
+          <svg class="jb-fblock__arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="jb-fblock__body">
+          @forelse($locations->filter() as $loc)
+          <label class="jb-checkbox">
+            <input type="checkbox" name="location[]" value="{{ $loc }}" {{ in_array($loc,(array)($currentFilters['location']??[])) ? 'checked' : '' }}>
+            <span class="jb-checkbox__mark"></span>
+            <span class="jb-checkbox__text">{{ $loc }}</span>
+          </label>
+          @empty<p class="jb-no-opt">No options</p>@endforelse
+        </div>
+      </div>
+
+      {{-- Date Posted --}}
+      <div class="jb-fblock">
+        <button type="button" class="jb-fblock__head" onclick="this.closest('.jb-fblock').classList.toggle('open')">
+          <span>Date Posted</span>
+          <svg class="jb-fblock__arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="jb-fblock__body">
+          @foreach(['last_24_hours'=>'Last 24 Hours','last_7_days'=>'Last 7 Days','last_30_days'=>'Last 30 Days'] as $val=>$label)
+          <label class="jb-checkbox">
+            <input type="radio" name="posted_date" value="{{ $val }}" {{ ($currentFilters['posted_date']??'')==$val ? 'checked' : '' }}>
+            <span class="jb-checkbox__mark jb-checkbox__mark--radio"></span>
+            <span class="jb-checkbox__text">{{ $label }}</span>
+          </label>
+          @endforeach
+        </div>
+      </div>
+    </div>
+
+    <div class="jb-mob-drawer__foot">
+      <a href="{{ route('jobs.index') }}" class="jb-btn jb-btn--outline">Reset</a>
+      <button type="submit" class="jb-btn">Apply</button>
+    </div>
+  </form>
+</div>
+
+{{-- ═══════════════════════════════════════════════════ STYLES --}}
+
+
 {{-- ═══════════════════════════════════════════════════ SCRIPTS --}}
 <script>
 function openMobileFilters() {
@@ -1161,3 +1162,4 @@ function removeSalaryFilter() {
 </script>
 
 @endsection
+

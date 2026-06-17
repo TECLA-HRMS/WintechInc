@@ -292,7 +292,7 @@
         <!-- Left Branding Panel -->
         <div class="left-panel">
             <div class="brand-logo">
-                <img src="{{ asset('logo.png') }}" alt="Wintech Inc Logo">
+                <img loading="lazy" src="{{ asset('logo.png') }}" alt="Wintech Inc Logo">
             </div>
             <div class="brand-tagline">
                 <span>WINTECH INC</span>
@@ -364,3 +364,4 @@
     </script>
 </body>
 </html>
+

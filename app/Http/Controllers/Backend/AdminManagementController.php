@@ -17,7 +17,7 @@ class AdminManagementController extends Controller
     {
         $admins = DB::table('admins')
             ->where('id', '!=', session('admin_id')) // Exclude current admin
-            ->get();
+            ->paginate(10);
             
         return view('admin.admin-management.index', compact('admins'));
     }

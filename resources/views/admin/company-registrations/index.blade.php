@@ -250,7 +250,7 @@
                             </td>
                             <td>
                                 @if($registration->company_logo_path)
-                                    <img src="{{ asset($registration->company_logo_path) }}" alt="Logo" style="width:38px;height:38px;border-radius:8px;object-fit:cover;border:1px solid var(--border);">
+                                    <img loading="lazy" src="{{ asset($registration->company_logo_path) }}" alt="Logo" style="width:38px;height:38px;border-radius:8px;object-fit:cover;border:1px solid var(--border);">
                                 @else
                                     <div style="width:38px;height:38px;border-radius:8px;background:var(--bg-light);display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:1rem;border:1px solid var(--border);"><i class="fa-solid fa-building"></i></div>
                                 @endif
@@ -351,3 +351,4 @@ function deleteRegistration(id) {
 }
 </script>
 @endsection
+

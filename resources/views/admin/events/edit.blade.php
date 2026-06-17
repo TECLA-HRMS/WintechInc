@@ -46,7 +46,7 @@
     <label>Event Image</label>
     <input type="file" name="image" class="form-control" accept="image/*">
     @if($event->image)
-        <img src="{{ asset($event->image) }}" width="120" class="mt-2">
+        <img loading="lazy" src="{{ asset($event->image) }}" width="120" class="mt-2">
     @endif
 </div>
 
@@ -59,3 +59,4 @@
     </form>
 </div>
 @endsection
+

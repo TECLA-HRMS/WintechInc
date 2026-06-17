@@ -28,7 +28,7 @@
 <body>
     <div class="card">
         <div class="logo">
-            <img src="{{ asset('logo.png') }}" alt="Wintech Inc Logo">
+            <img loading="lazy" src="{{ asset('logo.png') }}" alt="Wintech Inc Logo">
         </div>
 
         <h1>Forgot Password</h1>
@@ -57,3 +57,4 @@
     </div>
 </body>
 </html>
+

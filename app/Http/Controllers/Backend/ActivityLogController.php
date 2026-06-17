@@ -30,7 +30,7 @@ class ActivityLogController extends Controller
             $query->whereDate('created_at', $request->date);
         }
 
-        $logs = $query->paginate(25)->withQueryString();
+        $logs = $query->paginate(10)->withQueryString();
         $modules = DB::table('admin_activity_logs')
             ->select('module')
             ->whereNotNull('module')

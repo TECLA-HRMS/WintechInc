@@ -145,7 +145,7 @@
     <div class="profile-hero">
         <div class="profile-av">
             @if($user->profile_picture)
-                <img src="{{ asset('profile_pictures/' . $user->profile_picture) }}" alt="">
+                <img loading="lazy" src="{{ asset('profile_pictures/' . $user->profile_picture) }}" alt="">
             @else
                 {{ strtoupper(substr($user->first_name, 0, 1)) }}
             @endif
@@ -402,3 +402,4 @@
     </div>
 </div>
 @endsection
+

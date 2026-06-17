@@ -69,6 +69,13 @@
     </div>
     @endif
 
+    @if(session('success_appearance'))
+    <div class="alert alert-success alert-dismissible fade show st-alert">
+        <i class="ti ti-circle-check me-2"></i>{{ session('success_appearance') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    @endif
+
     @if(session('success_email'))
     <div class="alert alert-success alert-dismissible fade show st-alert">
         <i class="ti ti-circle-check me-2"></i>{{ session('success_email') }}
@@ -100,6 +107,9 @@
         <button class="st-tab" onclick="switchTab('email', this)">
             <i class="ti ti-mail me-1"></i> Email Configuration
         </button>
+        <button class="st-tab" onclick="switchTab('appearance', this)">
+            <i class="ti ti-palette me-1"></i> Appearance
+        </button>
     </div>
 
     {{-- ══════════════════════════════════════════════════════════════════════ --}}
@@ -120,9 +130,9 @@
                     <label class="st-label">Site Logo</label>
                     <div class="logo-wrap">
                         @if($s->get('site_logo'))
-                            <img src="{{ asset($s->get('site_logo')) }}" id="logoPreview" class="logo-preview" alt="Logo">
+                            <img loading="lazy" src="{{ asset($s->get('site_logo')) }}" id="logoPreview" class="logo-preview" alt="Logo">
                         @else
-                            <img src="{{ asset('frontend/images/logos/logo2.jpeg') }}" id="logoPreview" class="logo-preview" alt="Logo">
+                            <img loading="lazy" src="{{ asset('frontend/images/logos/logo2.jpeg') }}" id="logoPreview" class="logo-preview" alt="Logo">
                         @endif
                         <div>
                             <input type="file" name="site_logo" id="logoInput" accept="image/*"
@@ -141,9 +151,9 @@
                     <label class="st-label">Favicon</label>
                     <div class="logo-wrap">
                         @if($s->get('site_favicon'))
-                            <img src="{{ asset($s->get('site_favicon')) }}" id="faviconPreview" class="logo-preview" alt="Favicon" style="width:48px;height:48px">
+                            <img loading="lazy" src="{{ asset($s->get('site_favicon')) }}" id="faviconPreview" class="logo-preview" alt="Favicon" style="width:48px;height:48px">
                         @else
-                            <img src="{{ asset('favicon.ico') }}" id="faviconPreview" class="logo-preview" alt="Favicon" style="width:48px;height:48px">
+                            <img loading="lazy" src="{{ asset('favicon.ico') }}" id="faviconPreview" class="logo-preview" alt="Favicon" style="width:48px;height:48px">
                         @endif
                         <div>
                             <input type="file" name="site_favicon" id="faviconInput" accept="image/*"
@@ -405,8 +415,12 @@ function sendTestMail() {
 }
 
 // Auto-open email tab if email errors exist
-@if(session('success_email') || (old('mail_host')))
+@if(session('success_appearance'))
+switchTab('appearance', document.querySelectorAll('.st-tab')[2]);
+@elseif(session('success_email') || (old('mail_host')))
 switchTab('email', document.querySelectorAll('.st-tab')[1]);
 @endif
 </script>
 @endsection
+
+

@@ -59,7 +59,7 @@
                 {{-- Featured Image --}}
                 @if($post->featured_image)
                 <div class="bd-featured-img">
-                    <img src="{{ asset($post->featured_image) }}" alt="{{ $post->title }}">
+                    <img loading="lazy" src="{{ asset($post->featured_image) }}" alt="{{ $post->title }}">
                     <div class="bd-featured-img__shine"></div>
                 </div>
                 @endif
@@ -78,7 +78,7 @@
                             @foreach(json_decode($post->additional_images) as $img)
                             <div class="col-md-6 col-sm-12">
                                 <div class="bd-gallery__item">
-                                    <img src="{{ asset($img) }}" alt="Gallery image">
+                                    <img loading="lazy" src="{{ asset($img) }}" alt="Gallery image">
                                     <div class="bd-gallery__item-overlay"></div>
                                 </div>
                             </div>
@@ -147,7 +147,7 @@
                                 <div class="bd-recent-num">{{ str_pad($i+1, 2, '0', STR_PAD_LEFT) }}</div>
                                 <div class="bd-recent-thumb">
                                     @if($recent->featured_image)
-                                    <img src="{{ asset($recent->featured_image) }}" alt="{{ $recent->title }}">
+                                    <img loading="lazy" src="{{ asset($recent->featured_image) }}" alt="{{ $recent->title }}">
                                     @else
                                     <div class="bd-recent-thumb-ph"><i class="fas fa-newspaper"></i></div>
                                     @endif
@@ -906,3 +906,4 @@ function copyLink() {
 </style>
 
 @endsection
+

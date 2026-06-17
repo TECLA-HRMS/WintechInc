@@ -25,7 +25,7 @@
                             @error('banner')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
-                            <img id="preview" class="mt-2" style="max-width: 200px; {{ $banner->banner ? '' : 'display: none;' }}" 
+                            <img loading="lazy" id="preview" class="mt-2" style="max-width: 200px; {{ $banner->banner ? '' : 'display: none;' }}" 
                                  src="{{ asset('uploads/banners/' . $banner->banner) }}">
                         </div>
 
@@ -84,3 +84,4 @@ $(document).ready(function() {
 </script>
 @endpush
 @endsection
+

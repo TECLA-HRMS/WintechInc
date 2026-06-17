@@ -34,7 +34,7 @@ class JobReportController extends Controller
                 });
             }
 
-            $jobs = $query->orderBy('created_at', 'desc')->paginate(10);
+            $jobs = $query->orderBy('created_at', 'desc')->paginate(10)->withQueryString();
 
             return view('admin.report.job.index', compact('jobs'));
         } catch (\Exception $e) {

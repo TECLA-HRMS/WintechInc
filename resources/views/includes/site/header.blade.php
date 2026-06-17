@@ -6,12 +6,12 @@
                         <div class="left">
                             <div class="mail">
                                 @if($site_email = \App\Models\AdminSetting::get('site_email'))
-                                    <a href="mailto:{{ $site_email }}"><i class="fal fa-envelope"></i> {{ $site_email }}</a>
+                                    <a href="mailto:{{ $site_email }}"><i class="fas fa-envelope"></i> {{ $site_email }}</a>
                                 @endif
                             </div>
                             <div class="working-time">
                                 @if($site_phone = \App\Models\AdminSetting::get('site_phone'))
-                                    <p><i class="fal fa-phone"></i>{{ $site_phone }}</p>
+                                    <p><i class="fas fa-phone"></i>{{ $site_phone }}</p>
                                 @endif
                             </div>
                         </div>
@@ -123,7 +123,7 @@
 										   </ul>
                                     </li>
 									<li><a class="nav-item" href="{{ route('jobs.index') }}">JOBS</a></li>
-									<li><a class="nav-item" href="{{ route('site.company') }}">COMPANY</a></li>
+									<li><a class="nav-item" href="{{ route('site.company') }}">PARTNER WITH US</a></li>
 									<li><a class="nav-item" href="{{ url('blog') }}">BLOG</a></li>
 									
                                     <li><a class="nav-item" href="{{ url('contact') }}">CONTACT US</a></li>
@@ -132,7 +132,7 @@
                             <div class="button-area" style="display: flex; align-items: center;">
                                 <!-- Search Icon / Trigger Pill -->
                                 <button id="search" class="search-trigger-pill ml--20 ml_sm--5 d-flex align-items-center gap-2" style="padding: 8px 16px; border-radius: 50px; border: 1px solid #e2e8f0; background: rgba(248, 250, 252, 0.8); cursor: pointer; transition: all 0.3s ease;">
-                                    <i class="far fa-search" style="color: #64748b; font-size: 14px;"></i>
+                                    <i class="fas fa-search" style="color: #64748b; font-size: 14px;"></i>
                                 </button>
                                 
                                 <!-- User Auth Logic -->
@@ -151,20 +151,20 @@
                                                 <span class="user-name">{{ Auth::user()->first_name ?? Auth::user()->name ?? 'User' }}</span>
                                             </li>
                                             <li><a class="dropdown-item profile-dropdown-item" href="{{ route('profile.show') }}">
-                                                <div class="icon-wrap"><i class="far fa-user-circle"></i></div> My Profile
+                                                <div class="icon-wrap"><i class="fas fa-user-circle"></i></div> My Profile
                                             </a></li>
                                             <li><a class="dropdown-item profile-dropdown-item" href="{{ route('job.my-applications') }}">
-                                                <div class="icon-wrap"><i class="far fa-briefcase"></i></div> My Applications
+                                                <div class="icon-wrap"><i class="fas fa-briefcase"></i></div> My Applications
                                             </a></li>
                                             <li><a class="dropdown-item profile-dropdown-item" href="{{ route('settings') }}">
-                                                <div class="icon-wrap"><i class="far fa-cog"></i></div> Settings
+                                                <div class="icon-wrap"><i class="fas fa-cog"></i></div> Settings
                                             </a></li>
                                             <li><hr class="dropdown-divider" style="border-color: rgba(0,0,0,0.05); margin: 8px 0;"></li>
                                             <li>
                                                 <form method="POST" action="{{ route('logout') }}" style="margin: 0;">
                                                     @csrf
                                                     <button type="submit" class="dropdown-item profile-dropdown-item text-danger logout-btn">
-                                                        <div class="icon-wrap"><i class="far fa-sign-out-alt"></i></div> Sign Out
+                                                        <div class="icon-wrap"><i class="fas fa-sign-out-alt"></i></div> Sign Out
                                                     </button>
                                                 </form>
                                             </li>
@@ -283,7 +283,7 @@
                                     </style>
                                 @else
                                     <a href="{{ route('login') }}" class="d-flex align-items-center justify-content-center auth-icon-btn" title="Login / Sign Up" style="margin-left: 12px; width: 42px; height: 42px; border-radius: 50%; border: 2px solid #b11e24; background: rgba(248, 250, 252, 0.8); color: #64748b; font-size: 16px; transition: all 0.3s ease;">
-                                        <i class="far fa-user"></i>
+                                        <i class="fas fa-user"></i>
                                     </a>
                                 @endauth
                                 <style>
@@ -430,7 +430,7 @@
     <!-- End header area -->
 
     <div id="side-bar" class="side-bar">
-        <button class="close-icon-menu"><i class="far fa-times"></i></button>
+        <button class="close-icon-menu"><i class="fas fa-times"></i></button>
         <!-- inner menu area desktop start -->
         <div class="rts-sidebar-menu-desktop">
             
@@ -520,7 +520,7 @@
 										   </ul>
                                     </li>
 									<li><a class="nav-item" href="{{ route('jobs.index') }}">Jobs</a></li>
-									<li><a class="nav-item" href="{{ route('site.company') }}">Company</a></li>
+									<li><a class="nav-item" href="{{ route('site.company') }}">Partner With Us</a></li>
 									<li><a class="nav-item" href="{{ url('blog') }}">Blog</a></li>
                                     <li><a class="nav-item" href="{{ url('contact') }}">Contact Us</a></li>
                     </ul>
@@ -551,11 +551,11 @@
             <form action="{{ route('jobs.index') }}" method="GET" style="margin: 0;">
                 <!-- Header bar of spotlight card -->
                 <div class="spotlight-header">
-                    <i class="far fa-search spotlight-search-icon"></i>
+                    <i class="fas fa-search spotlight-search-icon"></i>
                     <input id="searchInput1" name="search" type="text" placeholder="Search jobs, companies, locations..." required autocomplete="off">
                     <div class="spotlight-header-actions">
                         <span class="spotlight-key-badge d-none d-md-inline-block">ESC</span>
-                        <button type="button" id="closeSpotlight" class="spotlight-close-btn"><i class="far fa-times"></i></button>
+                        <button type="button" id="closeSpotlight" class="spotlight-close-btn"><i class="fas fa-times"></i></button>
                     </div>
                 </div>
                 
@@ -568,26 +568,26 @@
                         </div>
                         <div class="spotlight-categories-grid">
                             <a href="{{ url('best-placement-service-for-it-industry-in-chennai') }}" class="spotlight-cat-item">
-                                <i class="far fa-laptop-code"></i> IT Placement Services
+                                <i class="fas fa-laptop-code"></i> IT Placement Services
                             </a>
                             <a href="{{ url('best-manpower-consultants-services-in-chennai') }}" class="spotlight-cat-item">
-                                <i class="far fa-users-cog"></i> Manpower Consultants
+                                <i class="fas fa-users-cog"></i> Manpower Consultants
                             </a>
                             <a href="{{ url('digital-marketing') }}" class="spotlight-cat-item">
-                                <i class="far fa-bullhorn"></i> Digital Marketing
+                                <i class="fas fa-bullhorn"></i> Digital Marketing
                             </a>
                             <a href="{{ url('web-development') }}" class="spotlight-cat-item">
-                                <i class="far fa-browser"></i> Web Development
+                                <i class="fas fa-browser"></i> Web Development
                             </a>
                         </div>
 
                         <div class="spotlight-section-title" style="margin-top: 24px;">
-                            <i class="far fa-compass text-danger"></i> Quick Links
+                            <i class="fas fa-compass text-danger"></i> Quick Links
                         </div>
                         <div class="spotlight-quick-links">
-                            <a href="{{ route('jobs.index') }}" class="quick-link-item"><i class="far fa-briefcase"></i> View All Open Jobs</a>
-                            <a href="{{ url('about') }}" class="quick-link-item"><i class="far fa-info-circle"></i> About Wintech Inc</a>
-                            <a href="{{ url('contact') }}" class="quick-link-item"><i class="far fa-envelope"></i> Get in Touch</a>
+                            <a href="{{ route('jobs.index') }}" class="quick-link-item"><i class="fas fa-briefcase"></i> View All Open Jobs</a>
+                            <a href="{{ url('about') }}" class="quick-link-item"><i class="fas fa-info-circle"></i> About Wintech Inc</a>
+                            <a href="{{ url('contact') }}" class="quick-link-item"><i class="fas fa-envelope"></i> Get in Touch</a>
                         </div>
                     </div>
 
@@ -958,16 +958,16 @@
                                 item.innerHTML = `
                                     <div style="display: flex; align-items: center; gap: 16px; width: 100%;">
                                         <div style="width: 40px; height: 40px; border-radius: 10px; background: #fff1f2; display: flex; align-items: center; justify-content: center; color: #b11e24; font-size: 16px; flex-shrink: 0;">
-                                            <i class="far fa-briefcase"></i>
+                                            <i class="fas fa-briefcase"></i>
                                         </div>
                                         <div style="display: flex; flex-direction: column; flex: 1;">
                                             <span class="job-title-text" style="font-size: 14.5px; font-weight: 700; color: #1e293b; transition: color 0.2s; text-align: left;">${job.job_title}</span>
                                             <span style="font-size: 12px; color: #64748b; font-weight: 500; margin-top: 2px; display: flex; align-items: center; gap: 8px;">
-                                                <span><i class="far fa-building" style="margin-right: 4px;"></i> ${job.company_name}</span>
+                                                <span><i class="fas fa-building" style="margin-right: 4px;"></i> ${job.company_name}</span>
                                                 ${job.job_location ? `<span>• <i class="fas fa-map-marker-alt" style="margin-right: 2px;"></i> ${job.job_location}</span>` : ''}
                                             </span>
                                         </div>
-                                        <i class="far fa-chevron-right" style="color: #cbd5e1; font-size: 12px; margin-left: auto;"></i>
+                                        <i class="fas fa-chevron-right" style="color: #cbd5e1; font-size: 12px; margin-left: auto;"></i>
                                     </div>
                                 `;
                                 suggestionsList.appendChild(item);
@@ -1064,6 +1064,18 @@
                 if (searchInputArea) {
                     searchInputArea.classList.remove('show');
                     document.getElementById('anywhere-home')?.classList.remove('bgshow');
+                }
+            });
+        }
+        // Search button click listener
+        const searchBtn = document.getElementById('search');
+        if (searchBtn) {
+            searchBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (searchInputArea) {
+                    searchInputArea.classList.add('show');
+                    document.getElementById('anywhere-home')?.classList.add('bgshow');
+                    setTimeout(() => searchInput?.focus(), 80);
                 }
             });
         }

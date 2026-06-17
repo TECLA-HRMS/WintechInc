@@ -274,7 +274,7 @@
                         <!-- Logo -->
                         <div class="company-logo-wrapper">
                             @if(!empty($app->company_logo))
-                                <img src="{{ asset('uploads/company_logos/' . $app->company_logo) }}" alt="{{ $app->company_name }}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <img loading="lazy" src="{{ asset('uploads/company_logos/' . $app->company_logo) }}" alt="{{ $app->company_name }}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                 <div class="company-logo-letter" style="display: none;">
                                     {{ strtoupper(substr($app->company_name ?? 'C', 0, 1)) }}
                                 </div>
@@ -364,3 +364,4 @@
 <link rel="stylesheet" href="{{ asset('frontend/css/themify-icons.css') }}">
 
 @endsection
+

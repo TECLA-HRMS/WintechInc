@@ -155,7 +155,7 @@
                             <td style="font-size:.75rem;color:var(--text-muted);font-weight:600">{{ $loop->iteration }}</td>
                             <td>
                                 <div class="blog-cell">
-                                    <img src="{{ $post->featured_image ? asset($post->featured_image) : asset('assets/images/blog/01.jpg') }}" alt="Post image" class="blog-img">
+                                    <img loading="lazy" src="{{ $post->featured_image ? asset($post->featured_image) : asset('assets/images/blog/01.jpg') }}" alt="Post image" class="blog-img">
                                     <div>
                                         <div class="blog-title">{{ $post->title }}</div>
                                         @if($post->category)

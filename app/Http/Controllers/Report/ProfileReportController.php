@@ -39,7 +39,7 @@ class ProfileReportController extends Controller
             if (Schema::hasTable('experiences')) $relations[] = 'experiences';
             if (Schema::hasTable('user_skills')) $relations[] = 'skills';
 
-            $users = $query->with($relations)->orderBy('created_at', 'desc')->paginate(10);
+            $users = $query->with($relations)->orderBy('created_at', 'desc')->paginate(10)->withQueryString();
 
             return view('admin.report.profile.index', compact('users'));
 

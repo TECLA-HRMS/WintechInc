@@ -40,7 +40,7 @@ class CompanyRegistrationReportController extends Controller
             });
         }
 
-        $registrations = $query->orderBy('created_at', 'desc')->paginate(10);
+        $registrations = $query->orderBy('created_at', 'desc')->paginate(10)->withQueryString();
 
         return view('admin.report.company.index', compact('registrations'));
     }

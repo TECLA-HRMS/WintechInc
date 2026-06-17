@@ -42,7 +42,7 @@ class SelectedCandidateReportController extends Controller
             });
         }
 
-        $applications = $query->orderBy('job_applications.created_at', 'desc')->get();
+        $applications = $query->orderBy('job_applications.created_at', 'desc')->paginate(10)->withQueryString();
 
         return view('admin.report.candidate.index', compact('applications'));
     }

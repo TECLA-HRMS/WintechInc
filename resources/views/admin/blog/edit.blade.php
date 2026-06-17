@@ -120,7 +120,7 @@
                             <label class="field-label">Featured Image</label>
                             @if($blog->featured_image)
                                 <div class="mb-2">
-                                    <img src="{{ asset($blog->featured_image) }}" alt="Featured Image" class="current-img-preview">
+                                    <img loading="lazy" src="{{ asset($blog->featured_image) }}" alt="Featured Image" class="current-img-preview">
                                 </div>
                             @endif
                             <input type="file" name="featured_image" class="field-input {{ $errors->has('featured_image') ? 'is-invalid' : '' }}" accept="image/*">
@@ -136,7 +136,7 @@
                             @if($blog->additional_images)
                                 <div class="mb-2">
                                     @foreach(json_decode($blog->additional_images, true) as $img)
-                                        <img src="{{ asset($img) }}" alt="Additional Image" class="add-img-preview">
+                                        <img loading="lazy" src="{{ asset($img) }}" alt="Additional Image" class="add-img-preview">
                                     @endforeach
                                 </div>
                             @endif
@@ -176,3 +176,4 @@
     });
 </script>
 @endsection
+

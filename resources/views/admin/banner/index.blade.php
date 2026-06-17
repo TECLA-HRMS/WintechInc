@@ -54,7 +54,7 @@
                                         <tr id="banner-row-{{ $banner->id }}">
                                             <td>{{ $loop->iteration }}</td>
                                             <td>
-                                                <img src="{{ asset($banner->banner) }}" 
+                                                <img loading="lazy" src="{{ asset($banner->banner) }}" 
                                                      alt="Banner Image" 
                                                      style="width: 100px;">
                                             </td>

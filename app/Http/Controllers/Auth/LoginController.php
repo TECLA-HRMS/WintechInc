@@ -9,12 +9,14 @@ use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
-    public function showLoginForm()
+    public function showLoginForm(Request $request)
     {
         if (Auth::check()) {
             return redirect()->route('home');
         }
-        return view('site.login.index', ['prefilledEmail' => null]);
+        
+        $prefilledEmail = $request->cookie('remembered_email');
+        return view('site.login.index', ['prefilledEmail' => $prefilledEmail]);
     }
 
     public function login(Request $request)
@@ -38,7 +40,18 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
-            return redirect()->intended(route('home'));
+            
+            $response = redirect()->intended(route('home'));
+            
+            // If "Remember me" is checked, save the email in a long-lived cookie
+            // so the login form is pre-filled next time even if they log out
+            if ($remember) {
+                $response->cookie(cookie()->forever('remembered_email', $email));
+            } else {
+                $response->withoutCookie('remembered_email');
+            }
+            
+            return $response;
         }
 
         throw ValidationException::withMessages([

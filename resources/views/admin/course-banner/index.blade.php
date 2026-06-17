@@ -72,9 +72,9 @@
                                             <td>{{ $courses[$banner->course_id] ?? 'N/A' }}</td>
                                             <td>
                                                 @if($banner->banner && File::exists(public_path('uploads/course-banner/' . basename($banner->banner))))
-                                                    <img src="{{ asset('uploads/course-banner/' . basename($banner->banner)) }}" alt="Course Banner" style="width: 100px; height: auto; border-radius: 8px; object-fit: cover;">
+                                                    <img loading="lazy" src="{{ asset('uploads/course-banner/' . basename($banner->banner)) }}" alt="Course Banner" style="width: 100px; height: auto; border-radius: 8px; object-fit: cover;">
                                                 @else
-                                                    <img src="{{ asset('images/default-banner.png') }}" alt="Default Banner" style="width: 100px; height: auto; border-radius: 8px; object-fit: cover;">
+                                                    <img loading="lazy" src="{{ asset('images/default-banner.png') }}" alt="Default Banner" style="width: 100px; height: auto; border-radius: 8px; object-fit: cover;">
                                                 @endif
                                             </td>
                                             
@@ -201,3 +201,4 @@ function deleteBanner(id) {
 </script>
 
 @endsection
+
